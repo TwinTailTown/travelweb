@@ -37,19 +37,19 @@
                     <a href="#exhibitions" class="nav-link text-gray-800 hover:text-[#e63946] font-medium">展会信息</a>
                     <a href="#cases" class="nav-link text-gray-800 hover:text-[#e63946] font-medium">成功案例</a>
                     <a href="#about" class="nav-link text-gray-800 hover:text-[#e63946] font-medium">关于我们</a>
-                    <a href="#contact" class="nav-link text-gray-800 hover:text-[#e63946] font-medium">联系我们</a>
+                    <a href="#contact" class="nav-link text-gray-800 hover:text-[#e63946] font-medium" data-i18n="nav.contact">联系帮助</a>
                     
                     <!-- 多语言切换 -->
                     <div class="language-dropdown">
-                        <button class="flex items-center text-gray-800 hover:text-[#e63946]">
+                        <button id="language-btn" class="flex items-center text-gray-800 hover:text-[#e63946]">
                             <i class="fas fa-language mr-2"></i>
-                            <span>中文</span>
+                            <span id="current-language">中文</span>
                             <i class="fas fa-chevron-down ml-1 text-xs"></i>
                         </button>
                         <div class="language-dropdown-content">
-                            <a href="#" class="language-option">中文</a>
-                            <a href="#" class="language-option">English</a>
-                            <a href="#" class="language-option">Français</a>
+                            <a href="#" class="language-option" data-lang="zh">中文</a>
+                            <a href="#" class="language-option" data-lang="en">English</a>
+                            <a href="#" class="language-option" data-lang="sw">Kiswahili</a>
                         </div>
                     </div>
                     
@@ -72,15 +72,22 @@
                 <a href="#exhibitions" class="block py-2 text-gray-800 hover:text-[#e63946]">展会信息</a>
                 <a href="#cases" class="block py-2 text-gray-800 hover:text-[#e63946]">成功案例</a>
                 <a href="#about" class="block py-2 text-gray-800 hover:text-[#e63946]">关于我们</a>
-                <a href="#contact" class="block py-2 text-gray-800 hover:text-[#e63946]">联系我们</a>
+                <a href="#contact" class="block py-2 text-gray-800 hover:text-[#e63946]" data-i18n="nav.contact">联系帮助</a>
                 
                 <!-- 多语言切换 -->
                 <div class="py-2">
-                    <button class="flex items-center text-gray-800 hover:text-[#e63946]">
-                        <i class="fas fa-language mr-2"></i>
-                        <span>中文</span>
-                        <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                    </button>
+                    <div class="language-dropdown">
+                        <button id="mobile-language-btn" class="flex items-center text-gray-800 hover:text-[#e63946]">
+                            <i class="fas fa-language mr-2"></i>
+                            <span id="mobile-current-language">中文</span>
+                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="language-dropdown-content">
+                            <a href="#" class="language-option" data-lang="zh">中文</a>
+                            <a href="#" class="language-option" data-lang="en">English</a>
+                            <a href="#" class="language-option" data-lang="sw">Kiswahili</a>
+                        </div>
+                    </div>
                 </div>
                 
                 <a href="#contact" class="btn-primary inline-block mt-2 px-6 py-2 rounded-full font-medium">立即咨询</a>
@@ -113,72 +120,166 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item">
-                <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/e6f35bdf5f2949d49440de79db81aedd~tplv-a9rns2rl98-image.image?rcl=2026011020071233BBCA8C1EA06E4F36F1&rk3s=8e244e95&rrcfp=f06b921b&x-expires=1770638875&x-signature=p%2BCwV3hZLxhJ80ZNCLIp3ZP94i8%3D" alt="商务旅游服务">
-                <div class="carousel-caption">
-                    <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">AI智能路线推荐</h1>
-                    <p class="text-xl md:text-2xl text-white mb-8 drop-shadow-md">根据您的采购需求和预算，智能生成最优商务行程</p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#ai-route" class="btn-primary px-8 py-3 rounded-full font-bold text-lg">AI路线推荐</a>
-                        <a href="#contact" class="btn-secondary px-8 py-3 rounded-full font-bold text-lg">联系我们</a>
-                    </div>
-                </div>
-            </div>
         </div>
         
         <div class="carousel-indicators">
             <div class="carousel-indicator active" data-index="0"></div>
             <div class="carousel-indicator" data-index="1"></div>
-            <div class="carousel-indicator" data-index="2"></div>
         </div>
     </section>
 
-    <!-- 关于我们简介 -->
-    <section class="py-20 bg-white">
+    <!-- 商务路线 -->
+    <section id="routes" class="py-20 bg-white">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center gap-10">
-                <div class="md:w-1/2 scroll-animate">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#1a365d]">关于我们</h2>
-                    <p class="text-lg text-gray-700 mb-6">我们是专业的中非商务旅游服务提供商，致力于为非洲客户提供一站式商务旅游解决方案。多年来，我们已成功接待来自非洲各国的采购商，帮助他们在中国找到优质供应商，建立长期合作关系。</p>
-                    <p class="text-lg text-gray-700 mb-6">我们的服务团队拥有丰富的行业经验和专业知识，精通中、英、法等多种语言，可以为您提供全程无障碍沟通和服务。</p>
-                    <div class="flex flex-wrap gap-6 mt-8">
-                        <div class="flex items-center">
-                            <i class="fas fa-users text-3xl text-[#e63946] mr-3"></i>
-                            <div>
-                                <h4 class="text-xl font-bold">5000+</h4>
-                                <p class="text-gray-600">服务客户</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-globe text-3xl text-[#e63946] mr-3"></i>
-                            <div>
-                                <h4 class="text-xl font-bold">30+</h4>
-                                <p class="text-gray-600">非洲国家</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-handshake text-3xl text-[#e63946] mr-3"></i>
-                            <div>
-                                <h4 class="text-xl font-bold">98%</h4>
-                                <p class="text-gray-600">客户满意度</p>
-                            </div>
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[#1a365d]">精品商务路线</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">我们精心设计了多条商务路线，覆盖广州和义乌的主要批发市场，满足不同客户的采购需求。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- 广州路线 -->
+                <div class="bg-white rounded-lg shadow-xl overflow-hidden scroll-animate">
+                    <div class="relative">
+                        <img src="https://p3-doubao-search-sign.byteimg.com/tos-cn-i-xv4ileqgde/ae7f11e2465548019e408231d6125d7b~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1783598841&x-signature=orgdl5yn62ROtnV0sSgYKuJKTdQ%3D" alt="广州国际轻纺城" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-[#e63946] text-white px-4 py-1 rounded-full font-medium">
+                            热门路线
                         </div>
                     </div>
-                </div>
-                <div class="md:w-1/2 scroll-animate">
-                    <div class="relative">
-                        <img src="https://p26-doubao-search-sign.byteimg.com/tos-cn-i-xv4ileqgde/ff983d854e474229812e539d17670d1e~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1783598841&x-signature=A6BLrBbzAdjdDHwdUIHiSVL4mOg%3D" alt="义乌小商品市场" class="rounded-lg shadow-xl w-full">
-                        <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
-                            <div class="flex items-center">
-                                <i class="fas fa-star text-yellow-400"></i>
-                                <i class="fas fa-star text-yellow-400"></i>
-                                <i class="fas fa-star text-yellow-400"></i>
-                                <i class="fas fa-star text-yellow-400"></i>
-                                <i class="fas fa-star text-yellow-400"></i>
-                                <span class="ml-2 font-bold">4.9/5</span>
-                            </div>
-                            <p class="text-gray-600">来自客户的真实评价</p>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-4 text-[#1a365d]">广州纺织品采购之旅</h3>
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-map-marker-alt text-[#e63946] mr-2"></i>
+                            <span class="text-gray-700">广州</span>
+                            <span class="mx-3 text-gray-400">|</span>
+                            <i class="fas fa-calendar-alt text-[#e63946] mr-2"></i>
+                            <span class="text-gray-700">3-5天</span>
                         </div>
+                        <p class="text-gray-600 mb-6">广州是中国最大的纺织品和服装批发市场之一，拥有多个专业市场，包括广州国际轻纺城、白马服装市场等。</p>
+                        
+                        <h4 class="font-bold text-lg mb-3 text-[#1a365d]">路线亮点：</h4>
+                        <ul class="text-gray-600 mb-6">
+                            <li class="flex items-start mb-2">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>广州国际轻纺城 - 纺织品、面料</span>
+                            </li>
+                            <li class="flex items-start mb-2">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>白马服装市场 - 服装、配饰</span>
+                            </li>
+                            <li class="flex items-start mb-2">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>沙河服装批发市场 - 中低档服装</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>广州uus服装城 - 韩国风格服装</span>
+                            </li>
+                        </ul>
+                        
+                        <a href="#contact" class="btn-primary inline-block px-6 py-3 rounded-full font-medium">预约此路线</a>
+                    </div>
+                </div>
+                
+                <!-- 义乌路线 -->
+                <div class="bg-white rounded-lg shadow-xl overflow-hidden scroll-animate">
+                    <div class="relative">
+                        <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-xv4ileqgde/9a3a902ebb7049e395a85933bca352b5~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1783598841&x-signature=9cMHDAcAy0rXRDE49uf2LxhPPjA%3D" alt="义乌国际商贸城" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-[#457b9d] text-white px-4 py-1 rounded-full font-medium">
+                            推荐路线
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-4 text-[#1a365d]">义乌小商品采购之旅</h3>
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-map-marker-alt text-[#457b9d] mr-2"></i>
+                            <span class="text-gray-700">义乌</span>
+                            <span class="mx-3 text-gray-400">|</span>
+                            <i class="fas fa-calendar-alt text-[#457b9d] mr-2"></i>
+                            <span class="text-gray-700">4-6天</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">义乌是世界最大的小商品批发市场，拥有超过7万个商铺，涵盖20个大类、60万个品种的商品。</p>
+                        
+                        <h4 class="font-bold text-lg mb-3 text-[#1a365d]">路线亮点：</h4>
+                        <ul class="text-gray-600 mb-6">
+                            <li class="flex items-start mb-2">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>义乌国际商贸城一区 - 玩具、饰品</span>
+                            </li>
+                            <li class="flex items-start mb-2">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>义乌国际商贸城二区 - 五金、电子</span>
+                            </li>
+                            <li class="flex items-start mb-2">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>义乌国际商贸城三区 - 文化用品、体育用品</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>义乌国际商贸城四区 - 纺织品、服装</span>
+                            </li>
+                        </ul>
+                        
+                        <a href="#contact" class="btn-primary inline-block px-6 py-3 rounded-full font-medium">预约此路线</a>
+                    </div>
+                </div>
+                
+                <!-- 广州义乌组合路线 -->
+                <div class="bg-white rounded-lg shadow-xl overflow-hidden scroll-animate md:col-span-2">
+                    <div class="relative">
+                        <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-qvj2lq49k0/c418269b9a7948b9a256813d181426cc~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1783598841&x-signature=vWi8%2BL%2FMOnoJPPaojtMR070H1V8%3D" alt="义乌小商品市场" class="w-full h-80 object-cover">
+                        <div class="absolute top-4 right-4 bg-[#f59e0b] text-white px-4 py-1 rounded-full font-medium">
+                            豪华路线
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-4 text-[#1a365d]">广州义乌组合采购之旅</h3>
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-map-marker-alt text-[#f59e0b] mr-2"></i>
+                            <span class="text-gray-700">广州 + 义乌</span>
+                            <span class="mx-3 text-gray-400">|</span>
+                            <i class="fas fa-calendar-alt text-[#f59e0b] mr-2"></i>
+                            <span class="text-gray-700">7-10天</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">此路线结合了广州和义乌的优势，让您一次行程覆盖中国两大主要批发市场，最大化您的采购效率。</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <h4 class="font-bold text-lg mb-3 text-[#1a365d]">广州部分（3-4天）：</h4>
+                                <ul class="text-gray-600">
+                                    <li class="flex items-start mb-2">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>广州国际轻纺城</span>
+                                    </li>
+                                    <li class="flex items-start mb-2">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>白马服装市场</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>广州uus服装城</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-3 text-[#1a365d]">义乌部分（4-5天）：</h4>
+                                <ul class="text-gray-600">
+                                    <li class="flex items-start mb-2">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>义乌国际商贸城一区至四区</span>
+                                    </li>
+                                    <li class="flex items-start mb-2">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>义乌宾王市场</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                        <span>义乌生产资料市场</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <a href="#contact" class="btn-primary inline-block px-6 py-3 rounded-full font-medium">预约此路线</a>
                     </div>
                 </div>
             </div>
@@ -415,290 +516,6 @@
                         <a href="#contact" class="text-[#f59e0b] font-medium flex items-center hover:underline">
                             了解更多 <i class="fas fa-arrow-right ml-2"></i>
                         </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 商务路线 -->
-    <section id="routes" class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16 scroll-animate">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[#1a365d]">精品商务路线</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">我们精心设计了多条商务路线，覆盖广州和义乌的主要批发市场，满足不同客户的采购需求。</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <!-- 广州路线 -->
-                <div class="bg-white rounded-lg shadow-xl overflow-hidden scroll-animate">
-                    <div class="relative">
-                        <img src="https://p3-doubao-search-sign.byteimg.com/tos-cn-i-xv4ileqgde/ae7f11e2465548019e408231d6125d7b~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1783598841&x-signature=orgdl5yn62ROtnV0sSgYKuJKTdQ%3D" alt="广州国际轻纺城" class="w-full h-64 object-cover">
-                        <div class="absolute top-4 right-4 bg-[#e63946] text-white px-4 py-1 rounded-full font-medium">
-                            热门路线
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-4 text-[#1a365d]">广州纺织品采购之旅</h3>
-                        <div class="flex items-center mb-4">
-                            <i class="fas fa-map-marker-alt text-[#e63946] mr-2"></i>
-                            <span class="text-gray-700">广州</span>
-                            <span class="mx-3 text-gray-400">|</span>
-                            <i class="fas fa-calendar-alt text-[#e63946] mr-2"></i>
-                            <span class="text-gray-700">3-5天</span>
-                        </div>
-                        <p class="text-gray-600 mb-6">广州是中国最大的纺织品和服装批发市场之一，拥有多个专业市场，包括广州国际轻纺城、白马服装市场等。</p>
-                        
-                        <h4 class="font-bold text-lg mb-3 text-[#1a365d]">路线亮点：</h4>
-                        <ul class="text-gray-600 mb-6">
-                            <li class="flex items-start mb-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                <span>广州国际轻纺城 - 纺织品、面料</span>
-                            </li>
-                            <li class="flex items-start mb-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                <span>白马服装市场 - 服装、配饰</span>
-                            </li>
-                            <li class="flex items-start mb-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                <span>沙河服装批发市场 - 中低档服装</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                <span>广州uus服装城 - 韩国风格服装</span>
-                            </li>
-                        </ul>
-                        
-                        <a href="#contact" class="btn-primary inline-block px-6 py-3 rounded-full font-medium">预约此路线</a>
-                    </div>
-                </div>
-                
-                <!-- 义乌路线 -->
-                <div class="bg-white rounded-lg shadow-xl overflow-hidden scroll-animate">
-                    <div class="relative">
-                        <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-xv4ileqgde/9a3a902ebb7049e395a85933bca352b5~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1783598841&x-signature=9cMHDAcAy0rXRDE49uf2LxhPPjA%3D" alt="义乌国际商贸城" class="w-full h-64 object-cover">
-                        <div class="absolute top-4 right-4 bg-[#457b9d] text-white px-4 py-1 rounded-full font-medium">
-                            推荐路线
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-4 text-[#1a365d]">义乌小商品采购之旅</h3>
-                        <div class="flex items-center mb-4">
-                            <i class="fas fa-map-marker-alt text-[#457b9d] mr-2"></i>
-                            <span class="text-gray-700">义乌</span>
-                            <span class="mx-3 text-gray-400">|</span>
-                            <i class="fas fa-calendar-alt text-[#457b9d] mr-2"></i>
-                            <span class="text-gray-700">4-6天</span>
-                        </div>
-                        <p class="text-gray-600 mb-6">义乌是世界最大的小商品批发市场，拥有超过7万个商铺，涵盖20个大类、60万个品种的商品。</p>
-                        
-                        <h4 class="font-bold text-lg mb-3 text-[#1a365d]">路线亮点：</h4>
-                        <ul class="text-gray-600 mb-6">
-                            <li class="flex items-start mb-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                <span>义乌国际商贸城一区 - 玩具、饰品</span>
-                            </li>
-                            <li class="flex items-start mb-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                <span>义乌国际商贸城二区 - 五金、电子</span>
-                            </li>
-                            <li class="flex items-start mb-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                <span>义乌国际商贸城三区 - 文化用品、体育用品</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                <span>义乌国际商贸城四区 - 纺织品、服装</span>
-                            </li>
-                        </ul>
-                        
-                        <a href="#contact" class="btn-primary inline-block px-6 py-3 rounded-full font-medium">预约此路线</a>
-                    </div>
-                </div>
-                
-                <!-- 广州义乌组合路线 -->
-                <div class="bg-white rounded-lg shadow-xl overflow-hidden scroll-animate md:col-span-2">
-                    <div class="relative">
-                        <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-qvj2lq49k0/c418269b9a7948b9a256813d181426cc~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1783598841&x-signature=vWi8%2BL%2FMOnoJPPaojtMR070H1V8%3D" alt="义乌小商品市场" class="w-full h-80 object-cover">
-                        <div class="absolute top-4 right-4 bg-[#f59e0b] text-white px-4 py-1 rounded-full font-medium">
-                            豪华路线
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-4 text-[#1a365d]">广州义乌组合采购之旅</h3>
-                        <div class="flex items-center mb-4">
-                            <i class="fas fa-map-marker-alt text-[#f59e0b] mr-2"></i>
-                            <span class="text-gray-700">广州 + 义乌</span>
-                            <span class="mx-3 text-gray-400">|</span>
-                            <i class="fas fa-calendar-alt text-[#f59e0b] mr-2"></i>
-                            <span class="text-gray-700">7-10天</span>
-                        </div>
-                        <p class="text-gray-600 mb-6">此路线结合了广州和义乌的优势，让您一次行程覆盖中国两大主要批发市场，最大化您的采购效率。</p>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <div>
-                                <h4 class="font-bold text-lg mb-3 text-[#1a365d]">广州部分（3-4天）：</h4>
-                                <ul class="text-gray-600">
-                                    <li class="flex items-start mb-2">
-                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                        <span>广州国际轻纺城</span>
-                                    </li>
-                                    <li class="flex items-start mb-2">
-                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                        <span>白马服装市场</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                        <span>广州uus服装城</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg mb-3 text-[#1a365d]">义乌部分（4-5天）：</h4>
-                                <ul class="text-gray-600">
-                                    <li class="flex items-start mb-2">
-                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                        <span>义乌国际商贸城一区至四区</span>
-                                    </li>
-                                    <li class="flex items-start mb-2">
-                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                        <span>义乌宾王市场</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                        <span>义乌生产资料市场</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <a href="#contact" class="btn-primary inline-block px-6 py-3 rounded-full font-medium">预约此路线</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI智能路线推荐 -->
-    <section id="ai-route" class="py-20 bg-gradient">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16 scroll-animate">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">AI智能路线推荐</h2>
-                <p class="text-lg text-gray-200 max-w-3xl mx-auto">根据您的采购需求、预算和时间，我们的AI系统将为您生成最优的商务行程路线。</p>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <div class="bg-white rounded-lg shadow-xl p-6 scroll-animate">
-                    <h3 class="text-2xl font-bold mb-6 text-[#1a365d]">个性化路线定制</h3>
-                    <form id="ai-route-form">
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-medium mb-2" for="product-type">采购产品类型</label>
-                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946]" id="product-type">
-                                <option value="">请选择产品类型</option>
-                                <option value="textile">纺织品、服装</option>
-                                <option value="electronics">电子产品</option>
-                                <option value="home">家居用品</option>
-                                <option value="toys">玩具、礼品</option>
-                                <option value="hardware">五金工具</option>
-                                <option value="other">其他产品</option>
-                            </select>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-medium mb-2" for="budget">预算范围（美元）</label>
-                            <div class="flex items-center">
-                                <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946]" id="budget" placeholder="输入预算金额">
-                                <span class="ml-2 text-gray-500">USD</span>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-medium mb-2" for="duration">计划行程天数</label>
-                            <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946]" id="duration" placeholder="输入行程天数">
-                        </div>
-                        
-                        <div class="mb-4">
-                            <label class="block text-gray-700 font-medium mb-2" for="city-preference">城市偏好</label>
-                            <div class="flex flex-wrap gap-3">
-                                <label class="flex items-center">
-                                    <input type="checkbox" class="form-checkbox text-[#e63946]" value="guangzhou">
-                                    <span class="ml-2">广州</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" class="form-checkbox text-[#e63946]" value="yiwu">
-                                    <span class="ml-2">义乌</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" class="form-checkbox text-[#e63946]" value="both">
-                                    <span class="ml-2">两者都包括</span>
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <label class="block text-gray-700 font-medium mb-2" for="special-needs">特殊需求</label>
-                            <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946]" id="special-needs" rows="3" placeholder="请描述您的特殊需求（如翻译、物流等）"></textarea>
-                        </div>
-                        
-                        <button type="button" id="generate-route" class="btn-primary w-full py-3 rounded-full font-bold text-lg">
-                            <i class="fas fa-magic mr-2"></i> 生成AI推荐路线
-                        </button>
-                    </form>
-                </div>
-                
-                <div class="bg-white rounded-lg shadow-xl p-6 scroll-animate">
-                    <h3 class="text-2xl font-bold mb-6 text-[#1a365d]">AI推荐路线结果</h3>
-                    <div id="route-result" class="hidden">
-                        <div class="mb-6">
-                            <h4 class="font-bold text-lg mb-3 text-[#1a365d]">推荐路线概览</h4>
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-700">总行程天数：</span>
-                                    <span class="font-medium" id="result-duration">5天</span>
-                                </div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-700">覆盖城市：</span>
-                                    <span class="font-medium" id="result-cities">广州、义乌</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-700">预计预算：</span>
-                                    <span class="font-medium" id="result-budget">$10,000</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <h4 class="font-bold text-lg mb-3 text-[#1a365d]">详细行程安排</h4>
-                            <div id="daily-schedule">
-                                <!-- 行程安排将通过JavaScript动态生成 -->
-                            </div>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <h4 class="font-bold text-lg mb-3 text-[#1a365d]">推荐供应商</h4>
-                            <div id="recommended-suppliers">
-                                <!-- 推荐供应商将通过JavaScript动态生成 -->
-                            </div>
-                        </div>
-                        
-                        <div class="flex justify-between">
-                            <button class="px-6 py-2 border border-[#e63946] text-[#e63946] rounded-full font-medium hover:bg-[#e63946] hover:text-white transition duration-300">
-                                <i class="fas fa-download mr-2"></i> 下载行程
-                            </button>
-                            <button class="btn-primary px-6 py-2 rounded-full font-medium">
-                                <i class="fas fa-calendar-check mr-2"></i> 预约此行程
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div id="route-loading" class="hidden text-center py-10">
-                        <span class="loader"></span>
-                        <p class="mt-4 text-gray-600">AI正在为您生成最优路线，请稍候...</p>
-                    </div>
-                    
-                    <div id="route-empty" class="text-center py-10">
-                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/021773dd87654ee091bfb143ac55052a~tplv-a9rns2rl98-image.image?rcl=2026011020071233BBCA8C1EA06E4F36F1&rk3s=8e244e95&rrcfp=f06b921b&x-expires=1770638874&x-signature=4nWosA2Rw30SQowUXKw4nFe5UFg%3D" alt="AI路线推荐" class="w-3/4 mx-auto mb-6">
-                        <p class="text-gray-600">请在左侧填写您的需求，AI将为您生成个性化的商务行程路线。</p>
                     </div>
                 </div>
             </div>
@@ -1068,11 +885,11 @@
         </div>
     </section>
 
-    <!-- 联系我们 -->
+    <!-- 联系帮助 -->
     <section id="contact" class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 scroll-animate">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[#1a365d]">联系我们</h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[#1a365d]" data-i18n="contact.title">联系帮助</h2>
                 <p class="text-lg text-gray-600 max-w-3xl mx-auto">无论您有任何问题或需求，我们的团队随时为您提供帮助。请通过以下方式与我们联系。</p>
             </div>
             
@@ -1256,7 +1073,7 @@
                         <li><a href="#exhibitions" class="text-gray-300 hover:text-white">展会信息</a></li>
                         <li><a href="#cases" class="text-gray-300 hover:text-white">成功案例</a></li>
                         <li><a href="#about" class="text-gray-300 hover:text-white">关于我们</a></li>
-                        <li><a href="#contact" class="text-gray-300 hover:text-white">联系我们</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white" data-i18n="nav.contact">联系帮助</a></li>
                     </ul>
                 </div>
                 

@@ -141,244 +141,91 @@ const counterObserver = new IntersectionObserver((entries) => {
 
 counterObserver.observe(document.getElementById('counter-clients').parentElement.parentElement);
 
-// AI路线推荐表单提交
-document.getElementById('generate-route').addEventListener('click', function() {
-    const productType = document.getElementById('product-type').value;
-    const budget = document.getElementById('budget').value;
-    const duration = document.getElementById('duration').value;
-    const specialNeeds = document.getElementById('special-needs').value;
-    
-    // 表单验证
-    if (!productType || !budget || !duration) {
-        alert('请填写所有必填字段');
-        return;
+// 语言切换功能
+const translations = {
+    zh: {
+        'nav.home': '首页',
+        'nav.services': '我们的服务',
+        'nav.routes': '商务路线',
+        'nav.exhibitions': '展会信息',
+        'nav.cases': '成功案例',
+        'nav.about': '关于我们',
+        'nav.contact': '联系帮助',
+        'contact.title': '联系帮助'
+    },
+    en: {
+        'nav.home': 'Home',
+        'nav.services': 'Our Services',
+        'nav.routes': 'Business Routes',
+        'nav.exhibitions': 'Exhibitions',
+        'nav.cases': 'Success Cases',
+        'nav.about': 'About Us',
+        'nav.contact': 'Contact & Help',
+        'contact.title': 'Contact & Help'
+    },
+    sw: {
+        'nav.home': 'Nyumbani',
+        'nav.services': 'Huduma Zetu',
+        'nav.routes': 'Njia za Biashara',
+        'nav.exhibitions': 'Maonyesho',
+        'nav.cases': 'Kesi za Mafanikio',
+        'nav.about': 'Kuhusu Sisi',
+        'nav.contact': 'Wasiliana na Usaidizi',
+        'contact.title': 'Wasiliana na Usaidizi'
     }
+};
+
+// 获取当前语言
+function getCurrentLanguage() {
+    return localStorage.getItem('language') || 'zh';
+}
+
+// 设置当前语言
+function setCurrentLanguage(lang) {
+    localStorage.setItem('language', lang);
+    updateLanguage(lang);
+}
+
+// 更新页面语言
+function updateLanguage(lang) {
+    const t = translations[lang];
+    if (!t) return;
     
-    // 显示加载状态
-    document.getElementById('route-empty').classList.add('hidden');
-    document.getElementById('route-result').classList.add('hidden');
-    document.getElementById('route-loading').classList.remove('hidden');
+    // 更新所有带有 data-i18n 属性的元素
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (t[key]) {
+            element.textContent = t[key];
+        }
+    });
     
-    // 模拟API请求延迟
-    setTimeout(() => {
-        // 隐藏加载状态，显示结果
-        document.getElementById('route-loading').classList.add('hidden');
-        document.getElementById('route-result').classList.remove('hidden');
-        
-        // 更新结果
-        document.getElementById('result-duration').textContent = `${duration}天`;
-        
-        const cityCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-        let cities = [];
-        cityCheckboxes.forEach(checkbox => {
-            if (checkbox.value === 'guangzhou') cities.push('广州');
-            if (checkbox.value === 'yiwu') cities.push('义乌');
-            if (checkbox.value === 'both') {
-                cities = ['广州', '义乌'];
-            }
-        });
-        
-        if (cities.length === 0) {
-            cities = ['广州', '义乌'];
-        }
-        
-        document.getElementById('result-cities').textContent = cities.join('、');
-        document.getElementById('result-budget').textContent = `$${budget.toLocaleString()}`;
-        
-        // 生成每日行程
-        const dailySchedule = document.getElementById('daily-schedule');
-        dailySchedule.innerHTML = '';
-        
-        let scheduleHTML = '';
-        
-        if (cities.includes('广州') && cities.includes('义乌')) {
-            // 广州义乌组合路线
-            const guangzhouDays = Math.floor(duration * 0.4);
-            const yiwuDays = duration - guangzhouDays;
-            
-            for (let i = 1; i <= guangzhouDays; i++) {
-                scheduleHTML += `
-                    <div class="border-l-4 border-[#e63946] pl-4 mb-4">
-                        <h5 class="font-bold mb-2">第${i}天 - 广州</h5>
-                        <p class="text-gray-700 mb-2">上午：参观广州国际轻纺城</p>
-                        <p class="text-gray-700 mb-2">午餐：品尝广州特色美食</p>
-                        <p class="text-gray-700">下午：与供应商商务洽谈</p>
-                    </div>
-                `;
-            }
-            
-            scheduleHTML += `
-                <div class="border-l-4 border-gray-400 pl-4 mb-4">
-                    <h5 class="font-bold mb-2">第${guangzhouDays + 1}天 - 广州 → 义乌</h5>
-                    <p class="text-gray-700 mb-2">上午：广州-义乌高铁/飞机</p>
-                    <p class="text-gray-700 mb-2">下午：入住酒店，休息调整</p>
-                    <p class="text-gray-700">晚上：欢迎晚宴</p>
-                </div>
-            `;
-            
-            for (let i = 1; i <= yiwuDays; i++) {
-                scheduleHTML += `
-                    <div class="border-l-4 border-[#457b9d] pl-4 mb-4">
-                        <h5 class="font-bold mb-2">第${guangzhouDays + 1 + i}天 - 义乌</h5>
-                        <p class="text-gray-700 mb-2">上午：参观义乌国际商贸城${i % 4 === 0 ? 4 : i % 4}区</p>
-                        <p class="text-gray-700 mb-2">午餐：品尝义乌特色美食</p>
-                        <p class="text-gray-700">下午：与供应商商务洽谈</p>
-                    </div>
-                `;
-            }
-        } else if (cities.includes('广州')) {
-            // 仅广州路线
-            for (let i = 1; i <= duration; i++) {
-                scheduleHTML += `
-                    <div class="border-l-4 border-[#e63946] pl-4 mb-4">
-                        <h5 class="font-bold mb-2">第${i}天 - 广州</h5>
-                        <p class="text-gray-700 mb-2">上午：参观${i === 1 ? '广州国际轻纺城' : i === 2 ? '白马服装市场' : i === 3 ? '广州uus服装城' : '沙河服装批发市场'}</p>
-                        <p class="text-gray-700 mb-2">午餐：品尝广州特色美食</p>
-                        <p class="text-gray-700">下午：与供应商商务洽谈</p>
-                    </div>
-                `;
-            }
-        } else {
-            // 仅义乌路线
-            for (let i = 1; i <= duration; i++) {
-                scheduleHTML += `
-                    <div class="border-l-4 border-[#457b9d] pl-4 mb-4">
-                        <h5 class="font-bold mb-2">第${i}天 - 义乌</h5>
-                        <p class="text-gray-700 mb-2">上午：参观义乌国际商贸城${i % 4 === 0 ? 4 : i % 4}区</p>
-                        <p class="text-gray-700 mb-2">午餐：品尝义乌特色美食</p>
-                        <p class="text-gray-700">下午：与供应商商务洽谈</p>
-                    </div>
-                `;
-            }
-        }
-        
-        dailySchedule.innerHTML = scheduleHTML;
-        
-        // 生成推荐供应商
-        const recommendedSuppliers = document.getElementById('recommended-suppliers');
-        let suppliersHTML = '';
-        
-        if (productType === 'textile') {
-            suppliersHTML = `
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <h5 class="font-bold mb-2">广州纺织品有限公司</h5>
-                        <p class="text-gray-700 mb-1">主营：高品质面料、纺织品</p>
-                        <p class="text-gray-700 mb-1">优势：20年行业经验，出口非洲多国</p>
-                        <div class="flex items-center mt-2">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star-half-alt text-yellow-400"></i>
-                        </div>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <h5 class="font-bold mb-2">义乌服装制造有限公司</h5>
-                        <p class="text-gray-700 mb-1">主营：服装、配饰</p>
-                        <p class="text-gray-700 mb-1">优势：价格实惠，支持小批量订单</p>
-                        <div class="flex items-center mt-2">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                        </div>
-                    </div>
-                </div>
-            `;
-        } else if (productType === 'electronics') {
-            suppliersHTML = `
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <h5 class="font-bold mb-2">广州电子科技有限公司</h5>
-                        <p class="text-gray-700 mb-1">主营：手机配件、电子产品</p>
-                        <p class="text-gray-700 mb-1">优势：产品新颖，价格竞争力强</p>
-                        <div class="flex items-center mt-2">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                        </div>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <h5 class="font-bold mb-2">义乌数码科技有限公司</h5>
-                        <p class="text-gray-700 mb-1">主营：小型电子产品、数码配件</p>
-                        <p class="text-gray-700 mb-1">优势：品种齐全，起订量低</p>
-                        <div class="flex items-center mt-2">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star-half-alt text-yellow-400"></i>
-                        </div>
-                    </div>
-                </div>
-            `;
-        } else if (productType === 'home') {
-            suppliersHTML = `
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <h5 class="font-bold mb-2">广州家居用品有限公司</h5>
-                        <p class="text-gray-700 mb-1">主营：家居装饰品、厨房用品</p>
-                        <p class="text-gray-700 mb-1">优势：设计新颖，质量可靠</p>
-                        <div class="flex items-center mt-2">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                        </div>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <h5 class="font-bold mb-2">义乌家居制造有限公司</h5>
-                        <p class="text-gray-700 mb-1">主营：家居用品、装饰品</p>
-                        <p class="text-gray-700 mb-1">优势：价格实惠，品种丰富</p>
-                        <div class="flex items-center mt-2">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                        </div>
-                    </div>
-                </div>
-            `;
-        } else {
-            suppliersHTML = `
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <h5 class="font-bold mb-2">广州国际贸易有限公司</h5>
-                        <p class="text-gray-700 mb-1">主营：各类商品出口</p>
-                        <p class="text-gray-700 mb-1">优势：多年非洲市场经验</p>
-                        <div class="flex items-center mt-2">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star-half-alt text-yellow-400"></i>
-                        </div>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <h5 class="font-bold mb-2">义乌环球贸易有限公司</h5>
-                        <p class="text-gray-700 mb-1">主营：各类小商品</p>
-                        <p class="text-gray-700 mb-1">优势：品种齐全，价格竞争力强</p>
-                        <div class="flex items-center mt-2">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        recommendedSuppliers.innerHTML = suppliersHTML;
-        
-    }, 2000);
+    // 更新语言按钮显示
+    const langNames = {
+        'zh': '中文',
+        'en': 'English',
+        'sw': 'Kiswahili'
+    };
+    
+    const currentLangEl = document.getElementById('current-language');
+    const mobileCurrentLangEl = document.getElementById('mobile-current-language');
+    
+    if (currentLangEl) currentLangEl.textContent = langNames[lang];
+    if (mobileCurrentLangEl) mobileCurrentLangEl.textContent = langNames[lang];
+}
+
+// 语言切换事件
+document.querySelectorAll('.language-option').forEach(option => {
+    option.addEventListener('click', function(e) {
+        e.preventDefault();
+        const lang = this.getAttribute('data-lang');
+        setCurrentLanguage(lang);
+    });
+});
+
+// 页面加载时应用保存的语言
+document.addEventListener('DOMContentLoaded', function() {
+    const currentLang = getCurrentLanguage();
+    updateLanguage(currentLang);
 });
 
 // 联系表单提交
