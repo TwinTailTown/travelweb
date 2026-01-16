@@ -1,0 +1,13 @@
+{
+  "name": "africa-china-biz-travel",
+  "version": "1.0.0",
+  "description": "中非商务旅游一站式服务平台",
+  "main": "server.js",
+  "scripts": {
+    "start": "bun run server.js",
+    "dev": "bun run --watch server.js"
+  },
+  "keywords": ["business", "travel", "africa", "china"],
+  "author": "",
+  "license": "MIT"
+}

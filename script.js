@@ -312,3 +312,110 @@ function initGlobe() {
 
 // 页面加载完成后初始化3D地球
 window.addEventListener('load', initGlobe);
+
+// 获取展会信息
+async function fetchExhibitions() {
+    const loadingEl = document.getElementById('exhibitions-loading');
+    const errorEl = document.getElementById('exhibitions-error');
+    const containerEl = document.getElementById('exhibitions-container');
+    
+    try {
+        // 尝试从 API 获取数据
+        const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:3000/api/exhibitions'
+            : '/api/exhibitions';
+        
+        const response = await fetch(apiUrl);
+        
+        if (!response.ok) {
+            throw new Error('获取展会信息失败');
+        }
+        
+        const exhibitions = await response.json();
+        
+        // 隐藏加载状态
+        if (loadingEl) loadingEl.classList.add('hidden');
+        if (errorEl) errorEl.classList.add('hidden');
+        
+        // 渲染展会信息
+        renderExhibitions(exhibitions);
+        
+    } catch (error) {
+        console.error('获取展会信息失败:', error);
+        
+        // 显示错误状态
+        if (loadingEl) loadingEl.classList.add('hidden');
+        if (errorEl) errorEl.classList.remove('hidden');
+        
+        // 如果 API 失败，可以显示默认数据或错误提示
+        if (containerEl) {
+            containerEl.innerHTML = '<p class="text-gray-600 text-center py-4">暂无展会信息</p>';
+        }
+    }
+}
+
+// 渲染展会信息
+function renderExhibitions(exhibitions) {
+    const containerEl = document.getElementById('exhibitions-container');
+    if (!containerEl) return;
+    
+    if (!exhibitions || exhibitions.length === 0) {
+        containerEl.innerHTML = '<p class="text-gray-600 text-center py-4">暂无展会信息</p>';
+        return;
+    }
+    
+    containerEl.innerHTML = exhibitions.map(exhibition => {
+        // 根据 badgeColor 选择对应的 Tailwind 类
+        let badgeClass = '';
+        if (exhibition.badgeColor === '#e63946') {
+            badgeClass = 'bg-[#e63946]';
+        } else if (exhibition.badgeColor === '#457b9d') {
+            badgeClass = 'bg-[#457b9d]';
+        } else {
+            badgeClass = 'bg-gray-500';
+        }
+        
+        // 根据 linkColor 选择对应的 Tailwind 类
+        let linkClass = '';
+        if (exhibition.linkColor === '#e63946') {
+            linkClass = 'text-[#e63946]';
+        } else if (exhibition.linkColor === '#457b9d') {
+            linkClass = 'text-[#457b9d]';
+        } else {
+            linkClass = 'text-[#1a365d]';
+        }
+        
+        return `
+        <div class="calendar-event scroll-animate mb-6">
+            <div class="flex justify-between items-start mb-2">
+                <h4 class="text-xl font-bold text-[#1a365d]">${exhibition.title}</h4>
+                ${exhibition.badge ? `<span class="${badgeClass} text-white px-3 py-1 rounded-full text-sm">${exhibition.badge}</span>` : ''}
+            </div>
+            <div class="flex items-center text-gray-600 mb-3">
+                <i class="far fa-calendar-alt mr-2"></i>
+                <span>${exhibition.date}</span>
+                <span class="mx-3 text-gray-400">|</span>
+                <i class="fas fa-map-marker-alt mr-2"></i>
+                <span>${exhibition.location}</span>
+            </div>
+            <p class="text-gray-700 mb-4">${exhibition.description}</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+                ${exhibition.tags.map(tag => `<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">${tag}</span>`).join('')}
+            </div>
+            <a href="${exhibition.detailLink}" class="${linkClass} font-medium flex items-center hover:underline">
+                了解详情 <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        `;
+    }).join('');
+    
+    // 重新观察新添加的元素以触发滚动动画
+    containerEl.querySelectorAll('.scroll-animate').forEach(element => {
+        observer.observe(element);
+    });
+}
+
+// 页面加载时获取展会信息
+document.addEventListener('DOMContentLoaded', function() {
+    fetchExhibitions();
+});
