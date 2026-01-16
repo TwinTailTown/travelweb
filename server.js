@@ -228,48 +228,77 @@ const server = Bun.serve({
       }
     }
     
-    // 静态文件服务
-    if (url.pathname === "/" || url.pathname === "/index.html") {
-      const file = Bun.file("./index.html");
+    // MIME 类型映射
+    const mimeTypes = {
+      ".html": "text/html",
+      ".htm": "text/html",
+      ".js": "application/javascript",
+      ".css": "text/css",
+      ".json": "application/json",
+      ".png": "image/png",
+      ".jpg": "image/jpeg",
+      ".jpeg": "image/jpeg",
+      ".gif": "image/gif",
+      ".svg": "image/svg+xml",
+      ".webp": "image/webp",
+      ".ico": "image/x-icon",
+      ".pdf": "application/pdf",
+      ".txt": "text/plain",
+      ".xml": "application/xml",
+      ".woff": "font/woff",
+      ".woff2": "font/woff2",
+      ".ttf": "font/ttf",
+      ".eot": "application/vnd.ms-fontobject",
+      ".otf": "font/otf"
+    };
+    
+    // 获取文件扩展名对应的 MIME 类型
+    function getMimeType(filePath) {
+      const ext = filePath.substring(filePath.lastIndexOf(".")).toLowerCase();
+      return mimeTypes[ext] || "application/octet-stream";
+    }
+    
+    // 静态文件服务（在所有 API 路由之后处理）
+    // 移除开头的 "/" 并构建文件路径
+    let filePath = url.pathname;
+    
+    // 特殊路由处理
+    if (url.pathname === "/") {
+      filePath = "./index.html";
+    } else if (url.pathname === "/admin" || url.pathname === "/admin.html") {
+      filePath = "./admin.html";
+    } else if (filePath.startsWith("/")) {
+      filePath = "." + filePath;
+    } else {
+      filePath = "./" + filePath;
+    }
+    
+    // 安全检查：防止路径遍历攻击
+    if (filePath.includes("..") || filePath.includes("\\")) {
+      return new Response("Forbidden", { status: 403 });
+    }
+    
+    const file = Bun.file(filePath);
+    
+    if (await file.exists()) {
+      const mimeType = getMimeType(filePath);
       return new Response(file, {
         headers: {
-          "Content-Type": "text/html"
+          "Content-Type": mimeType,
+          "Cache-Control": mimeType.startsWith("image/") || mimeType.startsWith("font/") 
+            ? "public, max-age=31536000" 
+            : "public, max-age=0"
         }
       });
     }
     
-    if (url.pathname === "/admin" || url.pathname === "/admin.html") {
-      const file = Bun.file("./admin.html");
-      return new Response(file, {
-        headers: {
-          "Content-Type": "text/html"
-        }
-      });
-    }
-    
-    if (url.pathname.endsWith(".js")) {
-      const file = Bun.file("." + url.pathname);
-      if (await file.exists()) {
-        return new Response(file, {
-          headers: {
-            "Content-Type": "application/javascript"
-          }
-        });
+    // 404 处理
+    return new Response("Not Found", { 
+      status: 404,
+      headers: {
+        "Content-Type": "text/plain"
       }
-    }
-    
-    if (url.pathname.endsWith(".css")) {
-      const file = Bun.file("." + url.pathname);
-      if (await file.exists()) {
-        return new Response(file, {
-          headers: {
-            "Content-Type": "text/css"
-          }
-        });
-      }
-    }
-    
-    return new Response("Not Found", { status: 404 });
+    });
   }
 });
 
