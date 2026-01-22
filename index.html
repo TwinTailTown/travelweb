@@ -58,21 +58,21 @@
                 
                 <!-- 移动端菜单按钮 -->
                 <div class="md:hidden">
-                    <button id="menu-toggle" class="text-gray-800 focus:outline-none">
+                    <button id="menu-toggle" class="text-gray-800 focus:outline-none w-10 h-10 flex items-center justify-center touch-manipulation" aria-label="打开菜单">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
             
             <!-- 移动端导航菜单 -->
-            <div id="mobile-menu" class="md:hidden hidden pb-4">
-                <a href="#home" class="block py-2 text-gray-800 hover:text-[#e63946]">首页</a>
-                <a href="#services" class="block py-2 text-gray-800 hover:text-[#e63946]">我们的服务</a>
-                <a href="#routes" class="block py-2 text-gray-800 hover:text-[#e63946]">商务路线</a>
-                <a href="#exhibitions" class="block py-2 text-gray-800 hover:text-[#e63946]">展会信息</a>
-                <a href="#cases" class="block py-2 text-gray-800 hover:text-[#e63946]">成功案例</a>
-                <a href="#about" class="block py-2 text-gray-800 hover:text-[#e63946]">关于我们</a>
-                <a href="#contact" class="block py-2 text-gray-800 hover:text-[#e63946]" data-i18n="nav.contact">联系帮助</a>
+            <div id="mobile-menu" class="md:hidden hidden pb-4 border-t border-gray-200 mt-2">
+                <a href="#home" class="block py-3 text-gray-800 hover:text-[#e63946] active:text-[#e63946] touch-manipulation" onclick="document.getElementById('mobile-menu').classList.add('hidden')">首页</a>
+                <a href="#services" class="block py-3 text-gray-800 hover:text-[#e63946] active:text-[#e63946] touch-manipulation" onclick="document.getElementById('mobile-menu').classList.add('hidden')">我们的服务</a>
+                <a href="#routes" class="block py-3 text-gray-800 hover:text-[#e63946] active:text-[#e63946] touch-manipulation" onclick="document.getElementById('mobile-menu').classList.add('hidden')">商务路线</a>
+                <a href="#exhibitions" class="block py-3 text-gray-800 hover:text-[#e63946] active:text-[#e63946] touch-manipulation" onclick="document.getElementById('mobile-menu').classList.add('hidden')">展会信息</a>
+                <a href="#cases" class="block py-3 text-gray-800 hover:text-[#e63946] active:text-[#e63946] touch-manipulation" onclick="document.getElementById('mobile-menu').classList.add('hidden')">成功案例</a>
+                <a href="#about" class="block py-3 text-gray-800 hover:text-[#e63946] active:text-[#e63946] touch-manipulation" onclick="document.getElementById('mobile-menu').classList.add('hidden')">关于我们</a>
+                <a href="#contact" class="block py-3 text-gray-800 hover:text-[#e63946] active:text-[#e63946] touch-manipulation" data-i18n="nav.contact" onclick="document.getElementById('mobile-menu').classList.add('hidden')">联系帮助</a>
                 
                 <!-- 多语言切换 -->
                 <div class="py-2">
@@ -90,7 +90,7 @@
                     </div>
                 </div>
                 
-                <a href="#contact" class="btn-primary inline-block mt-2 px-6 py-2 rounded-full font-medium">立即咨询</a>
+                <a href="#contact" class="btn-primary inline-block mt-4 px-6 py-3 rounded-full font-medium w-full text-center touch-manipulation" onclick="document.getElementById('mobile-menu').classList.add('hidden')">立即咨询</a>
             </div>
         </div>
     </nav>
@@ -101,22 +101,22 @@
             <div class="carousel-item">
                 <img src="https://p3-doubao-search-sign.byteimg.com/tos-cn-i-xv4ileqgde/ae7f11e2465548019e408231d6125d7b~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1783598841&x-signature=orgdl5yn62ROtnV0sSgYKuJKTdQ%3D" alt="广州国际轻纺城">
                 <div class="carousel-caption">
-                    <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">中非商务旅游一站式服务</h1>
-                    <p class="text-xl md:text-2xl text-white mb-8 drop-shadow-md">专业接待非洲客户来华参观采购，提供全方位商务服务</p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#services" class="btn-primary px-8 py-3 rounded-full font-bold text-lg">了解服务</a>
-                        <a href="#routes" class="btn-secondary px-8 py-3 rounded-full font-bold text-lg">探索路线</a>
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-3 md:mb-4 drop-shadow-lg">中非商务旅游一站式服务</h1>
+                    <p class="text-sm sm:text-base md:text-xl lg:text-2xl text-white mb-4 md:mb-8 drop-shadow-md">专业接待非洲客户来华参观采购，提供全方位商务服务</p>
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4">
+                        <a href="#services" class="btn-primary px-6 md:px-8 py-2.5 md:py-3 rounded-full font-bold text-base md:text-lg text-center">了解服务</a>
+                        <a href="#routes" class="btn-secondary px-6 md:px-8 py-2.5 md:py-3 rounded-full font-bold text-base md:text-lg text-center">探索路线</a>
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-xv4ileqgde/9a3a902ebb7049e395a85933bca352b5~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1783598841&x-signature=9cMHDAcAy0rXRDE49uf2LxhPPjA%3D" alt="义乌国际商贸城">
                 <div class="carousel-caption">
-                    <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">广州 · 义乌 精品商务路线</h1>
-                    <p class="text-xl md:text-2xl text-white mb-8 drop-shadow-md">覆盖中国最大的小商品和纺织品批发市场</p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#routes" class="btn-primary px-8 py-3 rounded-full font-bold text-lg">查看路线</a>
-                        <a href="#contact" class="btn-secondary px-8 py-3 rounded-full font-bold text-lg">预约服务</a>
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-3 md:mb-4 drop-shadow-lg">广州 · 义乌 精品商务路线</h1>
+                    <p class="text-sm sm:text-base md:text-xl lg:text-2xl text-white mb-4 md:mb-8 drop-shadow-md">覆盖中国最大的小商品和纺织品批发市场</p>
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4">
+                        <a href="#routes" class="btn-primary px-6 md:px-8 py-2.5 md:py-3 rounded-full font-bold text-base md:text-lg text-center">查看路线</a>
+                        <a href="#contact" class="btn-secondary px-6 md:px-8 py-2.5 md:py-3 rounded-full font-bold text-base md:text-lg text-center">预约服务</a>
                     </div>
                 </div>
             </div>
@@ -131,22 +131,22 @@
     <!-- 商务路线 -->
     <section id="routes" class="py-20 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16 scroll-animate">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[#1a365d]">精品商务路线</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">我们精心设计了多条商务路线，覆盖广州和义乌的主要批发市场，满足不同客户的采购需求。</p>
+            <div class="text-center mb-12 md:mb-16 scroll-animate px-4">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-[#1a365d]">精品商务路线</h2>
+                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">我们精心设计了多条商务路线，覆盖广州和义乌的主要批发市场，满足不同客户的采购需求。</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
                 <!-- 广州路线 -->
                 <div class="bg-white rounded-lg shadow-xl overflow-hidden scroll-animate">
                     <div class="relative">
-                        <img src="https://p3-doubao-search-sign.byteimg.com/tos-cn-i-xv4ileqgde/ae7f11e2465548019e408231d6125d7b~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1783598841&x-signature=orgdl5yn62ROtnV0sSgYKuJKTdQ%3D" alt="广州国际轻纺城" class="w-full h-64 object-cover">
+                        <img src="https://p3-doubao-search-sign.byteimg.com/tos-cn-i-xv4ileqgde/ae7f11e2465548019e408231d6125d7b~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1783598841&x-signature=orgdl5yn62ROtnV0sSgYKuJKTdQ%3D" alt="广州国际轻纺城" class="w-full h-48 md:h-64 object-cover">
                         <div class="absolute top-4 right-4 bg-[#e63946] text-white px-4 py-1 rounded-full font-medium">
                             热门路线
                         </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-4 text-[#1a365d]">广州纺织品采购之旅</h3>
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#1a365d]">广州纺织品采购之旅</h3>
                         <div class="flex items-center mb-4">
                             <i class="fas fa-map-marker-alt text-[#e63946] mr-2"></i>
                             <span class="text-gray-700">广州</span>
@@ -183,13 +183,13 @@
                 <!-- 义乌路线 -->
                 <div class="bg-white rounded-lg shadow-xl overflow-hidden scroll-animate">
                     <div class="relative">
-                        <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-xv4ileqgde/9a3a902ebb7049e395a85933bca352b5~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1783598841&x-signature=9cMHDAcAy0rXRDE49uf2LxhPPjA%3D" alt="义乌国际商贸城" class="w-full h-64 object-cover">
+                        <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-xv4ileqgde/9a3a902ebb7049e395a85933bca352b5~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1783598841&x-signature=9cMHDAcAy0rXRDE49uf2LxhPPjA%3D" alt="义乌国际商贸城" class="w-full h-48 md:h-64 object-cover">
                         <div class="absolute top-4 right-4 bg-[#457b9d] text-white px-4 py-1 rounded-full font-medium">
                             推荐路线
                         </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-4 text-[#1a365d]">义乌小商品采购之旅</h3>
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#1a365d]">义乌小商品采购之旅</h3>
                         <div class="flex items-center mb-4">
                             <i class="fas fa-map-marker-alt text-[#457b9d] mr-2"></i>
                             <span class="text-gray-700">义乌</span>
@@ -226,13 +226,13 @@
                 <!-- 广州义乌组合路线 -->
                 <div class="bg-white rounded-lg shadow-xl overflow-hidden scroll-animate md:col-span-2">
                     <div class="relative">
-                        <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-qvj2lq49k0/c418269b9a7948b9a256813d181426cc~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1783598841&x-signature=vWi8%2BL%2FMOnoJPPaojtMR070H1V8%3D" alt="义乌小商品市场" class="w-full h-80 object-cover">
+                        <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-qvj2lq49k0/c418269b9a7948b9a256813d181426cc~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1783598841&x-signature=vWi8%2BL%2FMOnoJPPaojtMR070H1V8%3D" alt="义乌小商品市场" class="w-full h-56 md:h-80 object-cover">
                         <div class="absolute top-4 right-4 bg-[#f59e0b] text-white px-4 py-1 rounded-full font-medium">
                             豪华路线
                         </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-4 text-[#1a365d]">广州义乌组合采购之旅</h3>
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#1a365d]">广州义乌组合采购之旅</h3>
                         <div class="flex items-center mb-4">
                             <i class="fas fa-map-marker-alt text-[#f59e0b] mr-2"></i>
                             <span class="text-gray-700">广州 + 义乌</span>
@@ -289,19 +289,19 @@
     <!-- 我们的服务 -->
     <section id="services" class="py-20 bg-gray-50">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16 scroll-animate">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[#1a365d]">我们的服务</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">我们提供全方位的商务旅游服务，从签证办理到行程安排，从翻译服务到物流支持，让您的中国采购之旅无忧无虑。</p>
+            <div class="text-center mb-12 md:mb-16 scroll-animate px-4">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-[#1a365d]">我们的服务</h2>
+                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">我们提供全方位的商务旅游服务，从签证办理到行程安排，从翻译服务到物流支持，让您的中国采购之旅无忧无虑。</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                 <!-- 签证服务 -->
                 <div class="service-card bg-white rounded-lg shadow-lg scroll-animate">
-                    <div class="p-6">
-                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-passport text-3xl text-[#e63946]"></i>
+                    <div class="p-5 md:p-6">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-red-100 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                            <i class="fas fa-passport text-2xl md:text-3xl text-[#e63946]"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-[#1a365d]">签证邀请函服务</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#1a365d]">签证邀请函服务</h3>
                         <p class="text-gray-600 mb-4">提供商务签证邀请函申请服务，协助准备所需材料，确保签证顺利获批。</p>
                         <ul class="text-gray-600 mb-6">
                             <li class="flex items-start mb-2">
@@ -317,7 +317,7 @@
                                 <span>签证面试辅导</span>
                             </li>
                         </ul>
-                        <a href="#contact" class="text-[#e63946] font-medium flex items-center hover:underline">
+                        <a href="#contact" class="text-[#e63946] font-medium flex items-center hover:underline touch-manipulation text-sm md:text-base">
                             了解更多 <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     </div>
@@ -326,10 +326,10 @@
                 <!-- 接机服务 -->
                 <div class="service-card bg-white rounded-lg shadow-lg scroll-animate">
                     <div class="p-6">
-                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-plane-arrival text-3xl text-[#457b9d]"></i>
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                            <i class="fas fa-plane-arrival text-2xl md:text-3xl text-[#457b9d]"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-[#1a365d]">专业接机服务</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#1a365d]">专业接机服务</h3>
                         <p class="text-gray-600 mb-4">提供24小时机场接送机服务，配备专业司机和翻译，确保您的行程顺畅。</p>
                         <ul class="text-gray-600 mb-6">
                             <li class="flex items-start mb-2">
@@ -354,10 +354,10 @@
                 <!-- 酒店预订 -->
                 <div class="service-card bg-white rounded-lg shadow-lg scroll-animate">
                     <div class="p-6">
-                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-hotel text-3xl text-[#f59e0b]"></i>
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                            <i class="fas fa-hotel text-2xl md:text-3xl text-[#f59e0b]"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-[#1a365d]">商务酒店预订</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#1a365d]">商务酒店预订</h3>
                         <p class="text-gray-600 mb-4">提供商务酒店预订服务，根据您的需求和预算推荐合适的住宿选择。</p>
                         <ul class="text-gray-600 mb-6">
                             <li class="flex items-start mb-2">
@@ -382,10 +382,10 @@
                 <!-- 翻译服务 -->
                 <div class="service-card bg-white rounded-lg shadow-lg scroll-animate">
                     <div class="p-6">
-                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-language text-3xl text-green-600"></i>
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                            <i class="fas fa-language text-2xl md:text-3xl text-green-600"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-[#1a365d]">专业翻译服务</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#1a365d]">专业翻译服务</h3>
                         <p class="text-gray-600 mb-4">提供专业的商务翻译服务，包括口语翻译、文件翻译和商务谈判翻译。</p>
                         <ul class="text-gray-600 mb-6">
                             <li class="flex items-start mb-2">
@@ -410,10 +410,10 @@
                 <!-- 市场考察 -->
                 <div class="service-card bg-white rounded-lg shadow-lg scroll-animate">
                     <div class="p-6">
-                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-store text-3xl text-purple-600"></i>
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                            <i class="fas fa-store text-2xl md:text-3xl text-purple-600"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-[#1a365d]">市场考察安排</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#1a365d]">市场考察安排</h3>
                         <p class="text-gray-600 mb-4">根据您的采购需求，安排专业的市场考察行程，带您参观相关批发市场和供应商。</p>
                         <ul class="text-gray-600 mb-6">
                             <li class="flex items-start mb-2">
@@ -438,10 +438,10 @@
                 <!-- 商务谈判 -->
                 <div class="service-card bg-white rounded-lg shadow-lg scroll-animate">
                     <div class="p-6">
-                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-handshake text-3xl text-[#e63946]"></i>
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-red-100 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                            <i class="fas fa-handshake text-2xl md:text-3xl text-[#e63946]"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-[#1a365d]">商务谈判支持</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#1a365d]">商务谈判支持</h3>
                         <p class="text-gray-600 mb-4">提供商务谈判支持服务，包括价格协商、合同条款审核和商务礼仪指导。</p>
                         <ul class="text-gray-600 mb-6">
                             <li class="flex items-start mb-2">
@@ -457,7 +457,7 @@
                                 <span>商务礼仪指导</span>
                             </li>
                         </ul>
-                        <a href="#contact" class="text-[#e63946] font-medium flex items-center hover:underline">
+                        <a href="#contact" class="text-[#e63946] font-medium flex items-center hover:underline touch-manipulation text-sm md:text-base">
                             了解更多 <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     </div>
@@ -466,10 +466,10 @@
                 <!-- 物流服务 -->
                 <div class="service-card bg-white rounded-lg shadow-lg scroll-animate">
                     <div class="p-6">
-                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-shipping-fast text-3xl text-[#457b9d]"></i>
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                            <i class="fas fa-shipping-fast text-2xl md:text-3xl text-[#457b9d]"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-[#1a365d]">国际物流服务</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#1a365d]">国际物流服务</h3>
                         <p class="text-gray-600 mb-4">提供国际物流服务，包括货物打包、仓储、报关和国际运输等。</p>
                         <ul class="text-gray-600 mb-6">
                             <li class="flex items-start mb-2">
@@ -494,10 +494,10 @@
                 <!-- 文化体验 -->
                 <div class="service-card bg-white rounded-lg shadow-lg scroll-animate">
                     <div class="p-6">
-                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-pagelines text-3xl text-[#f59e0b]"></i>
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                            <i class="fas fa-pagelines text-2xl md:text-3xl text-[#f59e0b]"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-[#1a365d]">文化体验活动</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#1a365d]">文化体验活动</h3>
                         <p class="text-gray-600 mb-4">安排中国文化体验活动，让您在商务之余感受中国传统文化的魅力。</p>
                         <ul class="text-gray-600 mb-6">
                             <li class="flex items-start mb-2">
@@ -525,15 +525,15 @@
     <!-- 展会信息 -->
     <section id="exhibitions" class="py-20 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16 scroll-animate">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[#1a365d]">展会信息</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">我们为您提供最新的广州和义乌展会信息，帮助您把握商机，拓展业务。</p>
+            <div class="text-center mb-12 md:mb-16 scroll-animate px-4">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-[#1a365d]">展会信息</h2>
+                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">我们为您提供最新的广州和义乌展会信息，帮助您把握商机，拓展业务。</p>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
                 <div class="lg:col-span-2">
-                    <div class="bg-white rounded-lg shadow-lg p-6 mb-8 scroll-animate">
-                        <h3 class="text-2xl font-bold mb-6 text-[#1a365d]">近期展会</h3>
+                    <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 mb-6 md:mb-8 scroll-animate">
+                        <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-[#1a365d]">近期展会</h3>
                         
                         <!-- 加载状态 -->
                         <div id="exhibitions-loading" class="text-center py-8">
@@ -678,12 +678,12 @@
     <!-- 成功案例 -->
     <section id="cases" class="py-20 bg-gray-50">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16 scroll-animate">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[#1a365d]">成功案例</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">我们已成功为众多非洲客户提供商务旅游服务，帮助他们在中国找到优质供应商，建立长期合作关系。</p>
+            <div class="text-center mb-12 md:mb-16 scroll-animate px-4">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-[#1a365d]">成功案例</h2>
+                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">我们已成功为众多非洲客户提供商务旅游服务，帮助他们在中国找到优质供应商，建立长期合作关系。</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 <!-- 案例1 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden scroll-animate">
                     <div class="relative">
@@ -810,9 +810,9 @@
     <!-- 联系帮助 -->
     <section id="contact" class="py-20 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16 scroll-animate">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[#1a365d]" data-i18n="contact.title">联系帮助</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">无论您有任何问题或需求，我们的团队随时为您提供帮助。请通过以下方式与我们联系。</p>
+            <div class="text-center mb-12 md:mb-16 scroll-animate px-4">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-[#1a365d]" data-i18n="contact.title">联系帮助</h2>
+                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">无论您有任何问题或需求，我们的团队随时为您提供帮助。请通过以下方式与我们联系。</p>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -821,23 +821,23 @@
                     <form id="contact-form">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                             <div>
-                                <label class="block text-gray-700 font-medium mb-2" for="name">姓名</label>
-                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946]" id="name" placeholder="请输入您的姓名">
+                                <label class="block text-gray-700 font-medium mb-2 text-sm md:text-base" for="name">姓名</label>
+                                <input type="text" class="w-full px-4 py-3 md:py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946] text-base" id="name" placeholder="请输入您的姓名" required>
                             </div>
                             <div>
-                                <label class="block text-gray-700 font-medium mb-2" for="email">邮箱</label>
-                                <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946]" id="email" placeholder="请输入您的邮箱">
+                                <label class="block text-gray-700 font-medium mb-2 text-sm md:text-base" for="email">邮箱</label>
+                                <input type="email" class="w-full px-4 py-3 md:py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946] text-base" id="email" placeholder="请输入您的邮箱" required>
                             </div>
                         </div>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                             <div>
-                                <label class="block text-gray-700 font-medium mb-2" for="phone">电话</label>
-                                <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946]" id="phone" placeholder="请输入您的电话">
+                                <label class="block text-gray-700 font-medium mb-2 text-sm md:text-base" for="phone">电话</label>
+                                <input type="tel" class="w-full px-4 py-3 md:py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946] text-base" id="phone" placeholder="请输入您的电话" required>
                             </div>
                             <div>
-                                <label class="block text-gray-700 font-medium mb-2" for="country">国家</label>
-                                <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946]" id="country">
+                                <label class="block text-gray-700 font-medium mb-2 text-sm md:text-base" for="country">国家</label>
+                                <select class="w-full px-4 py-3 md:py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946] text-base" id="country" required>
                                     <option value="">请选择您的国家</option>
                                     <option value="egypt">埃及</option>
                                     <option value="nigeria">尼日利亚</option>
@@ -851,8 +851,8 @@
                         </div>
                         
                         <div class="mb-4">
-                            <label class="block text-gray-700 font-medium mb-2" for="service">咨询服务</label>
-                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946]" id="service">
+                            <label class="block text-gray-700 font-medium mb-2 text-sm md:text-base" for="service">咨询服务</label>
+                            <select class="w-full px-4 py-3 md:py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946] text-base" id="service" required>
                                 <option value="">请选择咨询服务</option>
                                 <option value="visa">签证邀请函服务</option>
                                 <option value="airport">接机服务</option>
@@ -869,11 +869,11 @@
                         </div>
                         
                         <div class="mb-6">
-                            <label class="block text-gray-700 font-medium mb-2" for="message">消息内容</label>
-                            <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946]" id="message" rows="5" placeholder="请详细描述您的需求或问题"></textarea>
+                            <label class="block text-gray-700 font-medium mb-2 text-sm md:text-base" for="message">消息内容</label>
+                            <textarea class="w-full px-4 py-3 md:py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946] text-base resize-y" id="message" rows="5" placeholder="请详细描述您的需求或问题" required></textarea>
                         </div>
                         
-                        <button type="button" id="submit-contact" class="btn-primary w-full py-3 rounded-full font-bold text-lg">
+                        <button type="button" id="submit-contact" class="btn-primary w-full py-3 md:py-3 rounded-full font-bold text-base md:text-lg touch-manipulation">
                             发送消息
                         </button>
                     </form>
@@ -1049,13 +1049,13 @@
     </footer>
 
     <!-- WhatsApp按钮 -->
-    <a href="https://wa.me/1234567890" target="_blank" class="fixed bottom-24 right-8 bg-[#25D366] text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-[#20BA5A] transition-all duration-300 z-50">
-        <i class="fab fa-whatsapp text-2xl"></i>
+    <a href="https://wa.me/1234567890" target="_blank" class="fixed bottom-20 md:bottom-24 right-4 md:right-8 bg-[#25D366] text-white w-14 h-14 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-[#20BA5A] active:bg-[#1DA851] transition-all duration-300 z-50 touch-manipulation">
+        <i class="fab fa-whatsapp text-2xl md:text-xl"></i>
     </a>
 
     <!-- 返回顶部按钮 -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 bg-[#e63946] text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300">
-        <i class="fas fa-arrow-up"></i>
+    <button id="back-to-top" class="fixed bottom-4 md:bottom-8 right-4 md:right-8 bg-[#e63946] text-white w-14 h-14 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 z-50 touch-manipulation active:bg-[#c1121f]">
+        <i class="fas fa-arrow-up text-lg"></i>
     </button>
 
     <!-- Custom JavaScript -->

@@ -216,24 +216,349 @@ body {
     z-index: 1;
 }
 
-/* 响应式调整 */
-@media (max-width: 768px) {
+/* 响应式调整 - 移动端 */
+@media (max-width: 640px) {
+    /* 导航栏优化 */
+    nav {
+        padding: 0.5rem 0;
+    }
+    
+    nav .text-2xl {
+        font-size: 1.25rem;
+    }
+    
+    nav .text-4xl {
+        font-size: 1.5rem;
+    }
+    
+    #mobile-menu {
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+    }
+    
+    #mobile-menu a {
+        padding: 0.75rem 0;
+        font-size: 1rem;
+    }
+    
+    /* 轮播图优化 */
     .carousel {
-        height: 60vh;
+        height: 50vh;
+        min-height: 300px;
     }
     
     .carousel-caption {
-        bottom: 10%;
+        bottom: 8%;
         left: 5%;
-        max-width: 90%;
+        right: 5%;
+        max-width: 100%;
+        padding: 1rem;
     }
     
+    .carousel-caption h1 {
+        font-size: 1.5rem !important;
+        line-height: 1.3;
+        margin-bottom: 0.75rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.875rem !important;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+    }
+    
+    .carousel-caption .btn-primary,
+    .carousel-caption .btn-secondary {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        margin: 0.25rem 0;
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .carousel-caption > div {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .carousel-indicators {
+        bottom: 10px;
+    }
+    
+    .carousel-indicator {
+        width: 10px;
+        height: 10px;
+    }
+    
+    /* 按钮优化 - 触摸友好 */
+    .btn-primary,
+    .btn-secondary {
+        min-height: 44px;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        touch-action: manipulation;
+    }
+    
+    /* 标题优化 */
+    h2 {
+        font-size: 1.75rem !important;
+        line-height: 1.3;
+    }
+    
+    h3 {
+        font-size: 1.25rem !important;
+    }
+    
+    /* 间距优化 */
+    section {
+        padding: 3rem 0 !important;
+    }
+    
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    /* 卡片优化 */
+    .service-card,
+    .bg-white.rounded-lg.shadow-xl {
+        margin-bottom: 1.5rem;
+    }
+    
+    /* 表单优化 */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+        font-size: 16px; /* 防止 iOS 自动缩放 */
+        min-height: 44px;
+        padding: 0.75rem;
+    }
+    
+    textarea {
+        min-height: 120px;
+    }
+    
+    /* 固定按钮优化 */
+    #back-to-top,
+    .fixed.bottom-24 {
+        width: 48px;
+        height: 48px;
+        bottom: 1rem;
+        right: 1rem;
+    }
+    
+    .fixed.bottom-24 {
+        bottom: 4.5rem;
+    }
+    
+    /* 展会信息优化 */
+    .calendar-event {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* 成功案例卡片优化 */
+    .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3 {
+        gap: 1rem;
+    }
+    
+    /* 数据统计优化 */
+    .grid.grid-cols-2.md\:grid-cols-4 {
+        gap: 1.5rem;
+    }
+    
+    .text-4xl.md\:text-5xl {
+        font-size: 2rem;
+    }
+    
+    /* 页脚优化 */
+    footer {
+        padding: 2rem 0;
+    }
+    
+    footer .grid {
+        gap: 2rem;
+    }
+    
+    /* 3D 地球优化 */
     #globe-container {
-        height: 300px;
+        height: 250px;
     }
     
     .route-map {
-        height: 300px;
+        height: 250px;
+    }
+    
+    /* 联系表单布局优化 */
+    .grid.grid-cols-1.lg\:grid-cols-2 {
+        gap: 1.5rem;
+    }
+    
+    /* 展会信息布局优化 */
+    .grid.grid-cols-1.lg\:grid-cols-3 {
+        gap: 1.5rem;
+    }
+    
+    .lg\:col-span-2 {
+        grid-column: span 1;
+    }
+}
+
+/* 响应式调整 - 平板端 */
+@media (min-width: 641px) and (max-width: 1024px) {
+    /* 轮播图优化 */
+    .carousel {
+        height: 70vh;
+        min-height: 400px;
+    }
+    
+    .carousel-caption {
+        bottom: 15%;
+        left: 8%;
+        max-width: 80%;
+    }
+    
+    .carousel-caption h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    .carousel-caption p {
+        font-size: 1.25rem !important;
+    }
+    
+    /* 按钮优化 */
+    .btn-primary,
+    .btn-secondary {
+        min-height: 48px;
+        padding: 0.875rem 2rem;
+        font-size: 1.125rem;
+    }
+    
+    /* 标题优化 */
+    h2 {
+        font-size: 2.5rem !important;
+    }
+    
+    /* 间距优化 */
+    section {
+        padding: 4rem 0 !important;
+    }
+    
+    .container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    
+    /* 网格布局优化 */
+    .grid.grid-cols-1.md\:grid-cols-2 {
+        gap: 1.5rem;
+    }
+    
+    .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    /* 表单优化 */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+        font-size: 16px;
+        min-height: 48px;
+    }
+    
+    /* 固定按钮优化 */
+    #back-to-top,
+    .fixed.bottom-24 {
+        width: 52px;
+        height: 52px;
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+    
+    .fixed.bottom-24 {
+        bottom: 5.5rem;
+    }
+    
+    /* 展会信息布局 */
+    .grid.grid-cols-1.lg\:grid-cols-3 {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    /* 3D 地球优化 */
+    #globe-container {
+        height: 350px;
+    }
+    
+    .route-map {
+        height: 350px;
+    }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+    /* 移除 hover 效果，使用 active 状态 */
+    .card-hover:hover,
+    .service-card:hover {
+        transform: none;
+    }
+    
+    .card-hover:active,
+    .service-card:active {
+        transform: scale(0.98);
+    }
+    
+    /* 按钮触摸反馈 */
+    .btn-primary:active,
+    .btn-secondary:active {
+        transform: scale(0.95);
+    }
+    
+    /* 导航链接触摸优化 */
+    .nav-link {
+        padding: 0.5rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* 语言下拉菜单触摸优化 */
+    .language-dropdown-content {
+        display: none;
+    }
+    
+    .language-dropdown.active .language-dropdown-content {
+        display: block;
+    }
+    
+    .language-option {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* 横屏移动设备优化 */
+@media (max-width: 896px) and (orientation: landscape) {
+    .carousel {
+        height: 100vh;
+    }
+    
+    .carousel-caption {
+        bottom: 15%;
+    }
+    
+    .carousel-caption h1 {
+        font-size: 2rem !important;
+    }
+    
+    .carousel-caption p {
+        font-size: 1rem !important;
     }
 }
 
@@ -300,4 +625,165 @@ body {
 
 .language-option:hover {
     background-color: #f1f1f1;
+}
+
+/* 移动端语言下拉菜单优化 */
+@media (max-width: 768px) {
+    .language-dropdown-content {
+        position: fixed;
+        right: 1rem;
+        top: auto;
+        bottom: auto;
+        max-width: calc(100vw - 2rem);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    #mobile-menu .language-dropdown-content {
+        position: relative;
+        right: auto;
+        margin-top: 0.5rem;
+        box-shadow: none;
+        border: 1px solid #e5e7eb;
+    }
+}
+
+/* 平滑滚动优化 */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+    .btn-primary,
+    .btn-secondary {
+        border: 2px solid currentColor;
+    }
+    
+    .nav-link::after {
+        height: 3px;
+    }
+}
+
+/* 触摸优化 */
+.touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(230, 57, 70, 0.2);
+}
+
+/* 移动端图片优化 */
+@media (max-width: 640px) {
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* 确保卡片内容不会溢出 */
+    .bg-white.rounded-lg,
+    .service-card {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    /* 优化列表项间距 */
+    ul li {
+        margin-bottom: 0.5rem;
+    }
+    
+    /* 优化表格和网格 */
+    .grid {
+        gap: 1rem;
+    }
+}
+
+/* 平板端图片优化 */
+@media (min-width: 641px) and (max-width: 1024px) {
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .grid {
+        gap: 1.5rem;
+    }
+}
+
+/* 防止移动端文本选择时的意外缩放 */
+@media (max-width: 768px) {
+    input,
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* 优化移动端滚动性能 */
+@media (max-width: 768px) {
+    * {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* 移动端导航栏优化 */
+@media (max-width: 768px) {
+    nav {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    #mobile-menu {
+        animation: slideDown 0.3s ease-out;
+    }
+    
+    #mobile-menu.hidden {
+        animation: slideUp 0.3s ease-out;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+/* 优化移动端按钮点击反馈 */
+@media (max-width: 768px) {
+    .btn-primary:active,
+    .btn-secondary:active,
+    a:active {
+        transform: scale(0.97);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* 优化移动端表单焦点状态 */
+@media (max-width: 768px) {
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: none;
+        border-color: var(--african-color-1);
+        box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+    }
 }

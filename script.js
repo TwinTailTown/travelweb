@@ -1,8 +1,35 @@
 // 导航菜单切换
-document.getElementById('menu-toggle').addEventListener('click', function() {
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenu.classList.toggle('hidden');
-});
+const menuToggle = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+
+if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+        // 切换菜单图标
+        const icon = menuToggle.querySelector('i');
+        if (icon) {
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        }
+    });
+    
+    // 点击菜单外部关闭菜单
+    document.addEventListener('click', function(event) {
+        if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+            mobileMenu.classList.add('hidden');
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+    });
+}
 
 // 导航链接高亮
 const navLinks = document.querySelectorAll('.nav-link');
@@ -217,9 +244,52 @@ function updateLanguage(lang) {
 document.querySelectorAll('.language-option').forEach(option => {
     option.addEventListener('click', function(e) {
         e.preventDefault();
+        e.stopPropagation();
         const lang = this.getAttribute('data-lang');
         setCurrentLanguage(lang);
+        
+        // 移动端：关闭下拉菜单
+        document.querySelectorAll('.language-dropdown').forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
+        
+        // 移动端：关闭移动菜单
+        if (mobileMenu) {
+            mobileMenu.classList.add('hidden');
+            const icon = menuToggle?.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
     });
+});
+
+// 移动端语言下拉菜单点击事件
+document.querySelectorAll('.language-dropdown').forEach(dropdown => {
+    const button = dropdown.querySelector('button');
+    if (button) {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // 切换当前下拉菜单
+            dropdown.classList.toggle('active');
+            // 关闭其他下拉菜单
+            document.querySelectorAll('.language-dropdown').forEach(other => {
+                if (other !== dropdown) {
+                    other.classList.remove('active');
+                }
+            });
+        });
+    }
+});
+
+// 点击外部关闭语言下拉菜单
+document.addEventListener('click', function(event) {
+    if (!event.target.closest('.language-dropdown')) {
+        document.querySelectorAll('.language-dropdown').forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
+    }
 });
 
 // 页面加载时应用保存的语言
