@@ -183,6 +183,123 @@ body {
     padding-left: 20px;
 }
 
+/* 展会列表容器样式 */
+.exhibitions-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+/* 电脑端：显示滚动条，只显示4条 */
+@media (min-width: 768px) {
+    .exhibitions-wrapper {
+        max-height: calc(4 * 200px); /* 大约4条展会的高度 */
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 8px;
+    }
+    
+    .exhibitions-wrapper::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    .exhibitions-wrapper::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    
+    .exhibitions-wrapper::-webkit-scrollbar-thumb {
+        background: var(--african-color-1);
+        border-radius: 10px;
+    }
+    
+    .exhibitions-wrapper::-webkit-scrollbar-thumb:hover {
+        background: #c1121f;
+    }
+    
+    .exhibitions-container {
+        display: block;
+    }
+    
+    .exhibitions-container .calendar-event {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* 移动端：左右滑动 */
+@media (max-width: 767px) {
+    .exhibitions-wrapper {
+        overflow-x: hidden;
+        overflow-y: hidden;
+        position: relative;
+        padding: 0 3rem; /* 为翻页按钮留出空间 */
+    }
+    
+    .exhibitions-container {
+        display: flex;
+        transition: transform 0.3s ease;
+        will-change: transform;
+    }
+    
+    .exhibitions-container .calendar-event {
+        min-width: 100%;
+        flex-shrink: 0;
+        margin-bottom: 0;
+        padding: 1rem;
+        margin-right: 0;
+        box-sizing: border-box;
+    }
+    
+    /* 翻页按钮样式 */
+    #exhibitions-prev,
+    #exhibitions-next {
+        opacity: 0.9;
+        transition: opacity 0.3s ease;
+        display: flex;
+    }
+    
+    #exhibitions-prev:disabled,
+    #exhibitions-next:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+    
+    #exhibitions-prev:hover,
+    #exhibitions-next:hover {
+        opacity: 1;
+    }
+    
+    /* 指示器样式 */
+    #exhibitions-indicators {
+        display: flex;
+        gap: 0.5rem;
+    }
+    
+    .exhibition-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #d1d5db;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        touch-action: manipulation;
+    }
+    
+    .exhibition-indicator.active {
+        background-color: var(--african-color-1);
+        width: 24px;
+        border-radius: 4px;
+    }
+    
+    .exhibition-indicator:hover {
+        background-color: #9ca3af;
+    }
+    
+    .exhibition-indicator.active:hover {
+        background-color: #c1121f;
+    }
+}
+
 /* AI 路线推荐样式 */
 .route-map {
     position: relative;

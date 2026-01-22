@@ -424,17 +424,48 @@ async function fetchExhibitions() {
     }
 }
 
+// 展会翻页状态
+let currentExhibitionIndex = 0;
+let exhibitionsData = [];
+
+// 解析日期字符串，提取年月日
+function parseExhibitionDate(dateStr) {
+    // 支持多种日期格式：2025年10月15日、2025/10/15、2025-10-15等
+    const patterns = [
+        /(\d{4})年(\d{1,2})月(\d{1,2})日/,
+        /(\d{4})\/(\d{1,2})\/(\d{1,2})/,
+        /(\d{4})-(\d{1,2})-(\d{1,2})/
+    ];
+    
+    for (const pattern of patterns) {
+        const match = dateStr.match(pattern);
+        if (match) {
+            return {
+                year: parseInt(match[1]),
+                month: parseInt(match[2]),
+                day: parseInt(match[3])
+            };
+        }
+    }
+    
+    // 如果无法解析，返回null
+    return null;
+}
+
 // 渲染展会信息
 function renderExhibitions(exhibitions) {
     const containerEl = document.getElementById('exhibitions-container');
     if (!containerEl) return;
     
+    exhibitionsData = exhibitions || [];
+    
     if (!exhibitions || exhibitions.length === 0) {
         containerEl.innerHTML = '<p class="text-gray-600 text-center py-4">暂无展会信息</p>';
+        updateCalendar([]);
         return;
     }
     
-    containerEl.innerHTML = exhibitions.map(exhibition => {
+    containerEl.innerHTML = exhibitions.map((exhibition, index) => {
         // 根据 badgeColor 选择对应的 Tailwind 类
         let badgeClass = '';
         if (exhibition.badgeColor === '#e63946') {
@@ -456,7 +487,7 @@ function renderExhibitions(exhibitions) {
         }
         
         return `
-        <div class="calendar-event scroll-animate mb-6">
+        <div class="calendar-event scroll-animate mb-6" data-index="${index}">
             <div class="flex justify-between items-start mb-2">
                 <h4 class="text-xl font-bold text-[#1a365d]">${exhibition.title}</h4>
                 ${exhibition.badge ? `<span class="${badgeClass} text-white px-3 py-1 rounded-full text-sm">${exhibition.badge}</span>` : ''}
@@ -483,9 +514,266 @@ function renderExhibitions(exhibitions) {
     containerEl.querySelectorAll('.scroll-animate').forEach(element => {
         observer.observe(element);
     });
+    
+    // 初始化移动端翻页功能
+    initExhibitionCarousel();
+    
+    // 更新日历
+    updateCalendar(exhibitions);
 }
+
+// 初始化移动端展会翻页功能
+function initExhibitionCarousel() {
+    const containerEl = document.getElementById('exhibitions-container');
+    const prevBtn = document.getElementById('exhibitions-prev');
+    const nextBtn = document.getElementById('exhibitions-next');
+    const indicatorsEl = document.getElementById('exhibitions-indicators');
+    
+    if (!containerEl || !prevBtn || !nextBtn) return;
+    
+    const totalExhibitions = exhibitionsData.length;
+    currentExhibitionIndex = 0;
+    
+    // 只在移动端显示翻页功能
+    if (window.innerWidth >= 768) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        if (indicatorsEl) indicatorsEl.style.display = 'none';
+        // 电脑端重置transform
+        containerEl.style.transform = 'translateX(0)';
+        return;
+    }
+    
+    // 移动端显示按钮
+    prevBtn.style.display = 'flex';
+    nextBtn.style.display = 'flex';
+    if (indicatorsEl) indicatorsEl.style.display = 'flex';
+    
+    // 创建指示器
+    if (indicatorsEl && totalExhibitions > 0) {
+        indicatorsEl.innerHTML = '';
+        for (let i = 0; i < totalExhibitions; i++) {
+            const indicator = document.createElement('div');
+            indicator.className = `exhibition-indicator ${i === 0 ? 'active' : ''}`;
+            indicator.addEventListener('click', () => {
+                goToExhibition(i);
+            });
+            indicatorsEl.appendChild(indicator);
+        }
+    }
+    
+    // 翻页函数
+    function goToExhibition(index) {
+        if (index < 0 || index >= totalExhibitions) return;
+        
+        currentExhibitionIndex = index;
+        const translateX = -index * 100;
+        containerEl.style.transform = `translateX(${translateX}%)`;
+        
+        // 更新按钮状态
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === totalExhibitions - 1;
+        
+        // 更新指示器
+        if (indicatorsEl) {
+            indicatorsEl.querySelectorAll('.exhibition-indicator').forEach((ind, i) => {
+                ind.classList.toggle('active', i === index);
+            });
+        }
+    }
+    
+    // 上一页
+    prevBtn.addEventListener('click', () => {
+        if (currentExhibitionIndex > 0) {
+            goToExhibition(currentExhibitionIndex - 1);
+        }
+    });
+    
+    // 下一页
+    nextBtn.addEventListener('click', () => {
+        if (currentExhibitionIndex < totalExhibitions - 1) {
+            goToExhibition(currentExhibitionIndex + 1);
+        }
+    });
+    
+    // 初始化按钮状态
+    goToExhibition(0);
+    
+    // 触摸滑动支持
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    containerEl.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    containerEl.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0 && currentExhibitionIndex < totalExhibitions - 1) {
+                // 向左滑动，显示下一页
+                goToExhibition(currentExhibitionIndex + 1);
+            } else if (diff < 0 && currentExhibitionIndex > 0) {
+                // 向右滑动，显示上一页
+                goToExhibition(currentExhibitionIndex - 1);
+            }
+        }
+    }
+    
+    // 窗口大小改变时重新初始化
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) {
+            containerEl.style.transform = 'translateX(0)';
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+            if (indicatorsEl) indicatorsEl.style.display = 'none';
+        } else {
+            prevBtn.style.display = 'flex';
+            nextBtn.style.display = 'flex';
+            if (indicatorsEl) indicatorsEl.style.display = 'flex';
+            goToExhibition(currentExhibitionIndex);
+        }
+    });
+}
+
+// 更新展会日历
+function updateCalendar(exhibitions) {
+    const calendarEventsEl = document.getElementById('calendar-events');
+    if (!calendarEventsEl) return;
+    
+    if (!exhibitions || exhibitions.length === 0) {
+        calendarEventsEl.innerHTML = '<p class="text-gray-500 text-center py-4 text-sm">暂无展会信息</p>';
+        return;
+    }
+    
+    // 解析所有展会日期并排序
+    const events = exhibitions
+        .map(exhibition => {
+            const dateInfo = parseExhibitionDate(exhibition.date);
+            if (!dateInfo) return null;
+            
+            return {
+                ...exhibition,
+                dateInfo,
+                dateObj: new Date(dateInfo.year, dateInfo.month - 1, dateInfo.day)
+            };
+        })
+        .filter(event => event !== null)
+        .sort((a, b) => a.dateObj - b.dateObj);
+    
+    // 渲染日历事件
+    calendarEventsEl.innerHTML = events.map(event => {
+        const monthNames = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+        const month = monthNames[event.dateInfo.month - 1];
+        const day = event.dateInfo.day;
+        
+        // 根据 badgeColor 选择颜色
+        let dotColor = '#9ca3af'; // 默认灰色
+        if (event.badgeColor === '#e63946') {
+            dotColor = '#e63946';
+        } else if (event.badgeColor === '#457b9d') {
+            dotColor = '#457b9d';
+        }
+        
+        // 提取地点（去掉"·"前后的空格）
+        const location = event.location.split('·')[0].trim();
+        
+        return `
+            <div class="flex items-center p-2 rounded-lg hover:bg-gray-50 touch-manipulation cursor-pointer" onclick="scrollToExhibition(${event.id})">
+                <div class="w-16 text-center flex-shrink-0">
+                    <span class="block text-sm text-gray-500">${month}</span>
+                    <span class="block text-xl font-bold">${day}</span>
+                </div>
+                <div class="flex-1 ml-2">
+                    <h5 class="font-medium text-sm">${event.title}</h5>
+                    <p class="text-xs text-gray-500">${location}</p>
+                </div>
+                <div class="w-2 h-2 rounded-full flex-shrink-0" style="background-color: ${dotColor};"></div>
+            </div>
+        `;
+    }).join('');
+}
+
+// 滚动到指定展会（全局函数，供HTML调用）
+window.scrollToExhibition = function(exhibitionId) {
+    // 移动端：切换到对应展会
+    if (window.innerWidth < 768) {
+        const index = exhibitionsData.findIndex(e => e.id === exhibitionId);
+        if (index !== -1) {
+            const containerEl = document.getElementById('exhibitions-container');
+            if (containerEl) {
+                currentExhibitionIndex = index;
+                const translateX = -index * 100;
+                containerEl.style.transform = `translateX(${translateX}%)`;
+                
+                // 更新指示器
+                const indicatorsEl = document.getElementById('exhibitions-indicators');
+                if (indicatorsEl) {
+                    indicatorsEl.querySelectorAll('.exhibition-indicator').forEach((ind, i) => {
+                        ind.classList.toggle('active', i === index);
+                    });
+                }
+                
+                // 更新按钮状态
+                const prevBtn = document.getElementById('exhibitions-prev');
+                const nextBtn = document.getElementById('exhibitions-next');
+                if (prevBtn) prevBtn.disabled = index === 0;
+                if (nextBtn) nextBtn.disabled = index === exhibitionsData.length - 1;
+            }
+        }
+    } else {
+        // 电脑端：滚动到对应展会
+        const index = exhibitionsData.findIndex(e => e.id === exhibitionId);
+        if (index !== -1) {
+            const exhibitionEl = document.querySelector(`.calendar-event[data-index="${index}"]`);
+            const wrapperEl = document.getElementById('exhibitions-wrapper');
+            if (exhibitionEl && wrapperEl) {
+                const scrollTop = exhibitionEl.offsetTop - wrapperEl.offsetTop;
+                wrapperEl.scrollTo({
+                    top: scrollTop,
+                    behavior: 'smooth'
+                });
+                
+                // 添加高亮效果
+                exhibitionEl.style.backgroundColor = 'rgba(230, 57, 70, 0.05)';
+                setTimeout(() => {
+                    exhibitionEl.style.backgroundColor = '';
+                }, 2000);
+            }
+        }
+    }
+};
 
 // 页面加载时获取展会信息
 document.addEventListener('DOMContentLoaded', function() {
     fetchExhibitions();
+    
+    // 日历年份切换（暂时保留，未来可以扩展）
+    const calendarPrev = document.getElementById('calendar-prev');
+    const calendarNext = document.getElementById('calendar-next');
+    const calendarYear = document.getElementById('calendar-year');
+    
+    if (calendarPrev && calendarNext && calendarYear) {
+        let currentYear = new Date().getFullYear();
+        calendarYear.textContent = `${currentYear}年`;
+        
+        calendarPrev.addEventListener('click', () => {
+            currentYear--;
+            calendarYear.textContent = `${currentYear}年`;
+            // 这里可以重新过滤和显示对应年份的展会
+        });
+        
+        calendarNext.addEventListener('click', () => {
+            currentYear++;
+            calendarYear.textContent = `${currentYear}年`;
+            // 这里可以重新过滤和显示对应年份的展会
+        });
+    }
 });
