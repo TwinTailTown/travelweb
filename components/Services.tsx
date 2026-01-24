@@ -14,6 +14,7 @@ import {
   faArrowRight,
 } from '@fortawesome/free-solid-svg-icons'
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
+import styles from './Services.module.scss'
 
 interface ServiceFeature {
   text: string
@@ -34,8 +35,8 @@ const services: Service[] = [
   {
     id: 'visa',
     icon: faPassport,
-    iconBgColor: 'bg-red-100',
-    iconColor: 'text-african-1',
+    iconBgColor: 'bgRed100',
+    iconColor: 'textAfrican1',
     title: '签证邀请函服务',
     description: '提供商务签证邀请函申请服务，协助准备所需材料，确保签证顺利获批。',
     features: [
@@ -43,13 +44,13 @@ const services: Service[] = [
       { text: '签证材料准备指导' },
       { text: '签证面试辅导' },
     ],
-    linkColor: 'text-african-1',
+    linkColor: 'textAfrican1',
   },
   {
     id: 'airport',
     icon: faPlane,
-    iconBgColor: 'bg-blue-100',
-    iconColor: 'text-african-2',
+    iconBgColor: 'bgBlue100',
+    iconColor: 'textAfrican2',
     title: '专业接机服务',
     description: '提供24小时机场接送机服务，配备专业司机和翻译，确保您的行程顺畅。',
     features: [
@@ -57,13 +58,13 @@ const services: Service[] = [
       { text: '专业司机和翻译陪同' },
       { text: '行李协助和酒店入住' },
     ],
-    linkColor: 'text-african-2',
+    linkColor: 'textAfrican2',
   },
   {
     id: 'hotel',
     icon: faHotel,
-    iconBgColor: 'bg-yellow-100',
-    iconColor: 'text-[#f59e0b]',
+    iconBgColor: 'bgYellow100',
+    iconColor: 'textSecondary',
     title: '商务酒店预订',
     description: '提供商务酒店预订服务，根据您的需求和预算推荐合适的住宿选择。',
     features: [
@@ -71,13 +72,13 @@ const services: Service[] = [
       { text: '长期住宿优惠' },
       { text: '酒店设施和服务咨询' },
     ],
-    linkColor: 'text-[#f59e0b]',
+    linkColor: 'textSecondary',
   },
   {
     id: 'translation',
     icon: faLanguage,
-    iconBgColor: 'bg-green-100',
-    iconColor: 'text-green-600',
+    iconBgColor: 'bgGreen100',
+    iconColor: 'textGreen600',
     title: '专业翻译服务',
     description: '提供专业的商务翻译服务，包括口语翻译、文件翻译和商务谈判翻译。',
     features: [
@@ -85,13 +86,13 @@ const services: Service[] = [
       { text: '商务文件翻译' },
       { text: '商务谈判陪同翻译' },
     ],
-    linkColor: 'text-green-600',
+    linkColor: 'textGreen600',
   },
   {
     id: 'market',
     icon: faStore,
-    iconBgColor: 'bg-purple-100',
-    iconColor: 'text-purple-600',
+    iconBgColor: 'bgPurple100',
+    iconColor: 'textPurple600',
     title: '市场考察安排',
     description: '根据您的采购需求，安排专业的市场考察行程，带您参观相关批发市场和供应商。',
     features: [
@@ -99,13 +100,13 @@ const services: Service[] = [
       { text: '专业市场导览' },
       { text: '供应商筛选和推荐' },
     ],
-    linkColor: 'text-purple-600',
+    linkColor: 'textPurple600',
   },
   {
     id: 'negotiation',
     icon: faHandshake,
-    iconBgColor: 'bg-red-100',
-    iconColor: 'text-african-1',
+    iconBgColor: 'bgRed100',
+    iconColor: 'textAfrican1',
     title: '商务谈判支持',
     description: '提供商务谈判支持服务，包括价格协商、合同条款审核和商务礼仪指导。',
     features: [
@@ -113,13 +114,13 @@ const services: Service[] = [
       { text: '合同条款审核' },
       { text: '商务礼仪指导' },
     ],
-    linkColor: 'text-african-1',
+    linkColor: 'textAfrican1',
   },
   {
     id: 'logistics',
     icon: faShippingFast,
-    iconBgColor: 'bg-blue-100',
-    iconColor: 'text-african-2',
+    iconBgColor: 'bgBlue100',
+    iconColor: 'textAfrican2',
     title: '国际物流服务',
     description: '提供国际物流服务，包括货物打包、仓储、报关和国际运输等。',
     features: [
@@ -127,13 +128,13 @@ const services: Service[] = [
       { text: '出口报关代理' },
       { text: '国际海运和空运' },
     ],
-    linkColor: 'text-african-2',
+    linkColor: 'textAfrican2',
   },
   {
     id: 'culture',
     icon: faLeaf,
-    iconBgColor: 'bg-yellow-100',
-    iconColor: 'text-[#f59e0b]',
+    iconBgColor: 'bgYellow100',
+    iconColor: 'textSecondary',
     title: '文化体验活动',
     description: '安排中国文化体验活动，让您在商务之余感受中国传统文化的魅力。',
     features: [
@@ -141,47 +142,45 @@ const services: Service[] = [
       { text: '城市观光游览' },
       { text: '特色美食品尝' },
     ],
-    linkColor: 'text-[#f59e0b]',
+    linkColor: 'textSecondary',
   },
 ]
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 md-mb-16 scroll-animate px-4">
-          <h2 className="text-2xl sm-text-3xl md-text-4xl font-bold mb-3 md-mb-4 text-primary">
+    <section id="services" className={styles.section}>
+      <div className={styles.container}>
+        <div className={`${styles.header} scroll-animate`}>
+          <h2 className={styles.title}>
             我们的服务
           </h2>
-          <p className="text-base sm-text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className={styles.subtitle}>
             我们提供全方位的商务旅游服务，从签证办理到行程安排，从翻译服务到物流支持，让您的中国采购之旅无忧无虑。
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm-grid-cols-2 lg-grid-cols-4 gap-6 md-gap-8">
+        <div className={styles.grid}>
           {services.map((service) => (
-            <div key={service.id} className="service-card bg-white rounded-lg shadow-lg scroll-animate">
-              <div className="p-5 md-p-6">
-                <div
-                  className={`w-14 h-14 md-w-16 md-h-16 ${service.iconBgColor} rounded-full flex items-center justify-center mb-4 md-mb-6`}
-                >
-                  <FontAwesomeIcon icon={service.icon} className={`text-2xl md-text-3xl ${service.iconColor}`} />
+            <div key={service.id} className={`${styles.card} service-card scroll-animate`}>
+              <div className={styles.cardContent}>
+                <div className={`${styles.iconWrapper} ${styles[service.iconBgColor]}`}>
+                  <FontAwesomeIcon icon={service.icon} className={`${styles.icon} ${styles[service.iconColor]}`} />
                 </div>
-                <h3 className="text-lg md-text-xl font-bold mb-2 md-mb-3 text-primary">{service.title}</h3>
-                <p className="text-gray-600 mb-4">{service.description}</p>
-                <ul className="text-gray-600 mb-6">
+                <h3 className={styles.cardTitle}>{service.title}</h3>
+                <p className={styles.cardDescription}>{service.description}</p>
+                <ul className={styles.featuresList}>
                   {service.features.map((feature, index) => (
-                    <li key={index} className={`flex items-start ${index < service.features.length - 1 ? 'mb-2' : ''}`}>
-                      <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 mr-2" />
+                    <li key={index} className={styles.featureItem}>
+                      <FontAwesomeIcon icon={faCheckCircle} className={styles.featureIcon} />
                       <span>{feature.text}</span>
                     </li>
                   ))}
                 </ul>
                 <a
                   href="#contact"
-                  className={`${service.linkColor} font-medium flex items-center hover-underline touch-manipulation text-sm md-text-base`}
+                  className={`${styles.featureLink} ${styles[service.linkColor]} touch-manipulation`}
                 >
-                  了解更多 <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+                  了解更多 <FontAwesomeIcon icon={faArrowRight} className={styles.featureLinkIcon} />
                 </a>
               </div>
             </div>

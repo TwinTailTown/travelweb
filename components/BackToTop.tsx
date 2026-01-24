@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
+import styles from './BackToTop.module.scss'
 
 export default function BackToTop() {
   const [isVisible, setIsVisible] = useState(false)
@@ -31,9 +32,7 @@ export default function BackToTop() {
     <button
       id="back-to-top"
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 bg-african-1 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover-bg-c1121f transition-all duration-300 z-50 touch-manipulation ${
-        isVisible ? 'opacity-100 visible' : 'opacity-0 invisible'
-      }`}
+      className={`${styles.button} ${isVisible ? styles.visible : styles.hidden}`}
       aria-label="返回顶部"
     >
       <FontAwesomeIcon icon={faArrowUp} />

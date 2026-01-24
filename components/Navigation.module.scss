@@ -1,0 +1,233 @@
+.nav {
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: fixed;
+  width: 100%;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @media (min-width: 640px) {
+    max-width: 640px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 768px;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 1024px;
+  }
+
+  @media (min-width: 1280px) {
+    max-width: 1280px;
+  }
+
+  @media (min-width: 1536px) {
+    max-width: 1536px;
+  }
+}
+
+.navContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logoIcon {
+  font-size: 2.25rem;
+  color: var(--african-color-1);
+  margin-right: 0.5rem;
+}
+
+.logoText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.desktopNav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.navLink {
+  position: relative;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: #1f2937;
+  font-weight: 500;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--african-color-1);
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: var(--african-color-1);
+  }
+
+  &:hover::after,
+  &.active::after {
+    width: 100%;
+  }
+}
+
+.languageDropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.languageButton {
+  display: flex;
+  align-items: center;
+  color: #1f2937;
+
+  &:hover {
+    color: var(--african-color-1);
+  }
+}
+
+.languageIcon {
+  margin-right: 0.5rem;
+}
+
+.languageChevron {
+  margin-left: 0.25rem;
+  font-size: 0.75rem;
+}
+
+.languageDropdownContent {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 120px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 100;
+  border-radius: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.languageDropdown:hover .languageDropdownContent,
+.languageDropdown.active .languageDropdownContent {
+  display: block;
+}
+
+.languageOption {
+  padding: 0.75rem 1rem;
+  display: block;
+  text-decoration: none;
+  transition: all 0.3s;
+  color: #1f2937;
+
+  &:hover {
+    background-color: #f3f4f6;
+  }
+}
+
+.mobileMenuButton {
+  display: flex;
+  color: #1f2937;
+  width: 2.5rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.desktopContactButton {
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+.mobileMenuIcon {
+  font-size: 1.5rem;
+}
+
+.mobileMenu {
+  display: block;
+  padding-bottom: 1rem;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 0.5rem;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mobileNavLink {
+  display: block;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  color: #1f2937;
+  text-decoration: none;
+  touch-action: manipulation;
+
+  &:hover,
+  &:active {
+    color: var(--african-color-1);
+  }
+}
+
+.mobileLanguageSection {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.mobileLanguageDropdown {
+  position: relative;
+}
+
+.mobileLanguageDropdownContent {
+  position: relative;
+  margin-top: 0.5rem;
+}
+
+.mobileContactButton {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+  touch-action: manipulation;
+  text-decoration: none;
+}

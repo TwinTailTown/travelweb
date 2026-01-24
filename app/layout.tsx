@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
-      <body className={`${notoSansSC.variable} ${notoSansSC.className} bg-gray-50`}>
+      <body className={`${notoSansSC.variable} ${notoSansSC.className}`}>
         {children}
       </body>
     </html>

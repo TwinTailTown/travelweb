@@ -12,6 +12,7 @@ import {
 import { useExhibitions } from '@/hooks/useExhibitions'
 import { Exhibition } from '@/types'
 import { parseExhibitionDate, getBadgeClass, getLinkClass, getMonthName } from '@/lib/utils'
+import styles from './Exhibitions.module.scss'
 
 export default function Exhibitions() {
   const { exhibitions, loading, error } = useExhibitions()
@@ -109,79 +110,79 @@ export default function Exhibitions() {
   }
 
   return (
-    <section id="exhibitions" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 md-mb-16 scroll-animate px-4">
-          <h2 className="text-2xl sm-text-3xl md-text-4xl font-bold mb-3 md-mb-4 text-primary">
+    <section id="exhibitions" className={styles.section}>
+      <div className={styles.container}>
+        <div className={`${styles.header} scroll-animate`}>
+          <h2 className={styles.title}>
             展会信息
           </h2>
-          <p className="text-base sm-text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className={styles.subtitle}>
             我们为您提供最新的广州和义乌展会信息，帮助您把握商机，拓展业务。
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg-grid-cols-3 gap-10">
-          <div className="lg-col-span-2">
-            <div className="bg-white rounded-lg shadow-lg p-4 md-p-6 mb-6 md-mb-8 scroll-animate">
-              <h3 className="text-xl md-text-2xl font-bold mb-4 md-mb-6 text-primary">
+        <div className={styles.grid}>
+          <div className={styles.mainContent}>
+            <div className={styles.exhibitionsCard}>
+              <h3 className={styles.exhibitionsTitle}>
                 近期展会
               </h3>
 
               {loading && (
-                <div className="text-center py-8">
-                  <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-african-1"></div>
-                  <p className="text-gray-600 mt-4">加载展会信息中...</p>
+                <div className={styles.loading}>
+                  <div className={styles.spinner}></div>
+                  <p className={styles.loadingText}>加载展会信息中...</p>
                 </div>
               )}
 
               {error && (
-                <div className="text-center py-8">
-                  <p className="text-red-600">加载展会信息失败，请稍后重试</p>
+                <div className={styles.error}>
+                  <p>加载展会信息失败，请稍后重试</p>
                 </div>
               )}
 
               {!loading && !error && exhibitions.length === 0 && (
-                <p className="text-gray-600 text-center py-4">暂无展会信息</p>
+                <p className={styles.empty}>暂无展会信息</p>
               )}
 
               {!loading && !error && exhibitions.length > 0 && (
-                <div className="relative">
+                <div style={{ position: 'relative' }}>
                   {/* 移动端左翻页按钮 */}
                   <button
                     id="exhibitions-prev"
                     onClick={() => goToExhibition(currentIndex - 1)}
                     disabled={currentIndex === 0}
-                    className="md-hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover-bg-gray-50 active-bg-gray-100 touch-manipulation disabled-opacity-30 disabled-cursor-not-allowed"
+                    className={`${styles.navButton} ${styles.navButtonPrev}`}
                     aria-label="上一页"
                   >
-                    <FontAwesomeIcon icon={faChevronLeft} className="text-gray-700" />
+                    <FontAwesomeIcon icon={faChevronLeft} className={styles.navButtonIcon} />
                   </button>
 
                   {/* 展会列表容器 */}
                   <div
                     id="exhibitions-wrapper"
-                    className="exhibitions-wrapper"
+                    className={styles.wrapper}
                     onTouchStart={onTouchStart}
                     onTouchEnd={onTouchEnd}
                   >
                     <div
                       id="exhibitions-container"
                       ref={containerRef}
-                      className="exhibitions-container"
+                      className={styles.containerInner}
                     >
                       {exhibitions.map((exhibition, index) => (
                         <div
                           key={exhibition.id}
-                          className="calendar-event scroll-animate mb-6"
+                          className={`${styles.event} calendar-event scroll-animate`}
                           data-index={index}
                         >
-                          <div className="flex justify-between items-start mb-2">
-                            <h4 className="text-xl font-bold text-primary line-clamp-2">
+                          <div className={styles.eventHeader}>
+                            <h4 className={styles.eventTitle}>
                               {exhibition.title}
                             </h4>
                             {exhibition.badge && (
                               <span
-                                className={`${getBadgeClass(exhibition.badgeColor)} text-white px-3 py-1 rounded-full text-sm whitespace-nowrap`}
+                                className={`${styles.badge} ${getBadgeClass(exhibition.badgeColor)}`}
                                 style={
                                   exhibition.badgeColor &&
                                   exhibition.badgeColor !== '#e63946' &&
@@ -194,19 +195,19 @@ export default function Exhibitions() {
                               </span>
                             )}
                           </div>
-                          <div className="flex items-center text-gray-600 mb-3 flex-wrap">
-                            <FontAwesomeIcon icon={faCalendarAlt} className="mr-2" />
+                          <div className={styles.eventMeta}>
+                            <FontAwesomeIcon icon={faCalendarAlt} className={styles.metaIcon} />
                             <span>{exhibition.date}</span>
-                            <span className="mx-3 text-gray-400">|</span>
-                            <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
+                            <span className={styles.metaSeparator}>|</span>
+                            <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.metaIcon} />
                             <span>{exhibition.location}</span>
                           </div>
-                          <p className="text-gray-700 mb-4 line-clamp-2">{exhibition.description}</p>
-                          <div className="flex flex-wrap gap-2 mb-4">
+                          <p className={styles.eventDescription}>{exhibition.description}</p>
+                          <div className={styles.tags}>
                             {exhibition.tags.map((tag, tagIndex) => (
                               <span
                                 key={tagIndex}
-                                className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                                className={styles.tag}
                               >
                                 {tag}
                               </span>
@@ -214,9 +215,9 @@ export default function Exhibitions() {
                           </div>
                           <a
                             href={exhibition.detailLink}
-                            className={`${getLinkClass(exhibition.linkColor)} font-medium flex items-center hover-underline`}
+                            className={`${styles.eventLink} ${getLinkClass(exhibition.linkColor)}`}
                           >
-                            了解详情 <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+                            了解详情 <FontAwesomeIcon icon={faArrowRight} className={styles.linkIcon} />
                           </a>
                         </div>
                       ))}
@@ -228,23 +229,23 @@ export default function Exhibitions() {
                     id="exhibitions-next"
                     onClick={() => goToExhibition(currentIndex + 1)}
                     disabled={currentIndex === exhibitions.length - 1}
-                    className="md-hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover-bg-gray-50 active-bg-gray-100 touch-manipulation disabled-opacity-30 disabled-cursor-not-allowed"
+                    className={`${styles.navButton} ${styles.navButtonNext}`}
                     aria-label="下一页"
                   >
-                    <FontAwesomeIcon icon={faChevronRight} className="text-gray-700" />
+                    <FontAwesomeIcon icon={faChevronRight} className={styles.navButtonIcon} />
                   </button>
 
                   {/* 移动端指示器 */}
                   {isMobile && (
                     <div
                       id="exhibitions-indicators"
-                      className="md-hidden flex justify-center gap-2 mt-4"
+                      className={styles.indicators}
                     >
                       {exhibitions.map((_, index) => (
                         <div
                           key={index}
-                          className={`exhibition-indicator ${
-                            currentIndex === index ? 'active' : ''
+                          className={`${styles.indicator} ${
+                            currentIndex === index ? styles.active : ''
                           }`}
                           onClick={() => goToExhibition(index)}
                         />
@@ -258,55 +259,55 @@ export default function Exhibitions() {
 
           {/* 展会日历 */}
           <div>
-            <div className="bg-white rounded-lg shadow-lg p-4 md-p-6 mb-6 md-mb-8 scroll-animate">
-              <h3 className="text-xl font-bold mb-4 text-primary">展会日历</h3>
-              <div className="mb-4">
-                <div className="flex justify-between items-center mb-2">
+            <div className={`${styles.calendarCard} scroll-animate`}>
+              <h3 className={styles.calendarTitle}>展会日历</h3>
+              <div className={styles.calendarControls}>
+                <div className={styles.calendarHeader}>
                   <button
                     onClick={() => setCurrentYear(currentYear - 1)}
-                    className="text-gray-600 hover-text-african-1 touch-manipulation"
+                    className={styles.calendarYearButton}
                   >
                     <FontAwesomeIcon icon={faChevronLeft} />
                   </button>
-                  <h4 className="font-bold">{currentYear}年</h4>
+                  <h4 className={styles.calendarYear}>{currentYear}年</h4>
                   <button
                     onClick={() => setCurrentYear(currentYear + 1)}
-                    className="text-gray-600 hover-text-african-1 touch-manipulation"
+                    className={styles.calendarYearButton}
                   >
                     <FontAwesomeIcon icon={faChevronRight} />
                   </button>
                 </div>
               </div>
 
-              <div id="calendar-events" className="space-y-2">
+              <div id="calendar-events" className={styles.calendarEvents}>
                 {calendarEvents.map((event) => (
                   <div
                     key={event.id}
-                    className="calendar-event scroll-animate mb-6 cursor-pointer"
+                    className={`${styles.calendarEvent} scroll-animate`}
                     onClick={() => scrollToExhibition(event.id)}
                     style={{
                       borderLeftColor: event.badgeColor || '#e63946',
                     }}
                   >
-                    <div className="flex items-center mb-2">
+                    <div className={styles.calendarEventHeader}>
                       <div
-                        className="w-3 h-3 rounded-full mr-2"
+                        className={styles.calendarEventDot}
                         style={{
                           backgroundColor: event.badgeColor || '#e63946',
                         }}
                       />
-                      <span className="text-sm font-medium text-gray-700">
+                      <span className={styles.calendarEventDate}>
                         {event.month}月{event.day}日
                       </span>
                     </div>
-                    <h4 className="text-sm font-bold text-primary line-clamp-2">
+                    <h4 className={styles.calendarEventTitle}>
                       {event.title}
                     </h4>
-                    <p className="text-xs text-gray-600 mt-1">{event.location}</p>
+                    <p className={styles.calendarEventLocation}>{event.location}</p>
                   </div>
                 ))}
                 {calendarEvents.length === 0 && (
-                  <p className="text-gray-500 text-sm text-center py-4">
+                  <p className={styles.calendarEmpty}>
                     {currentYear}年暂无展会安排
                   </p>
                 )}

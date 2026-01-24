@@ -10,6 +10,7 @@ import {
   faTwitter,
   faInstagram,
 } from '@fortawesome/free-brands-svg-icons'
+import styles from './ContactForm.module.scss'
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -39,29 +40,29 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="contact" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 md-mb-16 scroll-animate px-4">
-          <h2 className="text-2xl sm-text-3xl md-text-4xl font-bold mb-3 md-mb-4 text-primary">
+    <section id="contact" className={styles.section}>
+      <div className={styles.container}>
+        <div className={`${styles.header} scroll-animate`}>
+          <h2 className={styles.title}>
             联系帮助
           </h2>
-          <p className="text-base sm-text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className={styles.subtitle}>
             无论您有任何问题或需求，我们的团队随时为您提供帮助。请通过以下方式与我们联系。
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg-grid-cols-2 gap-10">
-          <div className="bg-white rounded-lg shadow-xl p-6 scroll-animate">
-            <h3 className="text-2xl font-bold mb-6 text-primary">发送消息</h3>
+        <div className={styles.grid}>
+          <div className={`${styles.formCard} scroll-animate`}>
+            <h3 className={styles.formTitle}>发送消息</h3>
             <form id="contact-form" onSubmit={handleSubmit}>
-              <div className="grid grid-cols-2 gap-2 md-gap-4 mb-4">
-                <div>
-                  <label className="block text-gray-700 font-medium mb-1 md-mb-2 text-xs md-text-base" htmlFor="name">
+              <div className={styles.formGrid}>
+                <div className={styles.formGroup}>
+                  <label className={styles.label} htmlFor="name">
                     姓名
                   </label>
                   <input
                     type="text"
-                    className="w-full px-2 md-px-4 py-2 md-py-2 border border-gray-300 rounded-lg focus-outline-none focus-ring-2 focus-ring-african-1 text-sm md-text-base"
+                    className={styles.input}
                     id="name"
                     placeholder="姓名"
                     required
@@ -69,13 +70,13 @@ export default function ContactForm() {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
                 </div>
-                <div>
-                  <label className="block text-gray-700 font-medium mb-1 md-mb-2 text-xs md-text-base" htmlFor="email">
+                <div className={styles.formGroup}>
+                  <label className={styles.label} htmlFor="email">
                     邮箱
                   </label>
                   <input
                     type="email"
-                    className="w-full px-2 md-px-4 py-2 md-py-2 border border-gray-300 rounded-lg focus-outline-none focus-ring-2 focus-ring-african-1 text-sm md-text-base"
+                    className={styles.input}
                     id="email"
                     placeholder="邮箱"
                     required
@@ -84,14 +85,14 @@ export default function ContactForm() {
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-2 md-gap-4 mb-4">
-                <div>
-                  <label className="block text-gray-700 font-medium mb-1 md-mb-2 text-xs md-text-base" htmlFor="phone">
+              <div className={styles.formGrid}>
+                <div className={styles.formGroup}>
+                  <label className={styles.label} htmlFor="phone">
                     电话
                   </label>
                   <input
                     type="tel"
-                    className="w-full px-2 md-px-4 py-2 md-py-2 border border-gray-300 rounded-lg focus-outline-none focus-ring-2 focus-ring-african-1 text-sm md-text-base"
+                    className={styles.input}
                     id="phone"
                     placeholder="电话"
                     required
@@ -99,13 +100,13 @@ export default function ContactForm() {
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   />
                 </div>
-                <div>
-                  <label className="block text-gray-700 font-medium mb-1 md-mb-2 text-xs md-text-base" htmlFor="country">
+                <div className={styles.formGroup}>
+                  <label className={styles.label} htmlFor="country">
                     国家
                   </label>
                   <input
                     type="text"
-                    className="w-full px-2 md-px-4 py-2 md-py-2 border border-gray-300 rounded-lg focus-outline-none focus-ring-2 focus-ring-african-1 text-sm md-text-base"
+                    className={styles.input}
                     id="country"
                     placeholder="国家"
                     required
@@ -114,12 +115,12 @@ export default function ContactForm() {
                   />
                 </div>
               </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-1 md-mb-2 text-xs md-text-base" htmlFor="service">
+              <div className={styles.formGroup}>
+                <label className={styles.label} htmlFor="service">
                   服务类型
                 </label>
                 <select
-                  className="w-full px-2 md-px-4 py-2 md-py-2 border border-gray-300 rounded-lg focus-outline-none focus-ring-2 focus-ring-african-1 text-sm md-text-base"
+                  className={styles.select}
                   id="service"
                   required
                   value={formData.service}
@@ -136,12 +137,12 @@ export default function ContactForm() {
                   <option value="other">其他</option>
                 </select>
               </div>
-              <div className="mb-6">
-                <label className="block text-gray-700 font-medium mb-1 md-mb-2 text-xs md-text-base" htmlFor="message">
+              <div className={styles.formGroup}>
+                <label className={styles.label} htmlFor="message">
                   留言
                 </label>
                 <textarea
-                  className="w-full px-2 md-px-4 py-2 md-py-2 border border-gray-300 rounded-lg focus-outline-none focus-ring-2 focus-ring-african-1 text-sm md-text-base min-h-[120px]"
+                  className={styles.textarea}
                   id="message"
                   placeholder="请输入您的留言"
                   required
@@ -152,79 +153,79 @@ export default function ContactForm() {
               <button
                 type="submit"
                 id="submit-contact"
-                className="btn-primary w-full px-6 py-3 rounded-full font-medium text-center touch-manipulation"
+                className={`btn-primary ${styles.submitButton}`}
               >
                 提交
               </button>
             </form>
           </div>
 
-          <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow-xl p-6 scroll-animate">
-              <h3 className="text-2xl font-bold mb-6 text-primary">联系方式</h3>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <FontAwesomeIcon icon={faEnvelope} className="text-african-1 mr-3 mt-1" />
-                  <div>
-                    <h4 className="font-bold mb-1">邮箱</h4>
-                    <p className="text-gray-600">info@africa-china-travel.com</p>
+          <div className={styles.sidebar}>
+            <div className={`${styles.contactCard} scroll-animate`}>
+              <h3 className={styles.contactTitle}>联系方式</h3>
+              <div className={styles.contactList}>
+                <div className={styles.contactItem}>
+                  <FontAwesomeIcon icon={faEnvelope} className={styles.contactIcon} />
+                  <div className={styles.contactContent}>
+                    <h4 className={styles.contactLabel}>邮箱</h4>
+                    <p className={styles.contactValue}>info@africa-china-travel.com</p>
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <FontAwesomeIcon icon={faPhone} className="text-african-1 mr-3 mt-1" />
-                  <div>
-                    <h4 className="font-bold mb-1">电话</h4>
-                    <p className="text-gray-600">+86 138 0013 8000</p>
+                <div className={styles.contactItem}>
+                  <FontAwesomeIcon icon={faPhone} className={styles.contactIcon} />
+                  <div className={styles.contactContent}>
+                    <h4 className={styles.contactLabel}>电话</h4>
+                    <p className={styles.contactValue}>+86 138 0013 8000</p>
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <FontAwesomeIcon icon={faMapMarkerAlt} className="text-african-1 mr-3 mt-1" />
-                  <div>
-                    <h4 className="font-bold mb-1">地址</h4>
-                    <p className="text-gray-600">中国广州市天河区</p>
+                <div className={styles.contactItem}>
+                  <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.contactIcon} />
+                  <div className={styles.contactContent}>
+                    <h4 className={styles.contactLabel}>地址</h4>
+                    <p className={styles.contactValue}>中国广州市天河区</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* 移动端隐藏关注我们 */}
-            <div className="bg-white rounded-lg shadow-xl p-6 scroll-animate hidden md-block">
-              <h3 className="text-2xl font-bold mb-6 text-primary">关注我们</h3>
-              <div className="flex gap-4">
+            <div className={`${styles.socialCard} scroll-animate`}>
+              <h3 className={styles.socialTitle}>关注我们</h3>
+              <div className={styles.socialLinks}>
                 <a
                   href="#"
-                  className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white hover-bg-green-600 transition-colors"
+                  className={`${styles.socialLink} ${styles.whatsapp}`}
                   aria-label="WhatsApp"
                 >
-                  <FontAwesomeIcon icon={faWhatsapp} className="text-xl" />
+                  <FontAwesomeIcon icon={faWhatsapp} className={styles.socialIcon} />
                 </a>
                 <a
                   href="#"
-                  className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white hover-bg-green-700 transition-colors"
+                  className={`${styles.socialLink} ${styles.weixin}`}
                   aria-label="微信"
                 >
-                  <FontAwesomeIcon icon={faWeixin} className="text-xl" />
+                  <FontAwesomeIcon icon={faWeixin} className={styles.socialIcon} />
                 </a>
                 <a
                   href="#"
-                  className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white hover-bg-blue-700 transition-colors"
+                  className={`${styles.socialLink} ${styles.facebook}`}
                   aria-label="Facebook"
                 >
-                  <FontAwesomeIcon icon={faFacebook} className="text-xl" />
+                  <FontAwesomeIcon icon={faFacebook} className={styles.socialIcon} />
                 </a>
                 <a
                   href="#"
-                  className="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center text-white hover-bg-blue-500 transition-colors"
+                  className={`${styles.socialLink} ${styles.twitter}`}
                   aria-label="Twitter"
                 >
-                  <FontAwesomeIcon icon={faTwitter} className="text-xl" />
+                  <FontAwesomeIcon icon={faTwitter} className={styles.socialIcon} />
                 </a>
                 <a
                   href="#"
-                  className="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-white hover-bg-pink-700 transition-colors"
+                  className={`${styles.socialLink} ${styles.instagram}`}
                   aria-label="Instagram"
                 >
-                  <FontAwesomeIcon icon={faInstagram} className="text-xl" />
+                  <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />
                 </a>
               </div>
             </div>

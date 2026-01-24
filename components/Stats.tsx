@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import styles from './Stats.module.scss'
 
 export default function Stats() {
   const clientsRef = useRef<HTMLDivElement>(null)
@@ -53,44 +54,44 @@ export default function Stats() {
   }, [])
 
   return (
-    <section id="stats-section" className="py-16 bg-gradient">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md-grid-cols-4 gap-8 text-center">
-          <div className="scroll-animate">
+    <section id="stats-section" className={styles.section}>
+      <div className={styles.container}>
+        <div className={styles.grid}>
+          <div className={`${styles.statItem} scroll-animate`}>
             <div
               ref={clientsRef}
-              className="text-4xl md-text-5xl font-bold text-white mb-2"
+              className={styles.statNumber}
             >
               0
             </div>
-            <p className="text-gray-200">服务客户</p>
+            <p className={styles.statLabel}>服务客户</p>
           </div>
-          <div className="scroll-animate">
+          <div className={`${styles.statItem} scroll-animate`}>
             <div
               ref={countriesRef}
-              className="text-4xl md-text-5xl font-bold text-white mb-2"
+              className={styles.statNumber}
             >
               0
             </div>
-            <p className="text-gray-200">覆盖国家</p>
+            <p className={styles.statLabel}>覆盖国家</p>
           </div>
-          <div className="scroll-animate">
+          <div className={`${styles.statItem} scroll-animate`}>
             <div
               ref={tripsRef}
-              className="text-4xl md-text-5xl font-bold text-white mb-2"
+              className={styles.statNumber}
             >
               0
             </div>
-            <p className="text-gray-200">成功行程</p>
+            <p className={styles.statLabel}>成功行程</p>
           </div>
-          <div className="scroll-animate">
+          <div className={`${styles.statItem} scroll-animate`}>
             <div
               ref={satisfactionRef}
-              className="text-4xl md-text-5xl font-bold text-white mb-2"
+              className={styles.statNumber}
             >
               0
             </div>
-            <p className="text-gray-200">客户满意度(%)</p>
+            <p className={styles.statLabel}>客户满意度(%)</p>
           </div>
         </div>
       </div>

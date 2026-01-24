@@ -11,6 +11,7 @@ import {
   faChevronDown,
 } from '@fortawesome/free-solid-svg-icons'
 import { useLanguage } from '@/hooks/useLanguage'
+import styles from './Navigation.module.scss'
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -63,26 +64,26 @@ export default function Navigation() {
   ]
 
   return (
-    <nav className="bg-white shadow-md fixed w-full z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center py-4">
-          <Link href="/" className="flex items-center">
+    <nav className={styles.nav}>
+      <div className={styles.container}>
+        <div className={styles.navContent}>
+          <Link href="/" className={styles.logo}>
             <FontAwesomeIcon
               icon={faGlobeAfrica}
-              className="text-4xl text-african-1 mr-2"
+              className={styles.logoIcon}
             />
-            <span className="text-2xl font-bold text-primary">中非商务旅游</span>
+            <span className={styles.logoText}>中非商务旅游</span>
           </Link>
 
           {/* 桌面导航 */}
-          <div className="md-flex items-center space-x-8">
+          <div className={styles.desktopNav}>
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className={`nav-link ${
-                  activeSection === link.href.substring(1) ? 'active' : ''
-                } text-gray-800 hover-text-african-1 font-medium`}
+                className={`${styles.navLink} ${
+                  activeSection === link.href.substring(1) ? styles.active : ''
+                }`}
               >
                 {t(link.key)}
               </a>
@@ -90,24 +91,24 @@ export default function Navigation() {
 
             {/* 多语言切换 */}
             <div
-              className="language-dropdown relative"
+              className={`${styles.languageDropdown} ${languageMenuOpen ? styles.active : ''}`}
               onMouseEnter={() => setLanguageMenuOpen(true)}
               onMouseLeave={() => setLanguageMenuOpen(false)}
             >
-              <button className="flex items-center text-gray-800 hover-text-african-1">
-                <FontAwesomeIcon icon={faLanguage} className="mr-2" />
+              <button className={styles.languageButton}>
+                <FontAwesomeIcon icon={faLanguage} className={styles.languageIcon} />
                 <span>{langName}</span>
-                <FontAwesomeIcon icon={faChevronDown} className="ml-1 text-xs" />
+                <FontAwesomeIcon icon={faChevronDown} className={styles.languageChevron} />
               </button>
               {languageMenuOpen && (
-                <div className="language-dropdown-content">
+                <div className={styles.languageDropdownContent}>
                   <a
                     href="#"
                     onClick={(e) => {
                       e.preventDefault()
                       setLanguage('zh')
                     }}
-                    className="language-option"
+                    className={styles.languageOption}
                   >
                     中文
                   </a>
@@ -117,7 +118,7 @@ export default function Navigation() {
                       e.preventDefault()
                       setLanguage('en')
                     }}
-                    className="language-option"
+                    className={styles.languageOption}
                   >
                     English
                   </a>
@@ -127,7 +128,7 @@ export default function Navigation() {
                       e.preventDefault()
                       setLanguage('sw')
                     }}
-                    className="language-option"
+                    className={styles.languageOption}
                   >
                     Kiswahili
                   </a>
@@ -137,54 +138,52 @@ export default function Navigation() {
 
             <Link
               href="#contact"
-              className="btn-primary px-6 py-2 rounded-full font-medium"
+              className={`btn-primary ${styles.desktopContactButton}`}
             >
               立即咨询
             </Link>
           </div>
 
           {/* 移动端菜单按钮 */}
-          <div className="md-hidden">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-gray-800 focus-outline-none w-10 h-10 flex items-center justify-center touch-manipulation"
-              aria-label="打开菜单"
-            >
-              <FontAwesomeIcon
-                icon={mobileMenuOpen ? faTimes : faBars}
-                className="text-2xl"
-              />
-            </button>
-          </div>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className={styles.mobileMenuButton}
+            aria-label="打开菜单"
+          >
+            <FontAwesomeIcon
+              icon={mobileMenuOpen ? faTimes : faBars}
+              className={styles.mobileMenuIcon}
+            />
+          </button>
         </div>
 
         {/* 移动端导航菜单 */}
         {mobileMenuOpen && (
-          <div className="md-hidden pb-4 border-t border-gray-200 mt-2">
+          <div className={styles.mobileMenu}>
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block py-3 text-gray-800 hover-text-african-1 active-text-african-1 touch-manipulation"
+                className={styles.mobileNavLink}
               >
                 {t(link.key)}
               </a>
             ))}
 
             {/* 多语言切换 */}
-            <div className="py-2">
-              <div className="language-dropdown">
+            <div className={styles.mobileLanguageSection}>
+              <div className={styles.mobileLanguageDropdown}>
                 <button
                   onClick={() => setLanguageMenuOpen(!languageMenuOpen)}
-                  className="flex items-center text-gray-800 hover-text-african-1"
+                  className={styles.languageButton}
                 >
-                  <FontAwesomeIcon icon={faLanguage} className="mr-2" />
+                  <FontAwesomeIcon icon={faLanguage} className={styles.languageIcon} />
                   <span>{langName}</span>
-                  <FontAwesomeIcon icon={faChevronDown} className="ml-1 text-xs" />
+                  <FontAwesomeIcon icon={faChevronDown} className={styles.languageChevron} />
                 </button>
                 {languageMenuOpen && (
-                  <div className="language-dropdown-content relative mt-2">
+                  <div className={styles.mobileLanguageDropdownContent}>
                     <a
                       href="#"
                       onClick={(e) => {
@@ -192,7 +191,7 @@ export default function Navigation() {
                         setLanguage('zh')
                         setLanguageMenuOpen(false)
                       }}
-                      className="language-option"
+                      className={styles.languageOption}
                     >
                       中文
                     </a>
@@ -203,7 +202,7 @@ export default function Navigation() {
                         setLanguage('en')
                         setLanguageMenuOpen(false)
                       }}
-                      className="language-option"
+                      className={styles.languageOption}
                     >
                       English
                     </a>
@@ -214,7 +213,7 @@ export default function Navigation() {
                         setLanguage('sw')
                         setLanguageMenuOpen(false)
                       }}
-                      className="language-option"
+                      className={styles.languageOption}
                     >
                       Kiswahili
                     </a>
@@ -226,7 +225,7 @@ export default function Navigation() {
             <Link
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="btn-primary inline-block mt-4 px-6 py-3 rounded-full font-medium w-full text-center touch-manipulation"
+              className={`btn-primary ${styles.mobileContactButton}`}
             >
               立即咨询
             </Link>
