@@ -1,162 +1,116 @@
-# 中非商务旅游一站式服务平台
+# 中非商务旅游 - 一站式服务平台
 
-## 项目说明
-
-这是一个中非商务旅游一站式服务平台的网站项目，提供商务路线、展会信息、服务介绍等功能。
+基于 Next.js + TypeScript 构建的现代化商务旅游服务平台。
 
 ## 技术栈
 
-- **前端**: HTML, CSS, JavaScript, Tailwind CSS
-- **后端**: Bun (JavaScript 运行时)
-- **服务端**: Bun HTTP Server
+- **框架**: Next.js 16.1.4 (App Router)
+- **语言**: TypeScript 5.9.3
+- **样式**: Tailwind CSS 4.1.18
+- **运行时**: Bun
+- **UI 组件**: React 19.2.3
+- **图标**: Font Awesome
 
-## 安装和运行
+## 项目结构
 
-### 1. 安装 Bun
-
-如果还没有安装 Bun，请运行：
-
-```powershell
-powershell -c "irm bun.sh/install.ps1 | iex"
+```
+travelweb/
+├── app/                    # Next.js App Router
+│   ├── layout.tsx         # 根布局
+│   ├── page.tsx           # 主页
+│   ├── admin/             # 后台管理页面
+│   │   └── page.tsx
+│   ├── api/               # API 路由
+│   │   └── exhibitions/
+│   └── globals.css        # 全局样式
+├── components/            # React 组件
+│   ├── Navigation.tsx
+│   ├── Carousel.tsx
+│   ├── Exhibitions.tsx
+│   ├── ContactForm.tsx
+│   ├── BackToTop.tsx
+│   ├── WhatsAppButton.tsx
+│   └── Stats.tsx
+├── hooks/                 # 自定义 Hooks
+│   ├── useExhibitions.ts
+│   └── useLanguage.ts
+├── lib/                   # 工具函数
+│   └── utils.ts
+├── types/                 # TypeScript 类型定义
+│   └── index.ts
+└── data/                  # 数据文件
+    └── exhibitions.json
 ```
 
-### 2. 启动服务
+## 安装依赖
+
+使用 Bun 安装所有依赖：
 
 ```bash
-bun run server.js
+bun install
 ```
 
-或者使用开发模式（自动重启）：
+## 开发模式
+
+启动开发服务器：
 
 ```bash
 bun run dev
 ```
 
-服务将在 `http://localhost:3000` 启动。
+访问 http://localhost:3000
 
-### 3. 访问网站
+## 生产构建
 
-在浏览器中打开 `http://localhost:3000`
+构建生产版本：
 
-## 后台管理
-
-访问后台管理页面：`http://localhost:3000/admin`
-
-后台管理功能：
-- ✅ 查看所有展会信息
-- ✅ 添加新展会
-- ✅ 编辑展会信息
-- ✅ 删除展会
-- ✅ 实时保存到服务器
-
-## API 接口
-
-### 获取所有展会信息
-
-- **URL**: `/api/exhibitions`
-- **方法**: `GET`
-- **响应**: JSON 格式的展会信息数组
-
-### 获取单个展会信息
-
-- **URL**: `/api/exhibitions/:id`
-- **方法**: `GET`
-- **响应**: JSON 格式的展会信息对象
-
-### 创建新展会
-
-- **URL**: `/api/exhibitions`
-- **方法**: `POST`
-- **请求体**: JSON 格式的展会信息
-- **响应**: 创建的展会信息对象
-
-### 更新展会信息
-
-- **URL**: `/api/exhibitions/:id`
-- **方法**: `PUT`
-- **请求体**: JSON 格式的展会信息
-- **响应**: 更新后的展会信息对象
-
-### 删除展会
-
-- **URL**: `/api/exhibitions/:id`
-- **方法**: `DELETE`
-- **响应**: 删除成功消息
-
-示例响应：
-
-```json
-[
-  {
-    "id": 1,
-    "title": "第138届中国进出口商品交易会（广交会）",
-    "date": "2025年10月15日 - 11月4日",
-    "location": "广州 · 广交会展馆",
-    "description": "广交会是中国最大的进出口商品交易会...",
-    "tags": ["电子家电", "机械设备", "纺织品", "家居用品"],
-    "badge": "热门",
-    "badgeColor": "#e63946",
-    "linkColor": "#e63946",
-    "detailLink": "#"
-  }
-]
+```bash
+bun run build
 ```
 
-## 项目结构
+启动生产服务器：
 
-```
-.
-├── index.html          # 主页面
-├── admin.html          # 后台管理页面
-├── script.js           # 前端 JavaScript
-├── admin.js            # 后台管理 JavaScript
-├── style.css           # 样式文件
-├── server.js           # 后端服务
-├── package.json        # 项目配置
-├── data/
-│   └── exhibitions.json # 展会数据存储
-└── README.md           # 项目说明
+```bash
+bun run start
 ```
 
 ## 功能特性
 
-### 前端功能
-- ✅ 响应式设计
+- ✅ 响应式设计（移动端、平板、桌面）
 - ✅ 多语言支持（中文、英文、斯瓦希里语）
-- ✅ 动态展会信息获取
-- ✅ 轮播图展示
-- ✅ 滚动动画效果
+- ✅ 展会信息管理（CRUD）
+- ✅ 展会日历动态更新
+- ✅ 移动端展会翻页
+- ✅ 桌面端展会滚动
 - ✅ 联系表单
+- ✅ 后台管理界面
+- ✅ 滚动动画
+- ✅ 返回顶部按钮
+- ✅ WhatsApp 快速联系
 
-### 后台管理功能
-- ✅ 展会信息列表查看
-- ✅ 添加新展会
-- ✅ 编辑展会信息
-- ✅ 删除展会
-- ✅ 实时数据保存
-- ✅ 友好的用户界面
+## 后台管理
 
-## 开发说明
+访问 `/admin` 路径进入后台管理界面，可以：
 
-### 修改展会信息
+- 添加展会信息
+- 编辑展会信息
+- 删除展会信息
+- 管理展会标签和徽章
 
-有两种方式修改展会信息：
+## API 端点
 
-1. **通过后台管理页面**（推荐）
-   - 访问 `http://localhost:3000/admin`
-   - 使用图形界面进行添加、编辑、删除操作
+- `GET /api/exhibitions` - 获取所有展会
+- `POST /api/exhibitions` - 创建新展会
+- `GET /api/exhibitions/[id]` - 获取单个展会
+- `PUT /api/exhibitions/[id]` - 更新展会
+- `DELETE /api/exhibitions/[id]` - 删除展会
 
-2. **直接编辑数据文件**
-   - 编辑 `data/exhibitions.json` 文件
-   - 修改后重启服务器
+## 浏览器支持
 
-### 数据存储
-
-展会数据存储在 `data/exhibitions.json` 文件中，所有通过后台管理页面的操作都会实时保存到这个文件。
-
-### 添加新的 API 接口
-
-在 `server.js` 的 `fetch` 函数中添加新的路由处理。
+- Chrome (最新)
+- Firefox (最新)
+- Safari (最新)
+- Edge (最新)
 
 ## 许可证
 
