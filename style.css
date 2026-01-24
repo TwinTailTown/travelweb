@@ -231,7 +231,6 @@ body {
         overflow-x: hidden;
         overflow-y: hidden;
         position: relative;
-        padding: 0 3rem; /* 为翻页按钮留出空间 */
     }
     
     .exhibitions-container {
@@ -242,6 +241,7 @@ body {
     
     .exhibitions-container .calendar-event {
         min-width: 100%;
+        max-width: 100%;
         flex-shrink: 0;
         margin-bottom: 0;
         padding: 1rem;

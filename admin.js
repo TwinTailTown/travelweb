@@ -58,11 +58,11 @@ async function loadExhibitions() {
             let badgeStyle = '';
             if (exhibition.badge) {
                 if (exhibition.badgeColor === '#e63946') {
-                    badgeStyle = '<span class="bg-[#e63946] text-white px-3 py-1 rounded-full text-sm">' + exhibition.badge + '</span>';
+                    badgeStyle = '<span class="bg-[#e63946] text-white px-3 py-1 rounded-full text-sm whitespace-nowrap">' + exhibition.badge + '</span>';
                 } else if (exhibition.badgeColor === '#457b9d') {
-                    badgeStyle = '<span class="bg-[#457b9d] text-white px-3 py-1 rounded-full text-sm">' + exhibition.badge + '</span>';
+                    badgeStyle = '<span class="bg-[#457b9d] text-white px-3 py-1 rounded-full text-sm whitespace-nowrap">' + exhibition.badge + '</span>';
                 } else {
-                    badgeStyle = `<span style="background-color: ${exhibition.badgeColor}" class="text-white px-3 py-1 rounded-full text-sm">${exhibition.badge}</span>`;
+                    badgeStyle = `<span style="background-color: ${exhibition.badgeColor}" class="text-white px-3 py-1 rounded-full text-sm whitespace-nowrap">${exhibition.badge}</span>`;
                 }
             }
             
