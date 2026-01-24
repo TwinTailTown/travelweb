@@ -75,14 +75,14 @@ export default function Navigation() {
           </Link>
 
           {/* 桌面导航 */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="md-flex items-center space-x-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 className={`nav-link ${
                   activeSection === link.href.substring(1) ? 'active' : ''
-                } text-gray-800 hover:text-african-1 font-medium`}
+                } text-gray-800 hover-text-african-1 font-medium`}
               >
                 {t(link.key)}
               </a>
@@ -94,7 +94,7 @@ export default function Navigation() {
               onMouseEnter={() => setLanguageMenuOpen(true)}
               onMouseLeave={() => setLanguageMenuOpen(false)}
             >
-              <button className="flex items-center text-gray-800 hover:text-african-1">
+              <button className="flex items-center text-gray-800 hover-text-african-1">
                 <FontAwesomeIcon icon={faLanguage} className="mr-2" />
                 <span>{langName}</span>
                 <FontAwesomeIcon icon={faChevronDown} className="ml-1 text-xs" />
@@ -144,10 +144,10 @@ export default function Navigation() {
           </div>
 
           {/* 移动端菜单按钮 */}
-          <div className="md:hidden">
+          <div className="md-hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-gray-800 focus:outline-none w-10 h-10 flex items-center justify-center touch-manipulation"
+              className="text-gray-800 focus-outline-none w-10 h-10 flex items-center justify-center touch-manipulation"
               aria-label="打开菜单"
             >
               <FontAwesomeIcon
@@ -160,13 +160,13 @@ export default function Navigation() {
 
         {/* 移动端导航菜单 */}
         {mobileMenuOpen && (
-          <div className="md:hidden pb-4 border-t border-gray-200 mt-2">
+          <div className="md-hidden pb-4 border-t border-gray-200 mt-2">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block py-3 text-gray-800 hover:text-african-1 active:text-african-1 touch-manipulation"
+                className="block py-3 text-gray-800 hover-text-african-1 active-text-african-1 touch-manipulation"
               >
                 {t(link.key)}
               </a>
@@ -177,7 +177,7 @@ export default function Navigation() {
               <div className="language-dropdown">
                 <button
                   onClick={() => setLanguageMenuOpen(!languageMenuOpen)}
-                  className="flex items-center text-gray-800 hover:text-african-1"
+                  className="flex items-center text-gray-800 hover-text-african-1"
                 >
                   <FontAwesomeIcon icon={faLanguage} className="mr-2" />
                   <span>{langName}</span>

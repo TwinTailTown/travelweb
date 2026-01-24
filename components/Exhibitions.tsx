@@ -111,19 +111,19 @@ export default function Exhibitions() {
   return (
     <section id="exhibitions" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 md:mb-16 scroll-animate px-4">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-primary">
+        <div className="text-center mb-12 md-mb-16 scroll-animate px-4">
+          <h2 className="text-2xl sm-text-3xl md-text-4xl font-bold mb-3 md-mb-4 text-primary">
             展会信息
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm-text-lg text-gray-600 max-w-3xl mx-auto">
             我们为您提供最新的广州和义乌展会信息，帮助您把握商机，拓展业务。
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow-lg p-4 md:p-6 mb-6 md:mb-8 scroll-animate">
-              <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-primary">
+        <div className="grid grid-cols-1 lg-grid-cols-3 gap-10">
+          <div className="lg-col-span-2">
+            <div className="bg-white rounded-lg shadow-lg p-4 md-p-6 mb-6 md-mb-8 scroll-animate">
+              <h3 className="text-xl md-text-2xl font-bold mb-4 md-mb-6 text-primary">
                 近期展会
               </h3>
 
@@ -151,7 +151,7 @@ export default function Exhibitions() {
                     id="exhibitions-prev"
                     onClick={() => goToExhibition(currentIndex - 1)}
                     disabled={currentIndex === 0}
-                    className="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-gray-50 active:bg-gray-100 touch-manipulation disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="md-hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover-bg-gray-50 active-bg-gray-100 touch-manipulation disabled-opacity-30 disabled-cursor-not-allowed"
                     aria-label="上一页"
                   >
                     <FontAwesomeIcon icon={faChevronLeft} className="text-gray-700" />
@@ -214,7 +214,7 @@ export default function Exhibitions() {
                           </div>
                           <a
                             href={exhibition.detailLink}
-                            className={`${getLinkClass(exhibition.linkColor)} font-medium flex items-center hover:underline`}
+                            className={`${getLinkClass(exhibition.linkColor)} font-medium flex items-center hover-underline`}
                           >
                             了解详情 <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
                           </a>
@@ -228,7 +228,7 @@ export default function Exhibitions() {
                     id="exhibitions-next"
                     onClick={() => goToExhibition(currentIndex + 1)}
                     disabled={currentIndex === exhibitions.length - 1}
-                    className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-gray-50 active:bg-gray-100 touch-manipulation disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="md-hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover-bg-gray-50 active-bg-gray-100 touch-manipulation disabled-opacity-30 disabled-cursor-not-allowed"
                     aria-label="下一页"
                   >
                     <FontAwesomeIcon icon={faChevronRight} className="text-gray-700" />
@@ -238,7 +238,7 @@ export default function Exhibitions() {
                   {isMobile && (
                     <div
                       id="exhibitions-indicators"
-                      className="md:hidden flex justify-center gap-2 mt-4"
+                      className="md-hidden flex justify-center gap-2 mt-4"
                     >
                       {exhibitions.map((_, index) => (
                         <div
@@ -258,20 +258,20 @@ export default function Exhibitions() {
 
           {/* 展会日历 */}
           <div>
-            <div className="bg-white rounded-lg shadow-lg p-4 md:p-6 mb-6 md:mb-8 scroll-animate">
+            <div className="bg-white rounded-lg shadow-lg p-4 md-p-6 mb-6 md-mb-8 scroll-animate">
               <h3 className="text-xl font-bold mb-4 text-primary">展会日历</h3>
               <div className="mb-4">
                 <div className="flex justify-between items-center mb-2">
                   <button
                     onClick={() => setCurrentYear(currentYear - 1)}
-                    className="text-gray-600 hover:text-african-1 touch-manipulation"
+                    className="text-gray-600 hover-text-african-1 touch-manipulation"
                   >
                     <FontAwesomeIcon icon={faChevronLeft} />
                   </button>
                   <h4 className="font-bold">{currentYear}年</h4>
                   <button
                     onClick={() => setCurrentYear(currentYear + 1)}
-                    className="text-gray-600 hover:text-african-1 touch-manipulation"
+                    className="text-gray-600 hover-text-african-1 touch-manipulation"
                   >
                     <FontAwesomeIcon icon={faChevronRight} />
                   </button>

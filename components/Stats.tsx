@@ -55,11 +55,11 @@ export default function Stats() {
   return (
     <section id="stats-section" className="py-16 bg-gradient">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="grid grid-cols-2 md-grid-cols-4 gap-8 text-center">
           <div className="scroll-animate">
             <div
               ref={clientsRef}
-              className="text-4xl md:text-5xl font-bold text-white mb-2"
+              className="text-4xl md-text-5xl font-bold text-white mb-2"
             >
               0
             </div>
@@ -68,7 +68,7 @@ export default function Stats() {
           <div className="scroll-animate">
             <div
               ref={countriesRef}
-              className="text-4xl md:text-5xl font-bold text-white mb-2"
+              className="text-4xl md-text-5xl font-bold text-white mb-2"
             >
               0
             </div>
@@ -77,7 +77,7 @@ export default function Stats() {
           <div className="scroll-animate">
             <div
               ref={tripsRef}
-              className="text-4xl md:text-5xl font-bold text-white mb-2"
+              className="text-4xl md-text-5xl font-bold text-white mb-2"
             >
               0
             </div>
@@ -86,7 +86,7 @@ export default function Stats() {
           <div className="scroll-animate">
             <div
               ref={satisfactionRef}
-              className="text-4xl md:text-5xl font-bold text-white mb-2"
+              className="text-4xl md-text-5xl font-bold text-white mb-2"
             >
               0
             </div>
