@@ -22,13 +22,40 @@ export default function Home() {
           }
         })
       },
-      { threshold: 0.1 }
+      { threshold: 0.01, rootMargin: '50px' }
     )
 
-    const elements = document.querySelectorAll('.scroll-animate')
-    elements.forEach((el) => observer.observe(el))
+    // 初始化观察器函数
+    const initObserver = () => {
+      const elements = document.querySelectorAll('.scroll-animate:not(#exhibitions-wrapper .scroll-animate)')
+      elements.forEach((el) => {
+        // 如果元素已经在视口中，立即添加 active 类
+        const rect = el.getBoundingClientRect()
+        const isVisible = rect.top < window.innerHeight + 100 && rect.bottom > -100
+        if (isVisible) {
+          el.classList.add('active')
+        }
+        observer.observe(el)
+      })
+    }
+
+    // 延迟执行以确保 DOM 已渲染
+    const timer = setTimeout(initObserver, 100)
+
+    // 使用 MutationObserver 监听 DOM 变化，自动观察新添加的元素
+    const mutationObserver = new MutationObserver(() => {
+      initObserver()
+    })
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    })
 
     return () => {
+      clearTimeout(timer)
+      mutationObserver.disconnect()
+      const elements = document.querySelectorAll('.scroll-animate')
       elements.forEach((el) => observer.unobserve(el))
     }
   }, [])

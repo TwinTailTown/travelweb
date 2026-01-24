@@ -42,6 +42,63 @@ export default function Exhibitions() {
     }
   }, [currentIndex, isMobile, exhibitions])
 
+  // 处理滚动动画 - 当展会数据加载完成后
+  useEffect(() => {
+    if (loading || exhibitions.length === 0) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active')
+          }
+        })
+      },
+      { threshold: 0.01, rootMargin: '50px' }
+    )
+
+    // 初始化观察器的函数
+    const initObserver = () => {
+      // 查找所有 scroll-animate 元素（包括容器内的）
+      const container = containerRef.current
+      if (container) {
+        const elements = container.querySelectorAll('.scroll-animate')
+        elements.forEach((el) => {
+          // 检查元素是否已经在视口中
+          const rect = el.getBoundingClientRect()
+          const isVisible = rect.top < window.innerHeight + 200 && rect.bottom > -200
+          if (isVisible) {
+            el.classList.add('active')
+          }
+          // 确保不会重复观察
+          if (!el.hasAttribute('data-observed')) {
+            el.setAttribute('data-observed', 'true')
+            observer.observe(el)
+          }
+        })
+      }
+    }
+
+    // 延迟执行以确保 DOM 已渲染
+    const timer1 = setTimeout(initObserver, 100)
+    const timer2 = setTimeout(initObserver, 500)
+    const timer3 = setTimeout(initObserver, 1000)
+
+    return () => {
+      clearTimeout(timer1)
+      clearTimeout(timer2)
+      clearTimeout(timer3)
+      const container = containerRef.current
+      if (container) {
+        const elements = container.querySelectorAll('.scroll-animate')
+        elements.forEach((el) => {
+          observer.unobserve(el)
+          el.removeAttribute('data-observed')
+        })
+      }
+    }
+  }, [loading, exhibitions])
+
   const goToExhibition = (index: number) => {
     if (index < 0 || index >= exhibitions.length) return
     setCurrentIndex(index)
@@ -173,7 +230,7 @@ export default function Exhibitions() {
                       {exhibitions.map((exhibition, index) => (
                         <div
                           key={exhibition.id}
-                          className={`${styles.event} calendar-event scroll-animate`}
+                          className={`${styles.event} scroll-animate`}
                           data-index={index}
                         >
                           <div className={styles.eventHeader}>
@@ -182,13 +239,11 @@ export default function Exhibitions() {
                             </h4>
                             {exhibition.badge && (
                               <span
-                                className={`${styles.badge} ${getBadgeClass(exhibition.badgeColor)}`}
+                                className={styles.badge}
                                 style={
-                                  exhibition.badgeColor &&
-                                  exhibition.badgeColor !== '#e63946' &&
-                                  exhibition.badgeColor !== '#457b9d'
+                                  exhibition.badgeColor
                                     ? { backgroundColor: exhibition.badgeColor }
-                                    : undefined
+                                    : { backgroundColor: '#e63946' }
                                 }
                               >
                                 {exhibition.badge}
@@ -215,7 +270,7 @@ export default function Exhibitions() {
                           </div>
                           <a
                             href={exhibition.detailLink}
-                            className={`${styles.eventLink} ${getLinkClass(exhibition.linkColor)}`}
+                            className={`${styles.eventLink} ${styles[getLinkClass(exhibition.linkColor)]}`}
                           >
                             了解详情 <FontAwesomeIcon icon={faArrowRight} className={styles.linkIcon} />
                           </a>

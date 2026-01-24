@@ -26,24 +26,20 @@ export function parseExhibitionDate(dateStr: string): {
   return null
 }
 
-// 根据 badgeColor 获取对应的 Tailwind 类
+// 根据 badgeColor 获取对应的样式类（返回内联样式或空字符串）
 export function getBadgeClass(badgeColor: string | null): string {
-  if (badgeColor === '#e63946') {
-    return 'bg-[#e63946]'
-  } else if (badgeColor === '#457b9d') {
-    return 'bg-[#457b9d]'
-  }
-  return 'bg-gray-500'
+  // 返回空字符串，使用内联样式
+  return ''
 }
 
-// 根据 linkColor 获取对应的 Tailwind 类
+// 根据 linkColor 获取对应的样式类
 export function getLinkClass(linkColor: string): string {
   if (linkColor === '#e63946') {
-    return 'text-[#e63946]'
+    return 'linkAfrican1'
   } else if (linkColor === '#457b9d') {
-    return 'text-[#457b9d]'
+    return 'linkAfrican2'
   }
-  return 'text-[#1a365d]'
+  return 'linkPrimary'
 }
 
 // 获取月份名称
