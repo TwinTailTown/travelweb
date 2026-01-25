@@ -7,17 +7,12 @@ import {
   faGlobeAfrica,
   faBars,
   faTimes,
-  faLanguage,
-  faChevronDown,
 } from '@fortawesome/free-solid-svg-icons'
-import { useLanguage } from '@/hooks/useLanguage'
 import styles from './Navigation.module.scss'
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [languageMenuOpen, setLanguageMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
-  const { language, setLanguage, t, langName } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,17 +31,6 @@ export default function Navigation() {
           setActiveSection(sectionId || 'home')
         }
       })
-
-      const backToTopButton = document.getElementById('back-to-top')
-      if (backToTopButton) {
-        if (window.scrollY > 300) {
-          backToTopButton.classList.remove('opacity-0', 'invisible')
-          backToTopButton.classList.add('opacity-100', 'visible')
-        } else {
-          backToTopButton.classList.remove('opacity-100', 'visible')
-          backToTopButton.classList.add('opacity-0', 'invisible')
-        }
-      }
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -54,13 +38,13 @@ export default function Navigation() {
   }, [])
 
   const navLinks = [
-    { href: '#home', key: 'nav.home' },
-    { href: '#services', key: 'nav.services' },
-    { href: '#routes', key: 'nav.routes' },
-    { href: '#exhibitions', key: 'nav.exhibitions' },
-    { href: '#cases', key: 'nav.cases' },
-    { href: '#about', key: 'nav.about' },
-    { href: '#contact', key: 'nav.contact' },
+    { href: '#home', label: '首页' },
+    { href: '#services', label: '我们的服务' },
+    { href: '#routes', label: '商务路线' },
+    { href: '#exhibitions', label: '展会信息' },
+    { href: '#cases', label: '成功案例' },
+    { href: '#about', label: '关于我们' },
+    { href: '#contact', label: '联系帮助' },
   ]
 
   return (
@@ -85,56 +69,9 @@ export default function Navigation() {
                   activeSection === link.href.substring(1) ? styles.active : ''
                 }`}
               >
-                {t(link.key)}
+                {link.label}
               </a>
             ))}
-
-            {/* 多语言切换 */}
-            <div
-              className={`${styles.languageDropdown} ${languageMenuOpen ? styles.active : ''}`}
-              onMouseEnter={() => setLanguageMenuOpen(true)}
-              onMouseLeave={() => setLanguageMenuOpen(false)}
-            >
-              <button className={styles.languageButton}>
-                <FontAwesomeIcon icon={faLanguage} className={styles.languageIcon} />
-                <span>{langName}</span>
-                <FontAwesomeIcon icon={faChevronDown} className={styles.languageChevron} />
-              </button>
-              {languageMenuOpen && (
-                <div className={styles.languageDropdownContent}>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      setLanguage('zh')
-                    }}
-                    className={styles.languageOption}
-                  >
-                    中文
-                  </a>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      setLanguage('en')
-                    }}
-                    className={styles.languageOption}
-                  >
-                    English
-                  </a>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      setLanguage('sw')
-                    }}
-                    className={styles.languageOption}
-                  >
-                    Kiswahili
-                  </a>
-                </div>
-              )}
-            </div>
 
             <Link
               href="#contact"
@@ -167,60 +104,9 @@ export default function Navigation() {
                 onClick={() => setMobileMenuOpen(false)}
                 className={styles.mobileNavLink}
               >
-                {t(link.key)}
+                {link.label}
               </a>
             ))}
-
-            {/* 多语言切换 */}
-            <div className={styles.mobileLanguageSection}>
-              <div className={styles.mobileLanguageDropdown}>
-                <button
-                  onClick={() => setLanguageMenuOpen(!languageMenuOpen)}
-                  className={styles.languageButton}
-                >
-                  <FontAwesomeIcon icon={faLanguage} className={styles.languageIcon} />
-                  <span>{langName}</span>
-                  <FontAwesomeIcon icon={faChevronDown} className={styles.languageChevron} />
-                </button>
-                {languageMenuOpen && (
-                  <div className={styles.mobileLanguageDropdownContent}>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        setLanguage('zh')
-                        setLanguageMenuOpen(false)
-                      }}
-                      className={styles.languageOption}
-                    >
-                      中文
-                    </a>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        setLanguage('en')
-                        setLanguageMenuOpen(false)
-                      }}
-                      className={styles.languageOption}
-                    >
-                      English
-                    </a>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        setLanguage('sw')
-                        setLanguageMenuOpen(false)
-                      }}
-                      className={styles.languageOption}
-                    >
-                      Kiswahili
-                    </a>
-                  </div>
-                )}
-              </div>
-            </div>
 
             <Link
               href="#contact"

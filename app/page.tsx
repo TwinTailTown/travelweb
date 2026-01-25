@@ -7,9 +7,9 @@ import Routes from '@/components/Routes'
 import Services from '@/components/Services'
 import Exhibitions from '@/components/Exhibitions'
 import ContactForm from '@/components/ContactForm'
-import BackToTop from '@/components/BackToTop'
-import WhatsAppButton from '@/components/WhatsAppButton'
 import Stats from '@/components/Stats'
+import Footer from '@/components/Footer'
+import FloatButtons from '@/components/FloatButtons'
 
 export default function Home() {
   useEffect(() => {
@@ -70,8 +70,8 @@ export default function Home() {
       <Exhibitions />
       <Stats />
       <ContactForm />
-      <BackToTop />
-      <WhatsAppButton />
+      <Footer />
+      <FloatButtons />
     </main>
   )
 }
