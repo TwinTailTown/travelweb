@@ -2,13 +2,13 @@
 
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faPhone, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faPhoneAlt, faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons'
 import {
-  faWhatsapp,
-  faWeixin,
-  faFacebook,
+  faFacebookF,
   faTwitter,
   faInstagram,
+  faYoutube,
+  faLinkedinIn,
 } from '@fortawesome/free-brands-svg-icons'
 import styles from './ContactForm.module.scss'
 
@@ -22,7 +22,7 @@ export default function ContactForm() {
     message: '',
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (!formData.name || !formData.email || !formData.phone || !formData.country || !formData.service || !formData.message) {
       alert('请填写所有必填字段')
@@ -54,7 +54,7 @@ export default function ContactForm() {
         <div className={styles.grid}>
           <div className={`${styles.formCard} scroll-animate`}>
             <h3 className={styles.formTitle}>发送消息</h3>
-            <form id="contact-form" onSubmit={handleSubmit}>
+            <form id="contact-form">
               <div className={styles.formGrid}>
                 <div className={styles.formGroup}>
                   <label className={styles.label} htmlFor="name">
@@ -104,20 +104,27 @@ export default function ContactForm() {
                   <label className={styles.label} htmlFor="country">
                     国家
                   </label>
-                  <input
-                    type="text"
-                    className={styles.input}
+                  <select
+                    className={styles.select}
                     id="country"
-                    placeholder="国家"
                     required
                     value={formData.country}
                     onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                  />
+                  >
+                    <option value="">国家</option>
+                    <option value="egypt">埃及</option>
+                    <option value="nigeria">尼日利亚</option>
+                    <option value="south-africa">南非</option>
+                    <option value="ghana">加纳</option>
+                    <option value="kenya">肯尼亚</option>
+                    <option value="senegal">塞内加尔</option>
+                    <option value="other">其他国家</option>
+                  </select>
                 </div>
               </div>
               <div className={styles.formGroup}>
                 <label className={styles.label} htmlFor="service">
-                  服务类型
+                  咨询服务
                 </label>
                 <select
                   className={styles.select}
@@ -126,36 +133,41 @@ export default function ContactForm() {
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                 >
-                  <option value="">请选择服务类型</option>
-                  <option value="visa">签证服务</option>
-                  <option value="accommodation">住宿安排</option>
+                  <option value="">请选择咨询服务</option>
+                  <option value="visa">签证邀请函服务</option>
+                  <option value="airport">接机服务</option>
+                  <option value="hotel">酒店预订</option>
                   <option value="translation">翻译服务</option>
-                  <option value="market">市场考察</option>
-                  <option value="negotiation">商务谈判</option>
-                  <option value="logistics">物流服务</option>
+                  <option value="market">市场考察安排</option>
+                  <option value="negotiation">商务谈判支持</option>
+                  <option value="logistics">国际物流服务</option>
+                  <option value="culture">文化体验活动</option>
+                  <option value="route">商务路线定制</option>
                   <option value="exhibition">展会服务</option>
-                  <option value="other">其他</option>
+                  <option value="other">其他服务</option>
                 </select>
               </div>
               <div className={styles.formGroup}>
                 <label className={styles.label} htmlFor="message">
-                  留言
+                  消息内容
                 </label>
                 <textarea
                   className={styles.textarea}
                   id="message"
-                  placeholder="请输入您的留言"
+                  rows={5}
+                  placeholder="请详细描述您的需求或问题"
                   required
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 />
               </div>
               <button
-                type="submit"
+                type="button"
                 id="submit-contact"
-                className={`btn-primary ${styles.submitButton}`}
+                onClick={handleSubmit}
+                className={`btn-primary ${styles.submitButton} touch-manipulation`}
               >
-                提交
+                发送消息
               </button>
             </form>
           </div>
@@ -163,55 +175,56 @@ export default function ContactForm() {
           <div className={styles.sidebar}>
             <div className={`${styles.contactCard} scroll-animate`}>
               <h3 className={styles.contactTitle}>联系方式</h3>
-              <div className={styles.contactList}>
-                <div className={styles.contactItem}>
-                  <FontAwesomeIcon icon={faEnvelope} className={styles.contactIcon} />
-                  <div className={styles.contactContent}>
-                    <h4 className={styles.contactLabel}>邮箱</h4>
-                    <p className={styles.contactValue}>info@africa-china-travel.com</p>
+              <ul className={styles.contactList}>
+                <li className={styles.contactItem}>
+                  <div className={`${styles.iconWrapper} ${styles.iconRed}`}>
+                    <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.contactIcon} />
                   </div>
-                </div>
-                <div className={styles.contactItem}>
-                  <FontAwesomeIcon icon={faPhone} className={styles.contactIcon} />
-                  <div className={styles.contactContent}>
-                    <h4 className={styles.contactLabel}>电话</h4>
-                    <p className={styles.contactValue}>+86 138 0013 8000</p>
-                  </div>
-                </div>
-                <div className={styles.contactItem}>
-                  <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.contactIcon} />
                   <div className={styles.contactContent}>
                     <h4 className={styles.contactLabel}>地址</h4>
-                    <p className={styles.contactValue}>中国广州市天河区</p>
+                    <p className={styles.contactValue}>广州市天河区珠江新城冼村路28号保利中环广场A座25楼</p>
                   </div>
-                </div>
-              </div>
+                </li>
+                <li className={styles.contactItem}>
+                  <div className={`${styles.iconWrapper} ${styles.iconBlue}`}>
+                    <FontAwesomeIcon icon={faPhoneAlt} className={styles.contactIcon} />
+                  </div>
+                  <div className={styles.contactContent}>
+                    <h4 className={styles.contactLabel}>电话</h4>
+                    <p className={styles.contactValue}>+86 20 8888 8888</p>
+                  </div>
+                </li>
+                <li className={styles.contactItem}>
+                  <div className={`${styles.iconWrapper} ${styles.iconYellow}`}>
+                    <FontAwesomeIcon icon={faEnvelope} className={styles.contactIcon} />
+                  </div>
+                  <div className={styles.contactContent}>
+                    <h4 className={styles.contactLabel}>邮箱</h4>
+                    <p className={styles.contactValue}>info@africachinabiz.com</p>
+                  </div>
+                </li>
+                <li className={styles.contactItem}>
+                  <div className={`${styles.iconWrapper} ${styles.iconGreen}`}>
+                    <FontAwesomeIcon icon={faClock} className={styles.contactIcon} />
+                  </div>
+                  <div className={styles.contactContent}>
+                    <h4 className={styles.contactLabel}>工作时间</h4>
+                    <p className={styles.contactValue}>周一至周五: 9:00 - 18:00</p>
+                  </div>
+                </li>
+              </ul>
             </div>
 
-            {/* 移动端隐藏关注我们 */}
+            {/* 桌面端显示关注我们 */}
             <div className={`${styles.socialCard} scroll-animate`}>
               <h3 className={styles.socialTitle}>关注我们</h3>
               <div className={styles.socialLinks}>
                 <a
                   href="#"
-                  className={`${styles.socialLink} ${styles.whatsapp}`}
-                  aria-label="WhatsApp"
-                >
-                  <FontAwesomeIcon icon={faWhatsapp} className={styles.socialIcon} />
-                </a>
-                <a
-                  href="#"
-                  className={`${styles.socialLink} ${styles.weixin}`}
-                  aria-label="微信"
-                >
-                  <FontAwesomeIcon icon={faWeixin} className={styles.socialIcon} />
-                </a>
-                <a
-                  href="#"
                   className={`${styles.socialLink} ${styles.facebook}`}
                   aria-label="Facebook"
                 >
-                  <FontAwesomeIcon icon={faFacebook} className={styles.socialIcon} />
+                  <FontAwesomeIcon icon={faFacebookF} className={styles.socialIcon} />
                 </a>
                 <a
                   href="#"
@@ -227,6 +240,34 @@ export default function ContactForm() {
                 >
                   <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />
                 </a>
+                <a
+                  href="#"
+                  className={`${styles.socialLink} ${styles.youtube}`}
+                  aria-label="YouTube"
+                >
+                  <FontAwesomeIcon icon={faYoutube} className={styles.socialIcon} />
+                </a>
+                <a
+                  href="#"
+                  className={`${styles.socialLink} ${styles.linkedin}`}
+                  aria-label="LinkedIn"
+                >
+                  <FontAwesomeIcon icon={faLinkedinIn} className={styles.socialIcon} />
+                </a>
+              </div>
+
+              <div className={styles.newsletter}>
+                <h4 className={styles.newsletterTitle}>订阅我们的通讯</h4>
+                <div className={styles.newsletterForm}>
+                  <input
+                    type="email"
+                    className={styles.newsletterInput}
+                    placeholder="请输入您的邮箱"
+                  />
+                  <button type="button" className={`btn-primary ${styles.newsletterButton}`}>
+                    订阅
+                  </button>
+                </div>
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Noto_Sans_SC } from 'next/font/google'
 import './globals.scss'
+import './normalize.css'
 
 const notoSansSC = Noto_Sans_SC({
   subsets: ['latin'],
