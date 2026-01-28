@@ -1,0 +1,258 @@
+.section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: white;
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @media (min-width: 640px) {
+    max-width: 640px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 768px;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 1024px;
+  }
+
+  @media (min-width: 1280px) {
+    max-width: 1280px;
+  }
+
+  @media (min-width: 1536px) {
+    max-width: 1536px;
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @media (min-width: 768px) {
+    margin-bottom: 4rem;
+  }
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--primary-color);
+
+  @media (min-width: 640px) {
+    font-size: 1.875rem;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #4b5563;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 640px) {
+    font-size: 1.125rem;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem;
+  }
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.cardFullWidth {
+  @media (min-width: 768px) {
+    grid-column: span 2 / span 2;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  height: 12rem;
+
+  @media (min-width: 768px) {
+    height: 16rem;
+  }
+}
+
+.imageLarge {
+  height: 14rem;
+
+  @media (min-width: 768px) {
+    height: 20rem;
+  }
+}
+
+.badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: white;
+  padding: 0.25rem 1rem;
+  border-radius: 9999px;
+  font-weight: 500;
+
+  // 动态背景色类
+  &.bgAfrican1 {
+    background-color: var(--african-color-1);
+  }
+
+  &.bgAfrican2 {
+    background-color: var(--african-color-2);
+  }
+
+  &.bgSecondary {
+    background-color: var(--secondary-color);
+  }
+}
+
+.cardContent {
+  padding: 1rem;
+
+  @media (min-width: 768px) {
+    padding: 1.5rem;
+  }
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--primary-color);
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.metaIcon {
+  margin-right: 0.5rem;
+
+  // 动态图标颜色类
+  &.textAfrican1 {
+    color: var(--african-color-1);
+  }
+
+  &.textAfrican2 {
+    color: var(--african-color-2);
+  }
+
+  &.textSecondary {
+    color: var(--secondary-color);
+  }
+}
+
+.metaText {
+  color: #374151;
+}
+
+.metaSeparator {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+  color: #9ca3af;
+}
+
+.cardDescription {
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+}
+
+.highlightsTitle {
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+  color: var(--primary-color);
+}
+
+.highlightsList {
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.highlightIcon {
+  color: #10b981;
+  margin-top: 0.25rem;
+  margin-right: 0.5rem;
+}
+
+.highlightsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.highlightsSection {
+  // Styles for combined route highlights sections
+}
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}

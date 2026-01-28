@@ -27,7 +27,7 @@ async function saveExhibitions(exhibitions) {
 }
 
 const server = Bun.serve({
-  port: 3000,
+  port: 3001,
   cors: {
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
