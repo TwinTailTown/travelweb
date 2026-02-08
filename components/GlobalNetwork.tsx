@@ -85,7 +85,7 @@ const stats = [
               type: 'map',
               map: 'world',
               roam: false, // 禁用缩放和移动
-              zoom: 1.15, // 默认放大 1.15 倍
+              zoom: 1.15, // 默认放大 1. 倍
               emphasis: {
                 disabled: false, // 保持 hover 效果
                 label: {
