@@ -5,6 +5,7 @@ import Navigation from '@/components/Navigation'
 import Carousel from '@/components/Carousel'
 import LogisticsServices from '@/components/LogisticsServices'
 import SourcingIntro from '@/components/SourcingIntro'
+import GlobalNetwork from '@/components/GlobalNetwork'
 import Routes from '@/components/Routes'
 import Services from '@/components/Services'
 import Exhibitions from '@/components/Exhibitions'
@@ -68,6 +69,7 @@ export default function Home() {
       <Carousel />
       <LogisticsServices />
       <SourcingIntro />
+      <GlobalNetwork />
       <Routes />
       <Services />
 
