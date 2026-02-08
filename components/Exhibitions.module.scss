@@ -123,7 +123,7 @@
   border-radius: 9999px;
   height: 2rem;
   width: 2rem;
-  border-bottom: 2px solid var(--african-color-1);
+  border-bottom: 2px solid var(--primary-color);
 }
 
 @keyframes spin {
@@ -170,7 +170,7 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: var(--african-color-1);
+      background-color: var(--primary-color);
       border-radius: 0.5rem;
 
       &:hover {
@@ -206,7 +206,7 @@
 }
 
 .event {
-  border-left: 4px solid var(--african-color-1);
+  border-left: 4px solid var(--primary-color);
   padding-left: 1rem;
   margin-bottom: 1.5rem;
   transition: all 0.3s;
@@ -331,11 +331,11 @@
 
   // 动态链接颜色类
   &.linkAfrican1 {
-    color: var(--african-color-1);
+    color: var(--primary-color);
   }
 
   &.linkAfrican2 {
-    color: var(--african-color-2);
+    color: var(--secondary-color);
   }
 
   &.linkPrimary {
@@ -417,7 +417,7 @@
   touch-action: manipulation;
 
   &.active {
-    background-color: var(--african-color-1);
+    background-color: var(--primary-color);
     width: 1.5rem;
     border-radius: 0.25rem;
   }
@@ -462,7 +462,7 @@
   cursor: pointer;
 
   &:hover {
-    color: var(--african-color-1);
+    color: var(--primary-color);
   }
 }
 
@@ -477,7 +477,7 @@
 }
 
 .calendarEvent {
-  border-left: 4px solid var(--african-color-1);
+  border-left: 4px solid var(--primary-color);
   padding-left: 1rem;
   margin-bottom: 1.5rem;
   cursor: pointer;

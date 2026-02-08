@@ -1,14 +1,41 @@
-// 颜色变量
+// 颜色变量 - 橙色为主色，绿色为次色
 :root {
-  --primary-color: #1a365d;
-  --secondary-color: #f59e0b;
-  --accent-color: #3b82f6;
-  --dark-color: #0f172a;
-  --light-color: #f8fafc;
-  --african-color-1: #e63946;
-  --african-color-2: #457b9d;
-  --african-color-3: #1d3557;
-  --african-color-4: #f1faee;
+  // 主色系 - 橙色
+  --primary-color: #FF8C42;
+  --primary-color-light: #FFB366;
+  --primary-color-dark: #E67A2E;
+  --primary-color-hover: #FF7A29;
+
+  // 次色系 - 绿色
+  --secondary-color: #4CAF50;
+  --secondary-color-light: #66BB6A;
+  --secondary-color-dark: #388E3C;
+  --secondary-color-hover: #45A049;
+
+  // 辅助色
+  --accent-color: #FFA726;
+  --dark-color: #2C3E50;
+  --light-color: #F5F7FA;
+  --text-color: #333333;
+  --text-light: #6B7280;
+  --border-color: #E0E0E0;
+
+  // 背景色
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F9FAFB;
+  --bg-light: #FFF8F3;
+
+  // 状态色
+  --success-color: #4CAF50;
+  --warning-color: #FF9800;
+  --error-color: #F44336;
+  --info-color: #2196F3;
+
+  // 阴影
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
 }
 
 * {
@@ -70,7 +97,7 @@ a {
 
 // 按钮样式
 .btn-primary {
-  background-color: var(--african-color-1);
+  background-color: var(--primary-color);
   color: white;
   transition: all 0.3s ease;
   padding: 0.5rem 1.5rem;
@@ -80,10 +107,12 @@ a {
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
+  box-shadow: var(--shadow-sm);
 
   &:hover {
-    background-color: #c1121f;
+    background-color: var(--primary-color-hover);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
   }
 
   &:active {
@@ -93,7 +122,7 @@ a {
 
 .btn-secondary {
   background-color: var(--secondary-color);
-  color: var(--dark-color);
+  color: white;
   transition: all 0.3s ease;
   padding: 0.5rem 1.5rem;
   border-radius: 9999px;
@@ -102,10 +131,12 @@ a {
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
+  box-shadow: var(--shadow-sm);
 
   &:hover {
-    background-color: #d97706;
+    background-color: var(--secondary-color-hover);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
   }
 
   &:active {
@@ -128,7 +159,7 @@ a {
 // 触摸优化
 .touch-manipulation {
   touch-action: manipulation;
-  -webkit-tap-highlight-color: rgba(230, 57, 70, 0.2);
+  -webkit-tap-highlight-color: rgba(255, 140, 66, 0.2);
 }
 
 // 服务卡片样式
@@ -163,11 +194,11 @@ a {
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: var(--african-color-1);
+      background-color: var(--primary-color);
       border-radius: 0.5rem;
 
       &:hover {
-        background-color: #c1121f;
+        background-color: var(--primary-color-hover);
       }
     }
 
@@ -266,7 +297,7 @@ a {
       touch-action: manipulation;
 
       &.active {
-        background-color: var(--african-color-1);
+        background-color: var(--primary-color);
         width: 1.5rem;
         border-radius: 0.25rem;
       }

@@ -1,5 +1,5 @@
 .footer {
-  background-color: #1a365d;
+  background-color: var(--dark-color);
   color: white;
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -67,7 +67,7 @@
 
 .logoIcon {
   font-size: 1.875rem;
-  color: #e63946;
+  color: var(--primary-color);
   margin-right: 0.5rem;
 }
 
@@ -139,7 +139,7 @@
 .contactIcon {
   margin-top: 0.25rem;
   margin-right: 0.5rem;
-  color: #e63946;
+  color: var(--primary-color);
   flex-shrink: 0;
 }
 

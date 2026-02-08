@@ -139,7 +139,7 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--african-color-1);
+    box-shadow: 0 0 0 2px var(--primary-color);
   }
 }
 
@@ -159,7 +159,7 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--african-color-1);
+    box-shadow: 0 0 0 2px var(--primary-color);
   }
 }
 
@@ -177,7 +177,7 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--african-color-1);
+    box-shadow: 0 0 0 2px var(--primary-color);
   }
 }
 
@@ -241,19 +241,19 @@
 }
 
 .iconRed {
-  background-color: #fee2e2;
+  background-color: #FFE8DC;
 }
 
 .iconBlue {
-  background-color: #dbeafe;
+  background-color: #E3F2FD;
 }
 
 .iconYellow {
-  background-color: #fef3c7;
+  background-color: #FFF8E1;
 }
 
 .iconGreen {
-  background-color: #d1fae5;
+  background-color: #E8F5E9;
 }
 
 .contactIcon {
@@ -261,19 +261,19 @@
 }
 
 .iconRed .contactIcon {
-  color: var(--african-color-1);
+  color: var(--primary-color);
 }
 
 .iconBlue .contactIcon {
-  color: var(--african-color-2);
+  color: #2196F3;
 }
 
 .iconYellow .contactIcon {
-  color: var(--secondary-color);
+  color: var(--accent-color);
 }
 
 .iconGreen .contactIcon {
-  color: #059669;
+  color: var(--secondary-color);
 }
 
 .contactContent {
@@ -393,7 +393,7 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--african-color-1);
+    box-shadow: 0 0 0 2px var(--primary-color);
   }
 }
 
