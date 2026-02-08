@@ -42,7 +42,7 @@ const stats = [
         })
 
         // 从本地加载中文版世界地图数据
-        const response = await fetch('/worldZH.json')
+        const response = await fetch('/worldZH.min.json')
         const worldMapData = await response.json()
 
         // 注册地图
@@ -84,11 +84,8 @@ const stats = [
               name: '全球网络',
               type: 'map',
               map: 'world',
-              roam: true,
-              scaleLimit: {
-                min: 1,
-                max: 3,
-              },
+              roam: false, // 禁用缩放和移动
+              zoom: 1.15, // 默认放大 1.15 倍
               emphasis: {
                 disabled: false, // 保持 hover 效果
                 label: {
