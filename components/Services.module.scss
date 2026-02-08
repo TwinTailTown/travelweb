@@ -124,23 +124,23 @@
 
   // 动态背景色类
   &.bgRed100 {
-    background-color: #fee2e2;
+    background-color: #FFE8DC;
   }
 
   &.bgBlue100 {
-    background-color: #dbeafe;
+    background-color: #E3F2FD;
   }
 
   &.bgYellow100 {
-    background-color: #fef3c7;
+    background-color: #FFF8E1;
   }
 
   &.bgGreen100 {
-    background-color: #d1fae5;
+    background-color: #E8F5E9;
   }
 
   &.bgPurple100 {
-    background-color: #e9d5ff;
+    background-color: #F3E5F5;
   }
 }
 
@@ -153,23 +153,23 @@
 
   // 动态图标颜色类
   &.textAfrican1 {
-    color: var(--african-color-1);
+    color: var(--primary-color);
   }
 
   &.textAfrican2 {
-    color: var(--african-color-2);
-  }
-
-  &.textSecondary {
     color: var(--secondary-color);
   }
 
+  &.textSecondary {
+    color: var(--accent-color);
+  }
+
   &.textGreen600 {
-    color: #059669;
+    color: var(--secondary-color-dark);
   }
 
   &.textPurple600 {
-    color: #9333ea;
+    color: #9C27B0;
   }
 }
 
@@ -208,7 +208,7 @@
 }
 
 .featureIcon {
-  color: #10b981;
+  color: var(--secondary-color);
   margin-top: 0.25rem;
   margin-right: 0.5rem;
 }
@@ -231,23 +231,23 @@
 
   // 动态链接颜色类
   &.textAfrican1 {
-    color: var(--african-color-1);
+    color: var(--primary-color);
   }
 
   &.textAfrican2 {
-    color: var(--african-color-2);
-  }
-
-  &.textSecondary {
     color: var(--secondary-color);
   }
 
+  &.textSecondary {
+    color: var(--accent-color);
+  }
+
   &.textGreen600 {
-    color: #059669;
+    color: var(--secondary-color-dark);
   }
 
   &.textPurple600 {
-    color: #9333ea;
+    color: #9C27B0;
   }
 }
 

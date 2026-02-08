@@ -243,7 +243,7 @@ export default function Exhibitions() {
                                 style={
                                   exhibition.badgeColor
                                     ? { backgroundColor: exhibition.badgeColor }
-                                    : { backgroundColor: '#e63946' }
+                                    : { backgroundColor: '#FF8C42' }
                                 }
                               >
                                 {exhibition.badge}
@@ -341,14 +341,14 @@ export default function Exhibitions() {
                     className={`${styles.calendarEvent} scroll-animate`}
                     onClick={() => scrollToExhibition(event.id)}
                     style={{
-                      borderLeftColor: event.badgeColor || '#e63946',
+                      borderLeftColor: event.badgeColor || '#FF8C42',
                     }}
                   >
                     <div className={styles.calendarEventHeader}>
                       <div
                         className={styles.calendarEventDot}
                         style={{
-                          backgroundColor: event.badgeColor || '#e63946',
+                          backgroundColor: event.badgeColor || '#FF8C42',
                         }}
                       />
                       <span className={styles.calendarEventDate}>

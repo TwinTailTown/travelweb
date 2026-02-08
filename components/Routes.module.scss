@@ -128,15 +128,15 @@
 
   // 动态背景色类
   &.bgAfrican1 {
-    background-color: var(--african-color-1);
+    background-color: var(--primary-color);
   }
 
   &.bgAfrican2 {
-    background-color: var(--african-color-2);
+    background-color: var(--secondary-color);
   }
 
   &.bgSecondary {
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color);
   }
 }
 
@@ -171,15 +171,15 @@
 
   // 动态图标颜色类
   &.textAfrican1 {
-    color: var(--african-color-1);
+    color: var(--primary-color);
   }
 
   &.textAfrican2 {
-    color: var(--african-color-2);
+    color: var(--secondary-color);
   }
 
   &.textSecondary {
-    color: var(--secondary-color);
+    color: var(--accent-color);
   }
 }
 
@@ -223,7 +223,7 @@
 }
 
 .highlightIcon {
-  color: #10b981;
+  color: var(--secondary-color);
   margin-top: 0.25rem;
   margin-right: 0.5rem;
 }
