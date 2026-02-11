@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import styles from './LogisticsServices.module.scss'
 
 interface ServiceDetail {
@@ -161,6 +162,13 @@ const services: LogisticsService[] = [
 
 export default function LogisticsServices() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const router = useRouter()
+
+  const handleCardClick = (serviceId: string) => {
+    if (serviceId === 'business-travel') {
+      router.push('/routes')
+    }
+  }
 
   return (
     <section className={styles.section}>
@@ -177,6 +185,7 @@ export default function LogisticsServices() {
               className={`${styles.card} ${hoveredIndex === index ? styles.expanded : ''} ${hoveredIndex !== null && hoveredIndex !== index ? styles.collapsed : ''}`}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
+              onClick={() => handleCardClick(service.id)}
             >
               <div className={styles.cardImage}>
                 <img src={service.image} alt={service.title} />
@@ -189,7 +198,9 @@ export default function LogisticsServices() {
                 {hoveredIndex !== index && (
                   <>
                     <p className={styles.cardDescription}>{service.description}</p>
-                    <button className={styles.cardButton}>了解详情 ›</button>
+                    <button className={styles.cardButton} type="button">
+                      了解详情 ›
+                    </button>
                   </>
                 )}
 
