@@ -1,6 +1,7 @@
 .section {
     padding: 4rem 0;
-    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+    background: radial-gradient(circle at top, rgba(16, 185, 129, 0.2), transparent 55%),
+        var(--bg-secondary);
     overflow: hidden;
 }
 
