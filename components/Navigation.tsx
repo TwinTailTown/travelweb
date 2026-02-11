@@ -13,6 +13,11 @@ import styles from './Navigation.module.scss'
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const [language, setLanguage] = useState<'ZH' | 'EN'>('ZH')
+
+  const toggleLanguage = () => {
+    setLanguage(prev => prev === 'ZH' ? 'EN' : 'ZH')
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,9 +71,8 @@ export default function Navigation() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className={`${styles.navLink} ${
-                    activeSection === link.href.substring(1) ? styles.active : ''
-                  }`}
+                  className={`${styles.navLink} ${activeSection === link.href.substring(1) ? styles.active : ''
+                    }`}
                 >
                   {link.label}
                 </a>
@@ -89,6 +93,14 @@ export default function Navigation() {
             >
               立即咨询
             </Link>
+
+            <button
+              className={styles.languageSwitchBtn}
+              onClick={toggleLanguage}
+              aria-label="Switch Language"
+            >
+              {language === 'ZH' ? 'EN' : '中'}
+            </button>
           </div>
 
           {/* 移动端菜单按钮 */}
@@ -125,6 +137,16 @@ export default function Navigation() {
             >
               立即咨询
             </Link>
+
+            <button
+              className={styles.mobileLanguageSwitchBtn}
+              onClick={() => {
+                toggleLanguage()
+                setMobileMenuOpen(false)
+              }}
+            >
+              切换语言: {language === 'ZH' ? 'EN' : '中'}
+            </button>
           </div>
         )}
       </div>

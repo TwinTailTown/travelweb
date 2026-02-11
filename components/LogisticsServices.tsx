@@ -176,7 +176,7 @@ export default function LogisticsServices() {
     <section id="services" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>以优质服务筑牢发展根基</h2>
+          <h2 className={styles.title}>我们用心为你做事</h2>
           <div className={styles.titleUnderline}></div>
         </div>
 
@@ -196,7 +196,7 @@ export default function LogisticsServices() {
 
               <div className={styles.cardContent}>
                 <h3 className={styles.cardTitle}>{service.title}</h3>
-                
+
                 {hoveredIndex !== index && (
                   <>
                     <p className={styles.cardDescription}>{service.description}</p>

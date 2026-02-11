@@ -20,18 +20,18 @@ export default function SourcingIntro() {
         <div className={styles.content}>
           {/* 左侧文字内容 */}
           <div className={styles.leftContent}>
-            <h2 className={styles.title}>Your Trusted China Sourcing Agent</h2>
-            
+            <h2 className={styles.title}>我们是您值得信赖的中国采购代理</h2>
+
             <div className={styles.description}>
-              <p>Welcome to the biggest product sourcing company in China.</p>
-              <p>With a decade of sourcing experience, we provide all sorts of product sourcing services to your needs.</p>
+              <p>欢迎来到我们中国一站式服务中心！我们专业为非洲朋友提供：来华旅游考察、产品采购、物流发货一条龙服务。</p>
+              <p>无论您想来中国旅游、考察市场、寻找货源，还是需要帮忙挑选商品、对接工厂、把货物安全运回非洲，我们都能全程为您办好。</p>
             </div>
 
             <div className={styles.needHelp}>
               <p>
-                Need help finding expertise for sourcing goods? Work with us! We as China{' '}
-                <span className={styles.highlight}>sourcing agents</span> gives you professional advice to build your{' '}
-                <span className={styles.highlight}>eCommerce business</span>, including:
+                我们拥有丰富的市场经验和可靠渠道，作为您在中国的贴心代理，我们提供
+                <span className={styles.highlight}>专业指导</span>、
+                <span className={styles.highlight}>省心服务</span>，让您来华做生意更轻松、更放心！
               </p>
             </div>
 

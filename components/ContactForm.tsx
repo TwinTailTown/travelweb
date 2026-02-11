@@ -9,6 +9,9 @@ import {
   faInstagram,
   faYoutube,
   faLinkedinIn,
+  faWhatsapp,
+  faSkype,
+  faWeixin,
 } from '@fortawesome/free-brands-svg-icons'
 import styles from './ContactForm.module.scss'
 
@@ -187,101 +190,59 @@ export default function ContactForm() {
           </div>
 
           <div className={styles.sidebar}>
-            <div className={`${styles.contactCard} scroll-animate`}>
-              <h3 className={styles.contactTitle}>联系方式</h3>
-              <ul className={styles.contactList}>
-                <li className={styles.contactItem}>
-                  <div className={`${styles.iconWrapper} ${styles.iconRed}`}>
-                    <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.contactIcon} />
-                  </div>
-                  <div className={styles.contactContent}>
-                    <h4 className={styles.contactLabel}>地址</h4>
-                    <p className={styles.contactValue}>广州市天河区珠江新城冼村路28号保利中环广场A座25楼</p>
-                  </div>
-                </li>
-                <li className={styles.contactItem}>
-                  <div className={`${styles.iconWrapper} ${styles.iconBlue}`}>
-                    <FontAwesomeIcon icon={faPhoneAlt} className={styles.contactIcon} />
-                  </div>
-                  <div className={styles.contactContent}>
-                    <h4 className={styles.contactLabel}>电话</h4>
-                    <p className={styles.contactValue}>+86 20 8888 8888</p>
-                  </div>
-                </li>
-                <li className={styles.contactItem}>
-                  <div className={`${styles.iconWrapper} ${styles.iconYellow}`}>
-                    <FontAwesomeIcon icon={faEnvelope} className={styles.contactIcon} />
-                  </div>
-                  <div className={styles.contactContent}>
-                    <h4 className={styles.contactLabel}>邮箱</h4>
-                    <p className={styles.contactValue}>info@africachinabiz.com</p>
-                  </div>
-                </li>
-                <li className={styles.contactItem}>
-                  <div className={`${styles.iconWrapper} ${styles.iconGreen}`}>
-                    <FontAwesomeIcon icon={faClock} className={styles.contactIcon} />
-                  </div>
-                  <div className={styles.contactContent}>
-                    <h4 className={styles.contactLabel}>工作时间</h4>
-                    <p className={styles.contactValue}>周一至周五: 9:00 - 18:00</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
+            <div className={`${styles.founderMessage} scroll-animate`}>
+              <h3 className={styles.founderTitle}>创始人寄语</h3>
+              <p className={styles.founderSubtitle}>
+                LeelineSourcing 将始终是您从中国进口商品的最佳采购伙伴。
+              </p>
 
-            {/* 桌面端显示关注我们 */}
-            <div className={`${styles.socialCard} scroll-animate`}>
-              <h3 className={styles.socialTitle}>关注我们</h3>
-              <div className={styles.socialLinks}>
-                <a
-                  href="#"
-                  className={`${styles.socialLink} ${styles.facebook}`}
-                  aria-label="Facebook"
-                >
-                  <FontAwesomeIcon icon={faFacebookF} className={styles.socialIcon} />
-                </a>
-                <a
-                  href="#"
-                  className={`${styles.socialLink} ${styles.twitter}`}
-                  aria-label="Twitter"
-                >
-                  <FontAwesomeIcon icon={faTwitter} className={styles.socialIcon} />
-                </a>
-                <a
-                  href="#"
-                  className={`${styles.socialLink} ${styles.instagram}`}
-                  aria-label="Instagram"
-                >
-                  <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />
-                </a>
-                <a
-                  href="#"
-                  className={`${styles.socialLink} ${styles.youtube}`}
-                  aria-label="YouTube"
-                >
-                  <FontAwesomeIcon icon={faYoutube} className={styles.socialIcon} />
-                </a>
-                <a
-                  href="#"
-                  className={`${styles.socialLink} ${styles.linkedin}`}
-                  aria-label="LinkedIn"
-                >
-                  <FontAwesomeIcon icon={faLinkedinIn} className={styles.socialIcon} />
-                </a>
+              <div className={styles.founderImageWrapper}>
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop"
+                  alt="Sharline"
+                  className={styles.founderImage}
+                />
               </div>
 
-              <div className={styles.newsletter}>
-                <h4 className={styles.newsletterTitle}>订阅我们的通讯</h4>
-                <div className={styles.newsletterForm}>
-                  <input
-                    type="email"
-                    className={styles.newsletterInput}
-                    placeholder="请输入您的邮箱"
-                  />
-                  <button type="button" className={`btn-primary ${styles.newsletterButton}`}>
-                    订阅
-                  </button>
-                </div>
+              <div className={styles.founderBio}>
+                <p>
+                  嘿，我是 Leeline Sourcing 的创始人 Sharline。我在中国采购领域拥有 10 年的经验，我们帮助 2000 多位客户从中国、阿里巴巴、1688 进口到亚马逊 FBA 或 Shopify。如果你有任何关于采购的问题，请随时联系我们。
+                </p>
+              </div>
+
+              <ul className={styles.contactList}>
+                <li className={styles.contactItem}>
+                  <FontAwesomeIcon icon={faWhatsapp} className={styles.contactIcon} />
+                  <span>Whatsapp ID : 8613986152456</span>
+                </li>
+                <li className={styles.contactItem}>
+                  <FontAwesomeIcon icon={faSkype} className={styles.contactIcon} />
+                  <span>Skype : sharline1983</span>
+                </li>
+                <li className={styles.contactItem}>
+                  <FontAwesomeIcon icon={faWeixin} className={styles.contactIcon} />
+                  <span>微信 : 13986152456</span>
+                </li>
+                <li className={styles.contactItem}>
+                  <FontAwesomeIcon icon={faEnvelope} className={styles.contactIcon} />
+                  <span>info@leelinesourcing.com</span>
+                </li>
+                <li className={styles.contactItem}>
+                  <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.contactIcon} />
+                  <span>地址：湖北省武汉市汉阳区九州通大厦 2208 室</span>
+                </li>
+              </ul>
+
+              <div className={styles.socialLinks}>
+                <a href="#" className={styles.socialLink} aria-label="LinkedIn">
+                  <FontAwesomeIcon icon={faLinkedinIn} />
+                </a>
+                <a href="#" className={styles.socialLink} aria-label="Twitter">
+                  <FontAwesomeIcon icon={faTwitter} />
+                </a>
+                <a href="#" className={styles.socialLink} aria-label="Facebook">
+                  <FontAwesomeIcon icon={faFacebookF} />
+                </a>
               </div>
             </div>
           </div>
