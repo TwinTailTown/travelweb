@@ -165,7 +165,7 @@ export default function LogisticsServices() {
   const router = useRouter()
 
   const handleCardClick = (serviceId: string) => {
-    if (serviceId === 'business-travel') {
+    if (serviceId === 'procurement') {
       router.push('/routes')
     } else if (serviceId === 'exhibition') {
       router.push('/exhibitions')

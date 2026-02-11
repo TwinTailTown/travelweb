@@ -148,7 +148,7 @@ const services: Service[] = [
 
 export default function Services() {
   return (
-    <section id="services" className={styles.section}>
+    <section id="services-detail" className={styles.section}>
       <div className={styles.container}>
         <div className={`${styles.header} scroll-animate`}>
           <h2 className={styles.title}>
