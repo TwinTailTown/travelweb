@@ -22,7 +22,7 @@ const services: LogisticsService[] = [
     id: 'business-travel',
     image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80',
     title: '商旅服务·专业商务接待全流程',
-    description: '提供从签证办理、机场接送、酒店住宿到商务翻译的一站式商旅服务解决方案',
+    description: '提供从签证办理、机场接送、酒店到商务翻译的一站式商旅服务解决方案',
     details: [
       {
         category: '签证服务',
@@ -167,11 +167,13 @@ export default function LogisticsServices() {
   const handleCardClick = (serviceId: string) => {
     if (serviceId === 'business-travel') {
       router.push('/routes')
+    } else if (serviceId === 'exhibition') {
+      router.push('/exhibitions')
     }
   }
 
   return (
-    <section className={styles.section}>
+    <section id="services" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.title}>以优质服务筑牢发展根基</h2>

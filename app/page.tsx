@@ -6,9 +6,7 @@ import Carousel from '@/components/Carousel'
 import LogisticsServices from '@/components/LogisticsServices'
 import SourcingIntro from '@/components/SourcingIntro'
 import GlobalNetwork from '@/components/GlobalNetwork'
-import Routes from '@/components/Routes'
 import Services from '@/components/Services'
-import Exhibitions from '@/components/Exhibitions'
 import ContactForm from '@/components/ContactForm'
 import Stats from '@/components/Stats'
 import Footer from '@/components/Footer'
@@ -70,10 +68,7 @@ export default function Home() {
       <LogisticsServices />
       <SourcingIntro />
       <GlobalNetwork />
-      <Routes />
       <Services />
-
-      <Exhibitions />
       <Stats />
       <ContactForm />
       <Footer />

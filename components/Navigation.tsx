@@ -40,8 +40,8 @@ export default function Navigation() {
   const navLinks = [
     { href: '#home', label: '首页' },
     { href: '#services', label: '我们的服务' },
-    { href: '#routes', label: '商务路线' },
-    { href: '#exhibitions', label: '展会信息' },
+    { href: '/routes', label: '商务路线' },
+    { href: '/exhibitions', label: '展会信息' },
     { href: '#cases', label: '成功案例' },
     { href: '#about', label: '关于我们' },
     { href: '#contact', label: '联系帮助' },
@@ -61,17 +61,27 @@ export default function Navigation() {
 
           {/* 桌面导航 */}
           <div className={styles.desktopNav}>
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`${styles.navLink} ${
-                  activeSection === link.href.substring(1) ? styles.active : ''
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.href.startsWith('#') ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={`${styles.navLink} ${
+                    activeSection === link.href.substring(1) ? styles.active : ''
+                  }`}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={styles.navLink}
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
 
             <Link
               href="#contact"

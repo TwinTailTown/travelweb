@@ -56,10 +56,10 @@ export default function Footer() {
                 <Link href="#services" className={styles.link}>我们的服务</Link>
               </li>
               <li>
-                <Link href="#routes" className={styles.link}>商务路线</Link>
+                <Link href="/routes" className={styles.link}>商务路线</Link>
               </li>
               <li>
-                <Link href="#exhibitions" className={styles.link}>展会信息</Link>
+                <Link href="/exhibitions" className={styles.link}>展会信息</Link>
               </li>
               <li>
                 <Link href="#cases" className={styles.link}>成功案例</Link>

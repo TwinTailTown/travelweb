@@ -111,14 +111,28 @@ export default function ContactForm() {
                     value={formData.country}
                     onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                   >
-                    <option value="">国家</option>
-                    <option value="egypt">埃及</option>
+                    <option value="">请选择所在国家</option>
                     <option value="nigeria">尼日利亚</option>
                     <option value="south-africa">南非</option>
-                    <option value="ghana">加纳</option>
+                    <option value="egypt">埃及</option>
+                    <option value="ethiopia">埃塞俄比亚</option>
                     <option value="kenya">肯尼亚</option>
+                    <option value="tanzania">坦桑尼亚</option>
+                    <option value="ghana">加纳</option>
+                    <option value="cameroon">喀麦隆</option>
+                    <option value="ivory-coast">科特迪瓦</option>
                     <option value="senegal">塞内加尔</option>
-                    <option value="other">其他国家</option>
+                    <option value="angola">安哥拉</option>
+                    <option value="algeria">阿尔及利亚</option>
+                    <option value="morocco">摩洛哥</option>
+                    <option value="uganda">乌干达</option>
+                    <option value="rwanda">卢旺达</option>
+                    <option value="zambia">赞比亚</option>
+                    <option value="zimbabwe">津巴布韦</option>
+                    <option value="mozambique">莫桑比克</option>
+                    <option value="botswana">博茨瓦纳</option>
+                    <option value="namibia">纳米比亚</option>
+                    <option value="other-africa">其他非洲国家</option>
                   </select>
                 </div>
               </div>
