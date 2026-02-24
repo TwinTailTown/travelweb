@@ -5,10 +5,9 @@ import styles from './GlobalNetwork.module.scss'
 
 // 服务覆盖的国家列表（中文名称）
 const coveredCountries = [
-  '中国', '美国', '巴西', '澳大利亚', 
-  '尼日利亚', '肯尼亚', '坦桑尼亚', '沙特阿拉伯', 
-  '阿拉伯联合酋长国', '越南', '泰国', '印度',
-  '南非', '埃塞俄比亚', '加纳', '英国', '德国', '法国'
+  '中国', '美国',
+  '尼日利亚', '肯尼亚', '坦桑尼亚',
+  '南非', '埃塞俄比亚', '加纳'
 ]
 
 const stats = [
@@ -20,18 +19,18 @@ const stats = [
   { number: '3', unit: '万+', label: '服务客户数' },
 ]
 
- function GlobalNetwork() {
+function GlobalNetwork() {
   const chartRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    
+
     let chart: any = null
 
     const loadMap = async () => {
       try {
         const echarts = await import('echarts')
-        
+
         if (!chartRef.current) return
 
         // 使用 Canvas 渲染器（更快，但不支持事件）或 SVG（支持更多交互）

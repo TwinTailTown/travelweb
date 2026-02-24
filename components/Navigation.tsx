@@ -47,9 +47,6 @@ export default function Navigation() {
     { href: '/#services', label: '我们的服务' },
     { href: '/routes', label: '商务路线' },
     { href: '/exhibitions', label: '展会信息' },
-    { href: '/#cases', label: '成功案例' },
-    { href: '/#about', label: '关于我们' },
-    { href: '/#contact', label: '联系帮助' },
   ]
 
   return (
@@ -57,11 +54,28 @@ export default function Navigation() {
       <div className={styles.container}>
         <div className={styles.navContent}>
           <Link href="/" className={styles.logo}>
-            <FontAwesomeIcon
-              icon={faGlobeAfrica}
-              className={styles.logoIcon}
-            />
-            <span className={styles.logoText}>中非商务旅游</span>
+            <svg className={styles.logoSvg} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* 图二风格的 SVG Logo 实现 */}
+              <circle cx="50" cy="50" r="45" stroke="#f3f4f6" strokeWidth="2" strokeDasharray="5 5" />
+              <path
+                d="M22 42C22 57.464 34.536 70 50 70C65.464 70 78 57.464 78 42"
+                stroke="#f39221"
+                strokeWidth="14"
+                strokeLinecap="round"
+              />
+              <path
+                d="M32 35L48 51L82 17"
+                stroke="#3bbfa3"
+                strokeWidth="14"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <div className={styles.brandWrapper}>
+              <span className={styles.brandName}>Oriju</span>
+              <div className={styles.separator}></div>
+              <span className={styles.slogan}>Your One-Stop Business Trip from Africa to China</span>
+            </div>
           </Link>
 
           {/* 桌面导航 */}
@@ -72,8 +86,8 @@ export default function Navigation() {
                   key={link.href}
                   href={link.href}
                   className={`${styles.navLink} ${(link.href === '/' && activeSection === 'home') ||
-                      (link.href.includes('#') && activeSection === link.href.split('#')[1])
-                      ? styles.active : ''
+                    (link.href.includes('#') && activeSection === link.href.split('#')[1])
+                    ? styles.active : ''
                     }`}
                 >
                   {link.label}

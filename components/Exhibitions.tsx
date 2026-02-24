@@ -17,7 +17,9 @@ import styles from './Exhibitions.module.scss'
 export default function Exhibitions() {
   const { exhibitions, loading, error } = useExhibitions()
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [currentYear, setCurrentYear] = useState(new Date().getFullYear())
+  const today = new Date()
+  const [currentYear, setCurrentYear] = useState(today.getFullYear())
+  const [currentMonth, setCurrentMonth] = useState(today.getMonth() + 1) // 1-12
   const containerRef = useRef<HTMLDivElement>(null)
   const [isMobile, setIsMobile] = useState(false)
 
@@ -57,20 +59,16 @@ export default function Exhibitions() {
       { threshold: 0.01, rootMargin: '50px' }
     )
 
-    // 初始化观察器的函数
     const initObserver = () => {
-      // 查找所有 scroll-animate 元素（包括容器内的）
       const container = containerRef.current
       if (container) {
         const elements = container.querySelectorAll('.scroll-animate')
         elements.forEach((el) => {
-          // 检查元素是否已经在视口中
           const rect = el.getBoundingClientRect()
           const isVisible = rect.top < window.innerHeight + 200 && rect.bottom > -200
           if (isVisible) {
             el.classList.add('active')
           }
-          // 确保不会重复观察
           if (!el.hasAttribute('data-observed')) {
             el.setAttribute('data-observed', 'true')
             observer.observe(el)
@@ -79,7 +77,6 @@ export default function Exhibitions() {
       }
     }
 
-    // 延迟执行以确保 DOM 已渲染
     const timer1 = setTimeout(initObserver, 100)
     const timer2 = setTimeout(initObserver, 500)
     const timer3 = setTimeout(initObserver, 1000)
@@ -115,25 +112,67 @@ export default function Exhibitions() {
         const translateX = -(index * (cardWidth + gap) - padding)
         containerRef.current.style.transform = `translateX(${translateX}px)`
       }
+
+      // 桌面端滚动到指定元素逻辑（如果容器有 scroll 属性）
+      const element = document.querySelector(`[data-index="${index}"]`)
+      if (element && !isMobile) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+      }
     }
   }
 
+  const changeMonth = (delta: number) => {
+    let newMonth = currentMonth + delta
+    let newYear = currentYear
+    if (newMonth > 12) {
+      newMonth = 1
+      newYear += 1
+    } else if (newMonth < 1) {
+      newMonth = 12
+      newYear -= 1
+    }
+    setCurrentMonth(newMonth)
+    setCurrentYear(newYear)
+  }
+
   // 生成日历事件
-  const calendarEvents = exhibitions
+  const allEvents = exhibitions
     .map((exhibition) => {
       const dateInfo = parseExhibitionDate(exhibition.date)
       if (!dateInfo) return null
-      return {
-        ...exhibition,
-        ...dateInfo,
-      }
+      return { ...exhibition, ...dateInfo }
     })
     .filter((e): e is Exhibition & { year: number; month: number; day: number } => e !== null)
-    .filter((e) => e.year === currentYear)
-    .sort((a, b) => {
-      if (a.month !== b.month) return a.month - b.month
-      return a.day - b.day
+
+  const monthEvents = allEvents
+    .filter((e) => e.year === currentYear && e.month === currentMonth)
+    .sort((a, b) => a.day - b.day)
+
+  // 生成日历网格数据
+  const getDaysInMonth = (year: number, month: number) => new Date(year, month, 0).getDate()
+  const getFirstDayOfMonth = (year: number, month: number) => {
+    const day = new Date(year, month - 1, 1).getDay()
+    return day === 0 ? 6 : day - 1 // 转换为 0-6 (周一到周日)
+  }
+
+  const daysInMonth = getDaysInMonth(currentYear, currentMonth)
+  const firstDay = getFirstDayOfMonth(currentYear, currentMonth)
+  const calendarDays = []
+
+  // 填充月初空白
+  for (let i = 0; i < firstDay; i++) {
+    calendarDays.push({ day: null })
+  }
+
+  // 填充日期
+  for (let i = 1; i <= daysInMonth; i++) {
+    const hasEvent = monthEvents.some(e => e.day === i)
+    calendarDays.push({
+      day: i,
+      hasEvent,
+      isToday: today.getFullYear() === currentYear && today.getMonth() + 1 === currentMonth && today.getDate() === i
     })
+  }
 
   const handleTouchStart = useRef<{ x: number; y: number } | null>(null)
 
@@ -170,20 +209,14 @@ export default function Exhibitions() {
     <section id="exhibitions" className={styles.section}>
       <div className={styles.container}>
         <div className={`${styles.header} scroll-animate`}>
-          <h2 className={styles.title}>
-            展会信息
-          </h2>
-          <p className={styles.subtitle}>
-            我们为您提供最新的广州和义乌展会信息，帮助您把握商机，拓展业务。
-          </p>
+          <h2 className={styles.title}>展会信息</h2>
+          <p className={styles.subtitle}>我们为您提供最新的广州和义乌展会信息，帮助您把握商机，拓展业务。</p>
         </div>
 
         <div className={styles.grid}>
           <div className={styles.mainContent}>
             <div className={styles.exhibitionsCard}>
-              <h3 className={styles.exhibitionsTitle}>
-                近期展会
-              </h3>
+              <h3 className={styles.exhibitionsTitle}>近期展会</h3>
 
               {loading && (
                 <div className={styles.loading}>
@@ -204,7 +237,6 @@ export default function Exhibitions() {
 
               {!loading && !error && exhibitions.length > 0 && (
                 <div style={{ position: 'relative' }}>
-                  {/* 移动端左翻页按钮 */}
                   <button
                     id="exhibitions-prev"
                     onClick={() => goToExhibition(currentIndex - 1)}
@@ -215,36 +247,21 @@ export default function Exhibitions() {
                     <FontAwesomeIcon icon={faChevronLeft} className={styles.navButtonIcon} />
                   </button>
 
-                  {/* 展会列表容器 */}
                   <div
                     id="exhibitions-wrapper"
                     className={styles.wrapper}
                     onTouchStart={onTouchStart}
                     onTouchEnd={onTouchEnd}
                   >
-                    <div
-                      id="exhibitions-container"
-                      ref={containerRef}
-                      className={styles.containerInner}
-                    >
+                    <div id="exhibitions-container" ref={containerRef} className={styles.containerInner}>
                       {exhibitions.map((exhibition, index) => (
-                        <div
-                          key={exhibition.id}
-                          className={`${styles.event} scroll-animate`}
-                          data-index={index}
-                        >
+                        <div key={exhibition.id} className={`${styles.event} scroll-animate`} data-index={index}>
                           <div className={styles.eventHeader}>
-                            <h4 className={styles.eventTitle}>
-                              {exhibition.title}
-                            </h4>
+                            <h4 className={styles.eventTitle}>{exhibition.title}</h4>
                             {exhibition.badge && (
                               <span
                                 className={styles.badge}
-                                style={
-                                  exhibition.badgeColor
-                                    ? { backgroundColor: exhibition.badgeColor }
-                                    : { backgroundColor: '#FF8C42' }
-                                }
+                                style={exhibition.badgeColor ? { backgroundColor: exhibition.badgeColor } : { backgroundColor: '#FF8C42' }}
                               >
                                 {exhibition.badge}
                               </span>
@@ -260,10 +277,7 @@ export default function Exhibitions() {
                           <p className={styles.eventDescription}>{exhibition.description}</p>
                           <div className={styles.tags}>
                             {exhibition.tags.map((tag, tagIndex) => (
-                              <span
-                                key={tagIndex}
-                                className={styles.tag}
-                              >
+                              <span key={tagIndex} className={styles.tag}>
                                 {tag}
                               </span>
                             ))}
@@ -279,7 +293,6 @@ export default function Exhibitions() {
                     </div>
                   </div>
 
-                  {/* 移动端右翻页按钮 */}
                   <button
                     id="exhibitions-next"
                     onClick={() => goToExhibition(currentIndex + 1)}
@@ -290,18 +303,12 @@ export default function Exhibitions() {
                     <FontAwesomeIcon icon={faChevronRight} className={styles.navButtonIcon} />
                   </button>
 
-                  {/* 移动端指示器 */}
                   {isMobile && (
-                    <div
-                      id="exhibitions-indicators"
-                      className={styles.indicators}
-                    >
+                    <div id="exhibitions-indicators" className={styles.indicators}>
                       {exhibitions.map((_, index) => (
                         <div
                           key={index}
-                          className={`${styles.indicator} ${
-                            currentIndex === index ? styles.active : ''
-                          }`}
+                          className={`${styles.indicator} ${currentIndex === index ? styles.active : ''}`}
                           onClick={() => goToExhibition(index)}
                         />
                       ))}
@@ -312,60 +319,66 @@ export default function Exhibitions() {
             </div>
           </div>
 
-          {/* 展会日历 */}
-          <div>
+          <div className={styles.sidebar}>
             <div className={`${styles.calendarCard} scroll-animate`}>
               <h3 className={styles.calendarTitle}>展会日历</h3>
               <div className={styles.calendarControls}>
                 <div className={styles.calendarHeader}>
-                  <button
-                    onClick={() => setCurrentYear(currentYear - 1)}
-                    className={styles.calendarYearButton}
-                  >
+                  <button onClick={() => changeMonth(-1)} className={styles.calendarYearButton}>
                     <FontAwesomeIcon icon={faChevronLeft} />
                   </button>
-                  <h4 className={styles.calendarYear}>{currentYear}年</h4>
-                  <button
-                    onClick={() => setCurrentYear(currentYear + 1)}
-                    className={styles.calendarYearButton}
-                  >
+                  <div className={styles.calendarYear}>
+                    <span>{currentYear}年</span>
+                    <span className={styles.calendarMonth}>{currentMonth}月</span>
+                  </div>
+                  <button onClick={() => changeMonth(1)} className={styles.calendarYearButton}>
                     <FontAwesomeIcon icon={faChevronRight} />
                   </button>
                 </div>
               </div>
 
-              <div id="calendar-events" className={styles.calendarEvents}>
-                {calendarEvents.map((event) => (
+              <div className={styles.calendarGrid}>
+                {['一', '二', '三', '四', '五', '六', '日'].map((d) => (
+                  <div key={d} className={styles.calendarWeekday}>
+                    {d}
+                  </div>
+                ))}
+                {calendarDays.map((date, i) => (
                   <div
-                    key={event.id}
-                    className={`${styles.calendarEvent} scroll-animate`}
-                    onClick={() => scrollToExhibition(event.id)}
-                    style={{
-                      borderLeftColor: event.badgeColor || '#FF8C42',
+                    key={i}
+                    className={`${styles.calendarDay} ${!date.day ? styles.empty : ''} ${date.isToday ? styles.today : ''} ${date.hasEvent ? styles.hasEvent : ''}`}
+                    onClick={() => {
+                      if (date.day && date.hasEvent) {
+                        const firstEvent = monthEvents.find((e) => e.day === date.day)
+                        if (firstEvent) scrollToExhibition(firstEvent.id)
+                      }
                     }}
                   >
+                    {date.day}
+                    {date.hasEvent && <div className={styles.eventDot} />}
+                  </div>
+                ))}
+              </div>
+
+              <div id="calendar-events" className={styles.calendarEvents}>
+                <h4 style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: '0.5rem' }}>{currentMonth}月展会列表</h4>
+                {monthEvents.map((event) => (
+                  <div
+                    key={event.id}
+                    className={styles.calendarEvent}
+                    onClick={() => scrollToExhibition(event.id)}
+                    style={{ borderLeftColor: event.badgeColor || '#FF8C42' }}
+                  >
                     <div className={styles.calendarEventHeader}>
-                      <div
-                        className={styles.calendarEventDot}
-                        style={{
-                          backgroundColor: event.badgeColor || '#FF8C42',
-                        }}
-                      />
                       <span className={styles.calendarEventDate}>
                         {event.month}月{event.day}日
                       </span>
                     </div>
-                    <h4 className={styles.calendarEventTitle}>
-                      {event.title}
-                    </h4>
+                    <h4 className={styles.calendarEventTitle}>{event.title}</h4>
                     <p className={styles.calendarEventLocation}>{event.location}</p>
                   </div>
                 ))}
-                {calendarEvents.length === 0 && (
-                  <p className={styles.calendarEmpty}>
-                    {currentYear}年暂无展会安排
-                  </p>
-                )}
+                {monthEvents.length === 0 && <p className={styles.calendarEmpty}>{currentYear}年{currentMonth}月暂无展会</p>}
               </div>
             </div>
           </div>

@@ -5,12 +5,11 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import styles from './SourcingIntro.module.scss'
 
 const features = [
-  { text: 'QUALITY', description: 'sourcing', highlight: true },
-  { text: 'SAFE', description: 'shipping', highlight: true },
-  { text: '24/7', description: 'support', highlight: true },
-  { text: 'COMPETITIVE', description: 'prices', highlight: true },
-  { text: 'We offer 1 Month Free Warehouse', description: 'storage for your goods', highlight: false },
-  { text: '2000+ Seller Recommend !!!', description: '', highlight: false },
+  { text: '最新市场咨询', description: '', highlight: false },
+  { text: '高质量采购', description: '', highlight: false },
+  { text: '最有竞争力价格', description: '', highlight: false },
+  { text: '安全运输服务', description: '', highlight: false },
+  { text: '我们有丰富的导游经验', description: '', highlight: false },
 ]
 
 export default function SourcingIntro() {
@@ -49,7 +48,7 @@ export default function SourcingIntro() {
             </ul>
 
             <a href="#contact" className={styles.contactButton}>
-              Contact This China Sourcing Company →
+              联系报名中国之旅
             </a>
           </div>
 
