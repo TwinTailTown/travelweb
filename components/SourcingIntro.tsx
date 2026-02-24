@@ -22,15 +22,10 @@ export default function SourcingIntro() {
             <h2 className={styles.title}>我们是您值得信赖的中国采购代理</h2>
 
             <div className={styles.description}>
-              <p>欢迎来到我们中国一站式服务中心！我们专业为非洲朋友提供：来华旅游考察、产品采购、物流发货一条龙服务。</p>
-              <p>无论您想来中国旅游、考察市场、寻找货源，还是需要帮忙挑选商品、对接工厂、把货物安全运回非洲，我们都能全程为您办好。</p>
-            </div>
-
-            <div className={styles.needHelp}>
               <p>
-                我们拥有丰富的市场经验和可靠渠道，作为您在中国的贴心代理，我们提供
-                <span className={styles.highlight}>专业指导</span>、
-                <span className={styles.highlight}>省心服务</span>，让您来华做生意更轻松、更放心！
+                欢迎来到我们的中国一站式服务中心！我们专业为非洲朋友提供从旅游考察、产品采购到物流发货的一条龙服务。
+                无论您是想来华寻找货源、对接工厂，还是需要可靠的贴心代理协助商品挑选与安全物流，我们都能凭借丰富的市场经验和渠道全程为您办好，
+                提供专业、省心的全方位指导，让您的中国之行更轻松、更放心！
               </p>
             </div>
 
