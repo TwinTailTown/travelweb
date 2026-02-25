@@ -34,7 +34,7 @@ const services: LogisticsService[] = [
       },
       {
         category: '住宿安排',
-        items: ['商务酒店', '长租优惠', '舒适环境']
+        items: ['商务酒店', '舒适环境', '靠近采购地点']
       },
       {
         category: '翻译陪同',
@@ -42,7 +42,7 @@ const services: LogisticsService[] = [
       },
       {
         category: '行程规划',
-        items: ['定制路线', '时间优化', '高效安排']
+        items: ['可定制路线', '热门景点', '高效逛市场']
       }
     ]
   },
@@ -165,7 +165,9 @@ export default function LogisticsServices() {
   const router = useRouter()
 
   const handleCardClick = (serviceId: string) => {
-    if (serviceId === 'procurement') {
+    if (serviceId === 'business-travel') {
+      router.push('/visa-guide')
+    } else if (serviceId === 'procurement') {
       router.push('/routes')
     } else if (serviceId === 'exhibition') {
       router.push('/exhibitions')
