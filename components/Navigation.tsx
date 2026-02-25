@@ -54,23 +54,7 @@ export default function Navigation() {
       <div className={styles.container}>
         <div className={styles.navContent}>
           <Link href="/" className={styles.logo}>
-            <svg className={styles.logoSvg} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* 图二风格的 SVG Logo 实现 */}
-              <circle cx="50" cy="50" r="45" stroke="#f3f4f6" strokeWidth="2" strokeDasharray="5 5" />
-              <path
-                d="M22 42C22 57.464 34.536 70 50 70C65.464 70 78 57.464 78 42"
-                stroke="#f39221"
-                strokeWidth="14"
-                strokeLinecap="round"
-              />
-              <path
-                d="M32 35L48 51L82 17"
-                stroke="#3bbfa3"
-                strokeWidth="14"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <img src="/logo.png" alt="Oriju Logo" className={styles.logoImage} />
             <div className={styles.brandWrapper}>
               <span className={styles.brandName}>Oriju</span>
               <div className={styles.separator}></div>
